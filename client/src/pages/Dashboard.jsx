@@ -35,6 +35,29 @@ export default function Dashboard() {
     retry: false
   });
 
+  // Analyze Excel file structure
+  const analyzeExcelFile = async (file) => {
+    const formData = new FormData();
+    formData.append('excelFile', file);
+
+    const response = await fetch('/api/analyze-excel', {
+      method: 'POST',
+      body: formData
+    });
+
+    const analysis = await response.json();
+    console.log('Excel Analysis:', analysis);
+    
+    if (response.ok) {
+      toast({
+        title: "Excel Analysis",
+        description: `Found ${analysis.availableSheets.length} sheet(s). Check console for details.`
+      });
+    }
+    
+    return analysis;
+  };
+
   // Handle Excel file upload
   const handleFileUpload = async (event) => {
     const file = event.target.files[0];
@@ -52,6 +75,11 @@ export default function Dashboard() {
     setUploadingFile(true);
     
     try {
+      // First analyze the file to help with debugging
+      console.log('Analyzing Excel file structure...');
+      await analyzeExcelFile(file);
+
+      // Then try to process it
       const formData = new FormData();
       formData.append('excelFile', file);
 
@@ -63,9 +91,12 @@ export default function Dashboard() {
       const result = await response.json();
 
       if (!response.ok) {
+        console.error('Upload error details:', result);
         throw new Error(result.error || 'Upload failed');
       }
 
+      console.log('Upload result:', result);
+      
       toast({
         title: "Upload Successful",
         description: `Processed ${result.summary.consultants} consultants and ${result.summary.teams} teams`

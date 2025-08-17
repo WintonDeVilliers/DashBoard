@@ -50,11 +50,11 @@ export const SalesPerformanceSchema = {
 
 // Excel column mappings for flexibility
 export const ExcelColumnMappings = {
-  consultant_name: ['Name', 'Consultant Name', 'Employee Name', 'Salesperson'],
-  supervisor_name: ['Supervisor', 'Manager', 'Team Lead', 'Supervisor Name'],
-  current_sales: ['Current Sales', 'Sales', 'Total Sales', 'SalesVal', 'TotalSalesVal'],
-  sales_target: ['Target', 'Sales Target', 'Target Sales', 'SalesValTarget'],
-  team_name: ['Team', 'Team Name', 'Department', 'Unit']
+  consultant_name: ['Name', 'Consultant Name', 'Employee Name', 'Salesperson', 'Full Name', 'Employee', 'Rep Name', 'Agent Name', 'Consultant'],
+  supervisor_name: ['Supervisor', 'Manager', 'Team Lead', 'Supervisor Name', 'Manager Name', 'Team Leader', 'Lead', 'Boss'],
+  current_sales: ['Current Sales', 'Sales', 'Total Sales', 'SalesVal', 'TotalSalesVal', 'Sales Amount', 'Amount', 'Revenue', 'YTD Sales', 'Actual Sales', 'Sales Value'],
+  sales_target: ['Target', 'Sales Target', 'Target Sales', 'SalesValTarget', 'Goal', 'Quota', 'Target Amount', 'Sales Goal', 'Target Value'],
+  team_name: ['Team', 'Team Name', 'Department', 'Unit', 'Division', 'Group', 'Branch', 'Office']
 };
 
 // Performance categorization thresholds
@@ -75,13 +75,13 @@ export const VehicleTypes = {
   TRUCK: '🛻'           // <60% - Recovery Mode
 };
 
-// Performance colors for consistent theming
+// Performance color coding for visualizations
 export const PerformanceColors = {
-  SUPERSTAR: '#FF6B35',      // Racing orange
-  TARGET_ACHIEVED: '#4ECDC4', // Victory teal
-  ON_TRACK: '#45B7D1',       // Track blue
-  NEEDS_BOOST: '#FFA07A',    // Caution orange
-  RECOVERY_MODE: '#FF6B6B'   // Alert red
+  SUPERSTAR: '#FFD700',      // Gold - 120%+
+  TARGET_ACHIEVED: '#00FF00', // Green - 100%+
+  ON_TRACK: '#FFA500',       // Orange - 80%+
+  NEEDS_BOOST: '#FF6B6B',    // Red - 60%+
+  RECOVERY_MODE: '#8B0000'   // Dark Red - <60%
 };
 
 // Racing circuit configurations

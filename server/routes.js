@@ -22,11 +22,23 @@ export async function registerRoutes(app) {
         return res.status(400).json({ error: "No Excel file uploaded" });
       }
 
+      console.log("Processing Excel file:", req.file.originalname, "Size:", req.file.size);
+
       const workbook = XLSX.read(req.file.buffer, { type: 'buffer' });
+      console.log("Available sheets:", workbook.SheetNames);
       
-      // Look for 'Sales Performance' sheet or use first sheet
-      let sheetName = 'Sales Performance';
-      if (!workbook.Sheets[sheetName]) {
+      // Look for common sheet names or use first sheet
+      let sheetName = null;
+      const commonSheetNames = ['Sales Performance', 'Sales', 'Data', 'Sheet1', 'Performance'];
+      
+      for (const commonName of commonSheetNames) {
+        if (workbook.Sheets[commonName]) {
+          sheetName = commonName;
+          break;
+        }
+      }
+      
+      if (!sheetName) {
         sheetName = workbook.SheetNames[0];
       }
       
@@ -34,8 +46,15 @@ export async function registerRoutes(app) {
         return res.status(400).json({ error: "No valid worksheet found" });
       }
 
+      console.log("Using sheet:", sheetName);
       const worksheet = workbook.Sheets[sheetName];
-      const rawData = XLSX.utils.sheet_to_json(worksheet);
+      const rawData = XLSX.utils.sheet_to_json(worksheet, { defval: '' });
+      
+      console.log("Raw data rows:", rawData.length);
+      if (rawData.length > 0) {
+        console.log("First row columns:", Object.keys(rawData[0]));
+        console.log("Sample data:", rawData[0]);
+      }
       
       if (rawData.length === 0) {
         return res.status(400).json({ error: "Excel sheet is empty" });
@@ -49,7 +68,13 @@ export async function registerRoutes(app) {
       
       res.json({
         message: "Excel data processed successfully",
-        summary: result
+        summary: result,
+        debug: {
+          sheetName,
+          availableSheets: workbook.SheetNames,
+          columnsFound: Object.keys(rawData[0]),
+          rowsProcessed: rawData.length
+        }
       });
 
     } catch (error) {
@@ -167,6 +192,43 @@ export async function registerRoutes(app) {
       res.json(distribution);
     } catch (error) {
       res.status(500).json({ error: error.message });
+    }
+  });
+
+  // Debug endpoint to analyze Excel structure
+  app.post("/api/analyze-excel", upload.single('excelFile'), async (req, res) => {
+    try {
+      if (!req.file) {
+        return res.status(400).json({ error: "No Excel file uploaded" });
+      }
+
+      const workbook = XLSX.read(req.file.buffer, { type: 'buffer' });
+      const analysis = {
+        fileName: req.file.originalname,
+        fileSize: req.file.size,
+        availableSheets: workbook.SheetNames,
+        sheetsAnalysis: {}
+      };
+
+      // Analyze each sheet
+      for (const sheetName of workbook.SheetNames) {
+        const worksheet = workbook.Sheets[sheetName];
+        const rawData = XLSX.utils.sheet_to_json(worksheet, { defval: '', header: 1 });
+        
+        if (rawData.length > 0) {
+          analysis.sheetsAnalysis[sheetName] = {
+            totalRows: rawData.length,
+            headers: rawData[0] || [],
+            sampleData: rawData.slice(1, 3), // First 2 data rows
+            columnTypes: analyzeColumnTypes(rawData)
+          };
+        }
+      }
+
+      res.json(analysis);
+    } catch (error) {
+      console.error("Excel analysis error:", error);
+      res.status(500).json({ error: "Failed to analyze Excel file: " + error.message });
     }
   });
 
@@ -317,15 +379,42 @@ function findColumnMappings(firstRow) {
   const mappings = {};
   const columns = Object.keys(firstRow);
   
+  console.log("Looking for column mappings in:", columns);
+  
   for (const [field, possibleNames] of Object.entries(ExcelColumnMappings)) {
     for (const column of columns) {
-      if (possibleNames.some(name => column.toLowerCase().includes(name.toLowerCase()))) {
+      // Try exact match first, then contains match
+      if (possibleNames.some(name => 
+        column.toLowerCase() === name.toLowerCase() || 
+        column.toLowerCase().includes(name.toLowerCase()) ||
+        name.toLowerCase().includes(column.toLowerCase())
+      )) {
         mappings[field] = column;
+        console.log(`Mapped ${field} -> ${column}`);
         break;
+      }
+    }
+    
+    // If no mapping found, try fuzzy matching for critical fields
+    if (!mappings[field] && ['consultant_name', 'current_sales', 'sales_target'].includes(field)) {
+      for (const column of columns) {
+        const columnLower = column.toLowerCase().replace(/[^a-z0-9]/g, '');
+        const hasNumbers = /\d/.test(columnLower);
+        
+        if (field === 'consultant_name' && !hasNumbers && columnLower.length > 2) {
+          mappings[field] = column;
+          console.log(`Fuzzy mapped ${field} -> ${column} (name-like column)`);
+          break;
+        } else if ((field === 'current_sales' || field === 'sales_target') && hasNumbers) {
+          mappings[field] = column;
+          console.log(`Fuzzy mapped ${field} -> ${column} (numeric column)`);
+          break;
+        }
       }
     }
   }
   
+  console.log("Final mappings:", mappings);
   return mappings;
 }
 
@@ -347,4 +436,34 @@ function getPerformanceColor(achievementRate) {
   if (achievementRate >= PerformanceThresholds.ON_TRACK) return PerformanceColors.ON_TRACK;
   if (achievementRate >= PerformanceThresholds.NEEDS_BOOST) return PerformanceColors.NEEDS_BOOST;
   return PerformanceColors.RECOVERY_MODE;
+}
+
+function analyzeColumnTypes(rawData) {
+  if (rawData.length < 2) return {};
+  
+  const headers = rawData[0] || [];
+  const analysis = {};
+  
+  headers.forEach((header, index) => {
+    const samples = rawData.slice(1, 6).map(row => row[index]).filter(val => val !== undefined && val !== '');
+    
+    if (samples.length === 0) {
+      analysis[header] = 'empty';
+      return;
+    }
+    
+    const numericSamples = samples.filter(val => !isNaN(parseFloat(val)) && isFinite(val));
+    const hasNumbers = numericSamples.length > 0;
+    const allNumbers = numericSamples.length === samples.length;
+    
+    if (allNumbers) {
+      analysis[header] = 'numeric';
+    } else if (hasNumbers) {
+      analysis[header] = 'mixed';
+    } else {
+      analysis[header] = 'text';
+    }
+  });
+  
+  return analysis;
 }
