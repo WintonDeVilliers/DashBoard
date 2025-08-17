@@ -107,17 +107,47 @@ export default function Dashboard() {
     return () => clearInterval(timer);
   }, []);
 
-  // Fetch company metrics
+  // Check for locally stored data first, then fall back to API
+  const [localData, setLocalData] = useState(null);
+  
+  useEffect(() => {
+    const storedData = localStorage.getItem('f1DashboardData');
+    const storedSummary = localStorage.getItem('f1DashboardSummary');
+    if (storedData && storedSummary) {
+      setLocalData({
+        data: JSON.parse(storedData),
+        summary: JSON.parse(storedSummary)
+      });
+    }
+  }, []);
+
+  // Fetch company metrics (with fallback to local data)
   const { data: companyMetrics, isLoading: metricsLoading, error: metricsError, refetch: refetchMetrics } = useQuery({
     queryKey: ['/api/company-metrics'],
-    retry: false
+    retry: false,
+    enabled: !localData // Only fetch from API if no local data
   });
 
-  // Fetch team data
+  // Fetch team data (with fallback to local data)
   const { data: teamData, isLoading: teamsLoading, refetch: refetchTeams } = useQuery({
     queryKey: ['/api/teams'],
-    retry: false
+    retry: false,
+    enabled: !localData // Only fetch from API if no local data
   });
+  
+  // Use local data if available, otherwise use API data
+  const displayData = localData ? {
+    teams: localData.data,
+    companyMetrics: {
+      totalConsultants: localData.data.length,
+      averageAchievement: Math.round(localData.data.reduce((sum, p) => sum + p.achievementRate, 0) / localData.data.length),
+      topPerformer: localData.data[0]?.name || 'N/A',
+      totalRevenue: localData.data.reduce((sum, p) => sum + p.sales, 0)
+    }
+  } : {
+    teams: teamData,
+    companyMetrics: companyMetrics
+  };
 
   // Analyze Excel file structure
   const analyzeExcelFile = async (file) => {
@@ -229,14 +259,16 @@ export default function Dashboard() {
       localStorage.setItem('f1DashboardData', JSON.stringify(result.data));
       localStorage.setItem('f1DashboardSummary', JSON.stringify(result.summary));
       
+      // Update local state immediately
+      setLocalData({
+        data: result.data,
+        summary: result.summary
+      });
+      
       toast({
         title: "Excel Upload Success!",
         description: `Processed ${result.data.length} records from ${sheetName}. Your F1 racing leaderboard is ready!`
       });
-
-      // Refresh all data
-      refetchMetrics();
-      refetchTeams();
       
       // Reset file input
       event.target.value = '';
@@ -337,7 +369,7 @@ export default function Dashboard() {
       </nav>
 
       {/* File Upload Section */}
-      {!companyMetrics && !metricsLoading && (
+      {!displayData.companyMetrics && !localData && !metricsLoading && (
         <div className={styles.uploadSection}>
           <div className={styles.uploadCard}>
             <h2>Upload Sales Performance Data</h2>
@@ -369,7 +401,7 @@ export default function Dashboard() {
           </div>
         )}
 
-        {metricsLoading || teamsLoading ? (
+        {!localData && (metricsLoading || teamsLoading) ? (
           <div className={styles.loadingState}>
             <div className={styles.loadingSpinner}></div>
             <p>Loading dashboard data...</p>
@@ -378,26 +410,26 @@ export default function Dashboard() {
           <>
             {activeTab === 'total' && (
               <TotalProgressView 
-                companyMetrics={companyMetrics}
-                teamData={teamData}
+                companyMetrics={displayData.companyMetrics}
+                teamData={displayData.teams}
               />
             )}
             {activeTab === 'teams' && (
               <TeamRacingView 
-                teamData={teamData}
-                companyMetrics={companyMetrics}
+                teamData={displayData.teams}
+                companyMetrics={displayData.companyMetrics}
               />
             )}
             {activeTab === 'monaco' && (
               <MonacoCircuitView 
-                teamData={teamData?.filter(team => team.circuit === 'monaco')}
-                companyMetrics={companyMetrics}
+                teamData={displayData.teams?.filter(team => team.circuit === 'Monaco')}
+                companyMetrics={displayData.companyMetrics}
               />
             )}
             {activeTab === 'kyalami' && (
               <KyalamiCircuitView 
-                teamData={teamData?.filter(team => team.circuit === 'kyalami')}
-                companyMetrics={companyMetrics}
+                teamData={displayData.teams?.filter(team => team.circuit === 'Kyalami')}
+                companyMetrics={displayData.companyMetrics}
               />
             )}
           </>
