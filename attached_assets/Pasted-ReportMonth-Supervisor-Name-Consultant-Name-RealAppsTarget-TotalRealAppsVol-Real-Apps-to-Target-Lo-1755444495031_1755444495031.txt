@@ -1,0 +1,207 @@
+ReportMonth	Supervisor Name	Consultant Name	RealAppsTarget	TotalRealAppsVol	Real Apps % to Target	LoanAppsVol	CardAppsVol	OverDraftAppsVol	TotalDealsVol	SalesValTarget	TotalSalesVal	Sales Val % to Target	LoanDealsVol	LoanSaleVal	CardDealsVol	CardSaleVal	CardLimIncSaleVal	CreditCardDealTarget	Creditcard  % to target	OverDraftDealsVol	OverDraftSaleVal
+202508	Ashley Moyo	Ayanda Delubom	160	51	32%	39	11	0	9	1,560,550	1,202,000	77%	4	329,000	5	873,000	0	10	50%	0	0
+202508	Ashley Moyo	Boipelo Zitha	150	47	31%	39	8	0	14	1,455,060	809,600	56%	8	253,100	6	556,500	0	8	75%	0	0
+202508	Ashley Moyo	Grace Baloyi	150	91	61%	74	16	0	12	1,455,060	823,250	57%	4	224,250	7	504,500	94,500	8	88%	0	0
+202508	Ashley Moyo	Koketjo Kekae	150	65	43%	53	10	0	8	1,455,060	813,100	56%	4	549,700	4	253,400	10,000	8	50%	0	0
+202508	Ashley Moyo	Lunga Mabona	75		0%					727,530		0%						4	0%		
+202508	Ashley Moyo	Ngibongiseni Chavango	150	49	33%	43	5	0	6	1,455,060	87,700	6%	3	17,700	3	70,000	0	8	38%	0	0
+202508	Ashley Moyo	Ntando Sibisi	150	59	39%	52	7	0	9	1,455,060	581,700	40%	7	532,950	2	48,750	0	8	25%	0	0
+202508	Ashley Moyo	Sibongile Dlali	150	64	43%	53	9	0	14	1,455,060	937,200	64%	4	18,550	7	690,250	228,400	8	88%	0	0
+202508	Ashley Moyo	Siphokazi Ndamase	0	20	0%	14	5	0	5	0	312,300	0%	0	0	3	226,750	85,550	0	0%	0	0
+202508	Ashley Moyo	Sthandokuhle Mwelase	160	46	29%	40	6	0	7	1,560,550	844,250	54%	1	18,000	5	762,250	64,000	10	50%	0	0
+202508	Ashley Moyo	Teboho Tau	150	75	50%	66	8	0	4	1,455,060	355,300	24%	2	268,550	1	69,750	17,000	8	13%	0	0
+202508	Ashley Moyo	Zintle Mshengu	75	75	100%	60	13	1	6	727,530	331,450	46%	3	152,450	2	67,250	111,750	4	50%	0	0
+202508	Busisiwe Mabuza	Antonaite Mkhatshwa	150	51	34%	39	8	0	6	1,455,060	142,750	10%	2	13,250	3	118,500	11,000	8	38%	0	0
+202508	Busisiwe Mabuza	Bhonda Thompson	150	67	45%	52	12	0	6	1,455,060	144,250	10%	1	10,350	3	109,000	24,900	8	38%	0	0
+202508	Busisiwe Mabuza	Daphney Legodi	75		0%				2	727,530	17,000	2%	2	17,000	0	0	0	4	0%	0	0
+202508	Busisiwe Mabuza	Dumisani Mtsweni	150	66	44%	55	9	0	9	1,455,060	662,200	46%	4	393,450	4	246,750	22,000	8	50%	0	0
+202508	Busisiwe Mabuza	Karabo Motau	75	48	64%	38	8	0	5	727,530	488,250	67%	1	18,000	4	470,250	0	4	100%	0	0
+202508	Busisiwe Mabuza	Mlungisi Nkidi	60	56	93%	46	7	0	1	350,500	15,000	4%	0	0	0	0	15,000	3	0%	0	0
+202508	Busisiwe Mabuza	Mulweli Mushweu	0		0%					0		0%						0	0%		
+202508	Busisiwe Mabuza	Puseletso Mokoena	150	60	40%	45	14	0	7	1,455,060	322,650	22%	3	107,650	2	150,000	65,000	8	25%	0	0
+202508	Busisiwe Mabuza	Rorisang Masalesa	150	33	22%	23	9	0	5	1,455,060	260,700	18%	2	40,450	2	207,250	13,000	8	25%	0	0
+202508	Busisiwe Mabuza	Thato Moletsane	150	48	32%	26	15	0	8	1,455,060	275,400	19%	5	117,150	2	125,000	33,250	8	25%	0	0
+202508	Busisiwe Mabuza	Zamokuhle Mazibuko	150	43	29%	33	8	0	5	1,455,060	215,250	15%	1	10,000	2	158,500	46,750	8	25%	0	0
+202508	Cindy Visser	Basetsana Rakitla	150	45	30%	34	10	0	8	1,455,060	194,950	13%	2	21,950	5	153,250	19,750	8	63%	0	0
+202508	Cindy Visser	Ivan Mashimbye	150	88	59%	70	14	0	12	1,455,060	751,400	52%	6	47,900	4	629,000	74,500	8	50%	0	0
+202508	Cindy Visser	Mary Tshabalala	0		0%					0		0%						0	0%		
+202508	Cindy Visser	Mary-Ann Moloto	160	87	54%	75	9	0	12	1,560,550	273,550	18%	7	191,550	4	74,000	8,000	10	40%	0	0
+202508	Cindy Visser	Mbavhalelo Ndou	0		0%					0		0%						0	0%		
+202508	Cindy Visser	Mokgadi Mathiane	160	94	59%	70	20	0	18	1,560,550	542,200	35%	7	197,200	6	198,500	146,500	10	60%	0	0
+202508	Cindy Visser	Morongwa Rasekgololo	160	48	30%	36	10	0	10	1,560,550	465,500	30%	4	58,750	5	378,500	28,250	10	50%	0	0
+202508	Cindy Visser	Rendani Nephambani	150	45	30%	35	10	0	8	1,455,060	267,200	18%	3	41,450	5	225,750	0	8	63%	0	0
+202508	Cindy Visser	Tshwarelo Motlhala	150	54	36%	39	14	0	10	1,455,060	332,250	23%	3	33,000	6	265,000	34,250	8	75%	0	0
+202508	Cindy Visser	Vhugala Davhula	160	76	48%	66	8	0	12	1,560,550	561,150	36%	6	95,900	5	389,250	76,000	10	50%	0	0
+202508	Cindy Visser	Zinhle Mtshweni	160	68	43%	62	4	0	12	1,560,550	401,000	26%	7	270,000	4	83,500	47,500	10	40%	0	0
+202508	Cindy Visser	Zwivhuya Magwara	160	46	29%	33	10	0	10	1,560,550	1,147,700	74%	3	393,950	6	503,750	250,000	10	60%	0	0
+202508	Matimba Ngobeni	Kefilwe Mokgotle	150	70	47%	56	12	0	9	1,455,060	1,063,950	73%	4	457,200	5	606,750	0	8	63%	0	0
+202508	Matimba Ngobeni	Kgabo Mokonyama	150	67	45%	55	10	0	9	1,455,060	210,850	14%	5	70,450	2	48,750	91,650	8	25%	0	0
+202508	Matimba Ngobeni	Nozuko Ndamase	150	41	27%	28	10	0	11	1,455,060	659,750	45%	1	107,000	7	462,750	90,000	8	88%	0	0
+202508	Matimba Ngobeni	Shannon Prince	150	54	36%	46	5	0	6	1,455,060	238,250	16%	1	7,000	2	37,500	193,750	8	25%	0	0
+202508	Matimba Ngobeni	Simphiwe Madlabane	150	68	45%	60	7	0	8	1,455,060	539,050	37%	2	23,050	5	508,000	8,000	8	63%	0	0
+202508	Matimba Ngobeni	Siyavuya Mnukwa	150	56	37%	45	9	0	12	1,455,060	533,550	37%	6	197,800	6	335,750	0	8	75%	0	0
+202508	Matimba Ngobeni	Tshepisang Molefe	150	58	39%	50	4	0	9	1,455,060	575,400	40%	5	307,650	2	54,250	213,500	8	25%	0	0
+202508	Matimba Ngobeni	Tumi Moloi	150	51	34%	44	5	0	4	1,455,060	416,350	29%	2	383,100	1	25,000	8,250	8	13%	0	0
+202508	Mfundo Mdlalose	Gloria Seutloadi	150	64	43%	47	14	0	6	1,455,060	404,500	28%	2	26,000	3	366,500	12,000	8	38%	0	0
+202508	Mfundo Mdlalose	Jody Shingange	150	73	49%	62	9	0	13	1,455,060	998,050	69%	9	849,550	2	33,000	115,500	8	25%	0	0
+202508	Mfundo Mdlalose	Lebone Maile	150	67	45%	53	10	0	6	1,455,060	239,000	16%	2	27,000	4	212,000	0	8	50%	0	0
+202508	Mfundo Mdlalose	Lufuno Makhado	150	80	53%	62	14	0	11	1,455,060	960,200	66%	4	302,700	5	623,750	33,750	8	63%	0	0
+202508	Mfundo Mdlalose	Menziwoxolo Sibeko	60	95	158%	79	13	0	9	565,850	403,550	71%	5	246,800	1	15,000	141,750	4	25%	0	0
+202508	Mfundo Mdlalose	Mmateboho Mosekedi	150	76	51%	65	10	0	12	1,455,060	675,450	46%	5	443,700	6	184,750	47,000	8	75%	0	0
+202508	Mfundo Mdlalose	Naledi Mashiane	150	43	29%	34	7	0	7	1,455,060	408,000	28%	6	58,000	1	350,000	0	8	13%	0	0
+202508	Mfundo Mdlalose	Nokuthula Mabongo	150	55	37%	45	8	0	9	1,455,060	429,600	30%	3	229,600	5	159,750	40,250	8	63%	0	0
+202508	Mfundo Mdlalose	Odirile Mathe	60	54	90%	37	15	0	3	350,500	48,250	14%	1	7,000	2	41,250	0	3	67%	0	0
+202508	Mfundo Mdlalose	Rolindela Nephembani	150	77	51%	64	11	0	17	1,455,060	309,600	21%	9	183,350	6	74,500	51,750	8	75%	0	0
+202508	Mfundo Mdlalose	Tebogo Sentsho	0		0%				5	0	174,000	0%	3	85,000	0	0	89,000	0	0%	0	0
+202508	Mfundo Mdlalose	Wendy Van Wyk	150	42	28%	35	5	0	6	1,455,060	450,050	31%	3	31,050	3	419,000	0	8	38%	0	0
+202508	Mixo Makhubele	Bontle Nyama	150	70	47%	52	15	0	8	1,455,060	620,250	43%	2	242,000	5	368,250	10,000	8	63%	0	0
+202508	Mixo Makhubele	Lethabo Manamela	150	41	27%	34	6	0	4	1,455,060	123,750	9%	1	7,000	2	102,750	14,000	8	25%	0	0
+202508	Mixo Makhubele	Linah Raletshena	150	24	16%	23	1	0	2	1,455,060	14,500	1%	2	14,500	0	0	0	8	0%	0	0
+202508	Mixo Makhubele	Lindiwe Dladla	0		0%				5	0	80,000	0%	1	7,000	3	23,000	50,000	0	0%	0	0
+202508	Mixo Makhubele	Matlhogonolo Mosidi	0	42	0%	37	5	0	7	0	120,150	0%	3	64,150	4	56,000	0	0	0%	0	0
+202508	Mixo Makhubele	Moatlhodi Montshojang	60	54	90%	39	13	0	10	565,850	664,200	117%	3	19,700	6	559,500	85,000	4	150%	0	0
+202508	Mixo Makhubele	Saafiyah Borman	150	77	51%	62	11	0	13	1,455,060	473,650	33%	5	132,900	4	195,000	145,750	8	50%	0	0
+202508	Mixo Makhubele	Thabo Maphutsi	150	59	39%	39	14	0	5	1,455,060	435,250	30%	1	344,250	3	73,250	17,750	8	38%	0	0
+202508	Mixo Makhubele	Thandazo Mavuso	150	77	51%	58	18	0	13	1,455,060	316,050	22%	4	120,800	8	185,250	10,000	8	100%	0	0
+202508	Mixo Makhubele	Tshegofatso Mahlangu	150	75	50%	64	11	0	7	1,455,060	1,521,650	105%	2	407,900	5	1,113,750	0	8	63%	0	0
+202508	Mixo Makhubele	Vishaiya Pillay	150	25	17%	18	6	0	3	1,455,060	45,000	3%	2	31,000	0	0	14,000	8	0%	0	0
+202508	Mixo Makhubele	Xolile Zikhali	150	56	37%	46	8	0	7	1,455,060	147,750	10%	2	35,000	4	89,500	23,250	8	50%	0	0
+202508	Mondli Nhlapho	Amogelang Khunou	60	53	88%	41	10	0	7	560,650	439,200	78%	3	382,200	4	57,000	0	0	0%	0	0
+202508	Mondli Nhlapho	Busisiwe Nyembe	60	58	97%	44	12	0	3	560,650	69,950	12%	2	16,200	1	53,750	0	0	0%	0	0
+202508	Mondli Nhlapho	Khutso Mothiba	60	50	83%	36	12	0	11	560,650	1,022,650	182%	5	43,400	6	979,250	0	0	0%	0	0
+202508	Mondli Nhlapho	Lucas Gamede	30	5	17%	5	0	0	5	280,325	144,050	51%	3	63,050	2	81,000	0	0	0%	0	0
+202508	Mondli Nhlapho	Mana Zungu	60	51	85%	41	10	0	9	560,650	87,100	16%	4	25,600	5	61,500	0	0	0%	0	0
+202508	Mondli Nhlapho	Matlading Sebei	60	60	100%	54	5	0	11	560,650	682,150	122%	6	373,150	4	290,500	18,500	0	0%	0	0
+202508	Mondli Nhlapho	Nokuthula Mabena	60	70	117%	61	8	0	5	560,650	86,250	15%	2	13,500	2	52,750	20,000	0	0%	0	0
+202508	Mondli Nhlapho	Nothando Dlamini	60	71	118%	62	9	0	10	560,650	684,050	122%	4	299,300	6	384,750	0	0	0%	0	0
+202508	Mosima Moshidi 	Aboo-Baker Cara	150	76	51%	68	6	0	9	1,455,060	630,600	43%	4	55,100	4	553,750	21,750	8	50%	0	0
+202508	Mosima Moshidi 	Akhona Mbangendlu	150	45	30%	36	4	0	9	1,455,060	108,000	7%	5	65,000	2	8,000	35,000	8	25%	0	0
+202508	Mosima Moshidi 	Dimakatso Tsotetsi	150	54	36%	42	8	0	7	1,455,060	322,150	22%	1	13,000	3	219,000	90,150	8	38%	0	0
+202508	Mosima Moshidi 	Dumisane Maqoga	0	19	0%	17	2	0	3	0	46,050	0%	2	35,800	1	10,250	0	0	0%	0	0
+202508	Mosima Moshidi 	Oratilwe Modibane	150	58	39%	46	11	0	1	1,455,060	277,750	19%	0	0	1	277,750	0	8	13%	0	0
+202508	Mosima Moshidi 	Palesa Masekwa	150	75	50%	64	11	0	15	1,455,060	459,700	32%	7	167,700	8	292,000	0	8	100%	0	0
+202508	Mosima Moshidi 	Potego Selatole	150	68	45%	54	12	0	12	1,455,060	1,254,350	86%	5	232,350	7	1,022,000	0	8	88%	0	0
+202508	Mosima Moshidi 	Precious Mmola	150	76	51%	60	15	0	7	1,455,060	485,000	33%	4	55,000	3	430,000	0	8	38%	0	0
+202508	Mosima Moshidi 	Thabiso Mokgupi	150	39	26%	30	8	0	6	1,455,060	741,750	51%	2	33,750	4	708,000	0	8	50%	0	0
+202508	Mosima Moshidi 	Tumelo Mabena	0	3	0%	2	1	0	3	0	124,150	0%	1	84,150	2	40,000	0	0	0%	0	0
+202508	Mosima Moshidi 	Xolani Mafunda	150	75	50%	54	12	0	16	1,455,060	1,256,400	86%	10	898,150	6	358,250	0	8	75%	0	0
+202508	Nonhle Zondi	Bridget Madonsela	150	61	41%	40	17	0	11	1,455,060	705,400	48%	6	565,900	3	86,500	53,000	8	38%	0	0
+202508	Nonhle Zondi	Gcina Mazibuko	150	48	32%	33	12	0	9	1,455,060	176,400	12%	4	19,650	4	144,750	12,000	8	50%	0	0
+202508	Nonhle Zondi	Lerato Banda	150	75	50%	56	11	0	10	1,455,060	705,850	49%	3	94,350	4	202,000	409,500	8	50%	0	0
+202508	Nonhle Zondi	Letlhogonolo Mokwena	150	47	31%	38	8	0	3	1,455,060	25,000	2%	3	25,000	0	0	0	8	0%	0	0
+202508	Nonhle Zondi	Londolani Lishivha	150	63	42%	48	12	0	11	1,455,060	152,400	10%	4	41,400	7	111,000	0	8	88%	0	0
+202508	Nonhle Zondi	Nothando Makwakwa	150	57	38%	24	32	0	8	1,455,060	425,900	29%	2	17,400	5	378,500	30,000	8	63%	0	0
+202508	Nonhle Zondi	Ntando Mwelase	0	18	0%	16	2	0	5	0	133,050	0%	2	42,800	3	90,250	0	0	0%	0	0
+202508	Nonhle Zondi	Phelelwa Nkabinde	150	34	23%	30	4	0	3	1,455,060	77,750	5%	0	0	3	77,750	0	8	38%	0	0
+202508	Nonhle Zondi	Phumeza Khyolo	150	46	31%	39	6	0	8	1,455,060	80,300	6%	2	9,550	6	70,750	0	8	75%	0	0
+202508	Nonhle Zondi	Tebogo Maluleke	0		0%					0		0%						0	0%		
+202508	Nonhle Zondi	Tebogo Moremi	150	44	29%	37	5	0	10	1,455,060	1,232,650	85%	6	825,400	1	12,000	395,250	8	13%	0	0
+202508	Nonhle Zondi	Thato Mokoena	60	46	77%	43	3	0	1	350,500	186,600	53%	1	186,600	0	0	0	3	0%	0	0
+202508	Nonhle Zondi	Tiyani Khoza	75	49	65%	43	6	0	8	727,530	496,950	68%	5	77,450	3	419,500	0	4	75%	0	0
+202508	Rodney Naidu	Carmen Shiburi	0	1	0%	1	0	0	3	0	57,300	0%	2	17,300	1	40,000	0	0	0%	0	0
+202508	Rodney Naidu	Chanda Bowa	60	56	93%	45	8	0	12	565,850	319,850	57%	5	79,850	5	139,500	100,500	4	125%	0	0
+202508	Rodney Naidu	Kabelo Molamudi	150	58	39%	42	14	0	5	1,455,060	245,000	17%	0	0	4	45,000	200,000	8	50%	0	0
+202508	Rodney Naidu	Keitumetse Tsotetsi	150	71	47%	55	16	0	14	1,455,060	446,400	31%	5	180,400	8	255,000	11,000	8	100%	0	0
+202508	Rodney Naidu	Lekelela Mkhize	150	60	40%	56	3	0	8	1,455,060	241,250	17%	5	166,250	2	55,000	20,000	8	25%	0	0
+202508	Rodney Naidu	Livhuwani Tharaga	150	41	27%	34	6	0	2	1,455,060	120,000	8%	0	0	1	19,750	100,250	8	13%	0	0
+202508	Rodney Naidu	Masana Mabunda	160	68	43%	57	8	0	8	1,560,550	454,100	29%	3	257,900	2	82,750	113,450	10	20%	0	0
+202508	Rodney Naidu	Mbuelo Mukwevho	150	59	39%	41	14	0	10	1,455,060	664,800	46%	3	21,200	6	621,750	21,850	8	75%	0	0
+202508	Rodney Naidu	Mmaphuti Lamola	150	54	36%	41	11	0	9	1,455,060	585,850	40%	3	284,350	5	267,500	34,000	8	63%	0	0
+202508	Rodney Naidu	Monde Mbele	0		0%					0		0%						0	0%		
+202508	Rodney Naidu	Murunwa Rakgogo	0	20	0%	17	3	0	4	0	173,200	0%	3	23,200	1	150,000	0	0	0%	0	0
+202508	Rodney Naidu	Musa Mathebula	150	52	35%	37	14	0	7	1,455,060	303,400	21%	3	88,400	3	179,000	36,000	8	38%	0	0
+202508	Rodney Naidu	Nomathemba Gwatyu	150	48	32%	41	6	0	9	1,455,060	400,400	28%	5	318,150	3	81,500	750	8	38%	0	0
+202508	Salome Baloyi	Daniel Ramabu	60	44	73%	36	8	0	4	560,650	98,000	17%	0	0	4	98,000	0	0	0%	0	0
+202508	Salome Baloyi	Florence Matjila	0	23	0%	18	3	0	4	0	116,100	0%	3	83,850	1	32,250	0	0	0%	0	0
+202508	Salome Baloyi	Lesego Raseroka	60	55	92%	49	6	0	4	560,650	276,750	49%	3	203,750	1	73,000	0	0	0%	0	0
+202508	Salome Baloyi	Malatankwe Nkwatse	0	10	0%	6	2	0	2	0	36,000	0%	0	0	2	36,000	0	0	0%	0	0
+202508	Salome Baloyi	Naledi Moletsane	0	53	0%	41	11	0	2	0	17,950	0%	2	17,950	0	0	0	0	0%	0	0
+202508	Salome Baloyi	Neo Molifi	60	45	75%	39	6	0	10	560,650	951,200	170%	3	47,500	6	729,250	174,450	0	0%	0	0
+202508	Salome Baloyi	Nomfundo Mazibuko	60	34	57%	28	6	0	1	560,650	195,500	35%	0	0	1	195,500	0	0	0%	0	0
+202508	Salome Baloyi	Nonkulumo Xalisa	0	15	0%	15	0	0	6	0	210,450	0%	4	50,950	1	150,000	9,500	0	0%	0	0
+202508	Salome Baloyi	Precious Mashabane	60	42	70%	35	6	0	7	560,650	194,350	35%	3	76,350	3	75,500	42,500	0	0%	0	0
+202508	Salome Baloyi	Siphilile Biyela	60	40	67%	29	10	0	7	560,650	240,500	43%	3	24,800	3	160,750	54,950	0	0%	0	0
+202508	Samantha Govender	Aldrin JR Monaisa	85	19	22%	15	1	0	2	1,365,500	40,900	3%	0	0	0	0	40,900	5	0%	0	0
+202508	Samantha Govender	Babalo Tshabalala			0%							0%							0%		
+202508	Samantha Govender	Cindy Milani	85	26	31%	23	1	0	4	1,365,500	779,250	57%	2	562,900	0	0	216,350	5	0%	0	0
+202508	Samantha Govender	Cowan Stewart	85	34	40%	26	6	0	1	1,365,500	100,000	7%	1	100,000	0	0	0	5	0%	0	0
+202508	Samantha Govender	Hannah Tabane	85	26	31%	22	3	0	7	1,365,500	1,413,700	104%	4	1,051,650	1	350,000	12,050	5	20%	0	0
+202508	Samantha Govender	Kyle van Vught			0%							0%							0%		
+202508	Samantha Govender	Lerato Sekati	85	31	36%	26	4	0	5	1,365,500	734,700	54%	3	350,950	2	383,750	0	5	40%	0	0
+202508	Samantha Govender	Nkateko Rikhotso	85	35	41%	29	0	0	7	1,365,500	652,850	48%	4	629,900	0	0	22,950	5	0%	0	0
+202508	Samantha Govender	Precious Madonsela	43		0%				2	682,750	200,300	29%	2	200,300	0	0	0	3	0%	0	0
+202508	Samantha Govender	Ronald Madisha	43	24	56%	19	2	0	4	682,750	1,258,450	184%	1	370,300	1	361,000	527,150	3	33%	0	0
+202508	Samantha Govender	Sanelisiwe Madela	85	33	39%	30	3	0	4	1,365,500	804,350	59%	2	225,850	2	578,500	0	5	40%	0	0
+202508	Samantha Govender	Tholwana Mosweu	85	34	40%	27	1	0	6	1,365,500	519,000	38%	1	80,000	1	319,500	119,500	5	20%	0	0
+202508	Samantha Govender	Winton de Villiers	0		0%					0		0%						0	0%		
+202508	Samantha Govender	Xolisa Mkhosana	85	2	2%	1	1	0	1	1,365,500	25,000	2%	0	0	1	25,000	0	5	20%	0	0
+202508	Samuel Masubelele	Anelisa Ngobo	150	62	41%	45	12	0	13	1,455,060	688,150	47%	5	104,400	6	491,250	92,500	8	75%	0	0
+202508	Samuel Masubelele	Cyprian April	150	54	36%	47	5	0	6	1,455,060	418,050	29%	1	165,800	4	197,000	55,250	8	50%	0	0
+202508	Samuel Masubelele	Fortunate Skhakhane	150	59	39%	50	6	0	8	1,455,060	1,003,850	69%	3	538,600	4	429,250	36,000	8	50%	0	0
+202508	Samuel Masubelele	Gift Nkosi	150	63	42%	48	12	0	14	1,455,060	399,650	27%	8	117,400	5	262,250	20,000	8	63%	0	0
+202508	Samuel Masubelele	Katlego Langa	0	19	0%	18	1	0	3	0	37,500	0%	2	33,500	0	0	4,000	0	0%	0	0
+202508	Samuel Masubelele	Keneilwe Rooi	0		0%					0		0%						0	0%		
+202508	Samuel Masubelele	Lusapho Ntaka	150	58	39%	36	21	0	9	1,455,060	913,000	63%	1	250,000	7	643,000	20,000	8	88%	0	0
+202508	Samuel Masubelele	Moreen Nkosi	0		0%					0		0%						0	0%		
+202508	Samuel Masubelele	Ntsako Maswanganye	150	48	32%	41	7	0	6	1,455,060	251,400	17%	4	56,150	2	195,250	0	8	25%	0	0
+202508	Samuel Masubelele	Onica Mathebula	52	28	54%	21	7	0	2	509,271	26,000	5%	2	26,000	0	0	0	2	0%	0	0
+202508	Samuel Masubelele	Phindile Mabunda	150	72	48%	64	6	0	11	1,455,060	247,300	17%	7	72,300	2	64,250	110,750	8	25%	0	0
+202508	Samuel Masubelele	Sibusiso Khanyile	150	69	46%	52	16	0	9	1,455,060	407,250	28%	2	46,000	4	220,000	141,250	8	50%	0	0
+202508	Samuel Masubelele	Thembekile Sithebe	150	49	33%	43	6	0	5	1,455,060	280,300	19%	3	115,300	2	165,000	0	8	25%	0	0
+202508	Shadleigh White	Cebisile Nhlabathi	150	76	51%	61	15	0	6	1,455,060	94,700	7%	4	52,450	2	42,250	0	8	25%	0	0
+202508	Shadleigh White	Chwayita Mnukwa	150	71	47%	60	9	0	15	1,455,060	776,200	53%	6	271,200	7	329,750	175,250	8	88%	0	0
+202508	Shadleigh White	David Rapia	150	78	52%	56	22	0	9	1,455,060	849,750	58%	3	494,000	6	355,750	0	8	75%	0	0
+202508	Shadleigh White	Dudu Madumise	150	66	44%	51	14	0	13	1,455,060	862,950	59%	6	90,700	7	772,250	0	8	88%	0	0
+202508	Shadleigh White	Matimu Chauke	150	45	30%	35	7	0	8	1,455,060	675,350	46%	3	118,100	4	490,250	67,000	8	50%	0	0
+202508	Shadleigh White	Mokiritla Selepe	150	62	41%	51	9	0	7	1,455,060	1,055,400	73%	5	785,450	1	3,500	266,450	8	13%	0	0
+202508	Shadleigh White	Moratehi Tseisi	60	34	57%	25	7	0	1	350,500	18,000	5%	0	0	1	18,000	0	3	33%	0	0
+202508	Shadleigh White	Tshepang Ramokgopa	60	72	120%	62	7	0	9	565,850	330,850	58%	5	87,350	3	226,750	16,750	4	75%	0	0
+202508	Taedi Moletsane	Angelinah Khoza	160	64	40%	52	11	0	8	1,560,550	697,150	45%	2	12,400	5	384,750	300,000	10	50%	0	0
+202508	Taedi Moletsane	Dumoluhle Ndlovu	160	77	48%	62	9	0	11	1,560,550	581,550	37%	5	39,050	2	429,750	112,750	10	20%	0	0
+202508	Taedi Moletsane	Hlezipi Maqoga	150	63	42%	53	9	0	9	1,455,060	375,500	26%	3	102,000	6	273,500	0	8	75%	0	0
+202508	Taedi Moletsane	Jabulani Khosa	160	45	28%	35	9	0	7	1,560,550	699,000	45%	2	53,000	4	576,000	70,000	10	40%	0	0
+202508	Taedi Moletsane	Lethabo Komane	0		0%					0		0%						0	0%		
+202508	Taedi Moletsane	Mmathapelo Maine	160	44	28%	27	15	0	9	1,560,550	494,300	32%	3	310,550	6	183,750	0	10	60%	0	0
+202508	Taedi Moletsane	Mosa Seleka	160	41	26%	36	3	0	8	1,560,550	254,750	16%	3	19,500	4	225,250	10,000	10	40%	0	0
+202508	Taedi Moletsane	Odwa Duba	160	21	13%	16	4	0	6	1,560,550	342,000	22%	4	189,000	2	153,000	0	10	20%	0	0
+202508	Taedi Moletsane	Phindile Nkosi	0	8	0%	7	0	0	1	0	2,000	0%	0	0	0	0	2,000	0	0%	0	0
+202508	Taedi Moletsane	Thabiso Manamela	160	47	29%	32	13	0	3	1,560,550	181,750	12%	1	28,000	2	153,750	0	10	20%	0	0
+202508	Taedi Moletsane	Tshepo Lekgowane	160	23	14%	16	5	0	4	1,560,550	160,250	10%	0	0	4	160,250	0	10	40%	0	0
+202508	Thabo Mosweu	Bridgette Kholeng	150	37	25%	29	6	0	6	1,455,060	537,750	37%	2	41,000	3	490,750	6,000	8	38%	0	0
+202508	Thabo Mosweu	Deborah Dinala	150	51	34%	38	12	0	5	1,455,060	90,750	6%	3	30,250	1	15,000	45,500	8	13%	0	0
+202508	Thabo Mosweu	Dineo Mdlalose	150	46	31%	40	6	0	4	1,455,060	307,150	21%	2	182,150	2	125,000	0	8	25%	0	0
+202508	Thabo Mosweu	Lerato Nthite	0	12	0%	10	2	0	2	0	29,300	0%	2	29,300	0	0	0	0	0%	0	0
+202508	Thabo Mosweu	Lerato Rakhokole	150	54	36%	39	14	0	10	1,455,060	273,450	19%	4	39,700	5	217,250	16,500	8	63%	0	0
+202508	Thabo Mosweu	Mamfana Mogale	0	9	0%	3	6	0	4	0	257,300	0%	1	12,800	3	244,500	0	0	0%	0	0
+202508	Thabo Mosweu	Masego Moremi	150	70	47%	59	11	0	2	1,455,060	44,250	3%	0	0	2	44,250	0	8	25%	0	0
+202508	Thabo Mosweu	Mmadira Malatjie	150	39	26%	33	5	0	2	1,455,060	66,250	5%	1	13,000	0	0	53,250	8	0%	0	0
+202508	Thabo Mosweu	Mpho Moeketsi	150	51	34%	41	7	0	4	1,455,060	280,000	19%	0	0	2	179,250	100,750	8	25%	0	0
+202508	Thabo Mosweu	Nomthandazo Nkutha	150	52	35%	46	6	0	6	1,455,060	503,800	35%	3	135,800	3	368,000	0	8	38%	0	0
+202508	Thabo Mosweu	Ziningi Mabizela	150	70	47%	56	10	0	9	1,455,060	110,400	8%	6	79,400	3	31,000	0	8	38%	0	0
+202508	Thabo Mosweu	Zwivhuya Siaga	150	66	44%	51	13	0	4	1,455,060	526,750	36%	1	13,000	3	513,750	0	8	38%	0	0
+202508	Thobile Phakhathi	Betty Mawela	0		0%					0		0%						0	0%		
+202508	Thobile Phakhathi	Boipelo Rabeng	150	73	49%	64	9	0	14	1,455,060	771,050	53%	8	488,050	6	283,000	0	8	75%	0	0
+202508	Thobile Phakhathi	Bongeka Ntethe	150	63	42%	51	8	0	4	1,455,060	197,000	14%	1	15,000	1	85,000	97,000	8	13%	0	0
+202508	Thobile Phakhathi	David Phala	150	57	38%	35	18	0	12	1,455,060	246,150	17%	6	37,650	5	179,500	29,000	8	63%	0	0
+202508	Thobile Phakhathi	Karabo Mlambo	0	13	0%	11	2	0	4	0	112,750	0%	3	98,500	0	0	14,250	0	0%	0	0
+202508	Thobile Phakhathi	Lebogang Motau	150	67	45%	55	9	0	10	1,455,060	330,300	23%	4	137,300	5	143,750	49,250	8	63%	0	0
+202508	Thobile Phakhathi	Nozipho Radebe	150	73	49%	60	12	0	9	1,455,060	512,600	35%	3	28,350	5	440,250	44,000	8	63%	0	0
+202508	Thobile Phakhathi	Palesa Jama	0	14	0%	12	2	0	4	0	95,750	0%	2	25,000	2	70,750	0	0	0%	0	0
+202508	Thobile Phakhathi	Thabang Mokoena	150	48	32%	42	5	0	7	1,455,060	395,100	27%	3	308,600	3	83,000	3,500	8	38%	0	0
+202508	Thobile Phakhathi	Thabo Setlhako	150	43	29%	35	5	1	6	1,455,060	356,850	25%	4	337,850	1	4,000	15,000	8	13%	0	0
+202508	Thobile Phakhathi	Thato Majoro	150	44	29%	38	4	0	6	1,455,060	247,650	17%	4	185,400	1	37,250	25,000	8	13%	0	0
+202508	Thobile Phakhathi	Tshepo Tshekiso	150	50	33%	40	9	0	9	1,455,060	598,500	41%	3	301,750	5	274,750	22,000	8	63%	0	0
+202508	Tshepo Moeketsi	Bongumusa Nkosi	150	81	54%	69	11	0	8	1,455,060	523,850	36%	2	14,600	3	419,250	90,000	8	38%	0	0
+202508	Tshepo Moeketsi	Lebohang Tlali	0		0%					0		0%						0	0%		
+202508	Tshepo Moeketsi	Mandy Sibisi	150	54	36%	45	8	0	9	1,455,060	188,300	13%	4	79,800	5	108,500	0	8	63%	0	0
+202508	Tshepo Moeketsi	Nonhlanhla Mhlungu	150	69	46%	59	9	0	6	1,455,060	117,450	8%	3	46,450	3	71,000	0	8	38%	0	0
+202508	Tshepo Moeketsi	Nsovo Kubayi	150	15	10%	10	5	0	1	1,455,060	32,000	2%	0	0	1	32,000	0	8	13%	0	0
+202508	Tshepo Moeketsi	Phenyo Maepa	60	94	157%	78	15	0	11	565,850	489,500	87%	5	288,750	6	200,750	0	4	150%	0	0
+202508	Tshepo Moeketsi	Ronewa Sibara	150	71	47%	54	11	0	5	1,455,060	37,150	3%	2	8,150	3	29,000	0	8	38%	0	0
+202508	Tshepo Moeketsi	Senamile Ngema	150	61	41%	46	11	0	14	1,455,060	602,950	41%	4	163,450	7	329,750	109,750	8	88%	0	0
+Total			21,998	9,428	43%	7,545	1,558	2	1,350	217,642,956	77,080,150	35%	580	27,507,550	601	41,375,900	8,196,700	1,163	52%	0	0
+																					
+"Applied filters:
+ReportMonth is 202508
+ManagerName is Shanel Munien or Dumisani Mtsweni
+ManagerName is Dumisani Mtsweni, Russel Genneker, or Shanel Munien"																					

@@ -23,7 +23,7 @@ export default function RacingGauge({
     // Calculate progress percentage (max 120% for over-achievement display)
     const maxDisplay = 120;
     const progressPercent = Math.min(value / target * 100, maxDisplay);
-    // Start from top and go clockwise - fixing orientation
+    // Start from left side and go clockwise to match reference image
     const progressOffset = circumference - (progressPercent / maxDisplay) * circumference * 0.75;
     
     return {
@@ -83,7 +83,7 @@ export default function RacingGauge({
           stroke="hsl(0, 0%, 22%)"
           strokeWidth={gaugeConfig.strokeWidth}
           strokeDasharray={`${gaugeConfig.circumference * 0.75} ${gaugeConfig.circumference}`}
-          strokeDashoffset={-gaugeConfig.circumference * 0.375} // Start from top
+          strokeDashoffset={-gaugeConfig.circumference * 0.625} // Start from left side
           className={styles.backgroundArc}
         />
         
@@ -96,7 +96,7 @@ export default function RacingGauge({
           stroke={progressColor}
           strokeWidth={gaugeConfig.strokeWidth}
           strokeDasharray={`${gaugeConfig.circumference * 0.75} ${gaugeConfig.circumference}`}
-          strokeDashoffset={-gaugeConfig.circumference * 0.375 + gaugeConfig.progressOffset}
+          strokeDashoffset={-gaugeConfig.circumference * 0.625 + gaugeConfig.progressOffset}
           strokeLinecap="round"
           className={styles.progressArc}
         />
@@ -115,7 +115,7 @@ export default function RacingGauge({
         {/* Milestone Markers and Labels */}
         {showLabels && isMonetary && ([50, 70, 90, 110, 130, 160, 190, 210, 240].map((milestoneM) => {
           const milestonePercent = (milestoneM / 240) * 100; // Convert to percentage of 240M target
-          const angle = -Math.PI * 0.5 + (milestonePercent / 100) * (Math.PI * 0.75); // Start from top, go clockwise
+          const angle = Math.PI + (milestonePercent / 100) * (Math.PI * 0.75); // Start from left, go clockwise
           const markerX1 = gaugeConfig.centerX + (gaugeConfig.radius - 10) * Math.cos(angle);
           const markerY1 = gaugeConfig.centerY + (gaugeConfig.radius - 10) * Math.sin(angle);
           const markerX2 = gaugeConfig.centerX + (gaugeConfig.radius + 5) * Math.cos(angle);

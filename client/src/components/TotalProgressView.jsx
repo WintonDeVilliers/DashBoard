@@ -3,8 +3,25 @@ import RacingGauge from './RacingGauge';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import styles from '../styles/RacingComponents.module.css';
 
-export default function TotalProgressView({ companyMetrics, teamData }) {
+export default function TotalProgressView({ companyMetrics, teamData, consultantData }) {
   const chartRef = useRef(null);
+
+  // Get actual consultant names for each performance category
+  const getConsultantsByCategory = (category) => {
+    if (!consultantData) return [];
+    
+    return consultantData.filter(consultant => {
+      const rate = consultant.achievementRate;
+      switch(category) {
+        case 'superstar': return rate >= 120;
+        case 'target_achieved': return rate >= 100 && rate < 120;
+        case 'on_track': return rate >= 80 && rate < 100;
+        case 'needs_boost': return rate >= 60 && rate < 80;
+        case 'recovery_mode': return rate < 60;
+        default: return false;
+      }
+    }).slice(0, 2).map(c => c.name).join(', ') || 'No consultants';
+  };
 
   const chartData = useMemo(() => {
     // Handle case where monthly_progress might not exist (from Excel data)
@@ -77,6 +94,7 @@ export default function TotalProgressView({ companyMetrics, teamData }) {
         options: {
           responsive: true,
           maintainAspectRatio: false,
+          animation: false, // Disable all animations
           plugins: {
             legend: {
               labels: {
@@ -207,7 +225,7 @@ export default function TotalProgressView({ companyMetrics, teamData }) {
                   <div className={styles.categoryIcon}>🏎️</div>
                   <div className={styles.categoryLabel}>
                     Superstar (120%+)
-                    <div className={styles.categoryNames}>Lewis Hamilton, Max Verstappen</div>
+                    <div className={styles.categoryNames}>{getConsultantsByCategory('superstar')}</div>
                   </div>
                   <div className={styles.categoryBar}>
                     <div 
@@ -227,7 +245,7 @@ export default function TotalProgressView({ companyMetrics, teamData }) {
                   <div className={styles.categoryIcon}>🚗</div>
                   <div className={styles.categoryLabel}>
                     Target Achieved (100%+)
-                    <div className={styles.categoryNames}>Charles Leclerc, Lando Norris</div>
+                    <div className={styles.categoryNames}>{getConsultantsByCategory('target_achieved')}</div>
                   </div>
                   <div className={styles.categoryBar}>
                     <div 
@@ -247,7 +265,7 @@ export default function TotalProgressView({ companyMetrics, teamData }) {
                   <div className={styles.categoryIcon}>🚙</div>
                   <div className={styles.categoryLabel}>
                     On Track (80%+)
-                    <div className={styles.categoryNames}>Carlos Sainz, Fernando Alonso</div>
+                    <div className={styles.categoryNames}>{getConsultantsByCategory('on_track')}</div>
                   </div>
                   <div className={styles.categoryBar}>
                     <div 
@@ -267,7 +285,7 @@ export default function TotalProgressView({ companyMetrics, teamData }) {
                   <div className={styles.categoryIcon}>🚐</div>
                   <div className={styles.categoryLabel}>
                     Needs Boost (60%+)
-                    <div className={styles.categoryNames}>Valtteri Bottas, Daniel Ricciardo</div>
+                    <div className={styles.categoryNames}>{getConsultantsByCategory('needs_boost')}</div>
                   </div>
                   <div className={styles.categoryBar}>
                     <div 
@@ -287,7 +305,7 @@ export default function TotalProgressView({ companyMetrics, teamData }) {
                   <div className={styles.categoryIcon}>🛻</div>
                   <div className={styles.categoryLabel}>
                     Recovery Mode (&lt;60%)
-                    <div className={styles.categoryNames}>Logan Sargeant, Nyck de Vries</div>
+                    <div className={styles.categoryNames}>{getConsultantsByCategory('recovery_mode')}</div>
                   </div>
                   <div className={styles.categoryBar}>
                     <div 

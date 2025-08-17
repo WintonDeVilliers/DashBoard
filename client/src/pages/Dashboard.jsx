@@ -497,6 +497,7 @@ export default function Dashboard() {
               <TotalProgressView 
                 companyMetrics={displayData.companyMetrics}
                 teamData={displayData.teams}
+                consultantData={localData?.data}
               />
             )}
             {activeTab === 'teams' && (
