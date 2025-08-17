@@ -1040,3 +1040,10 @@
 .memberTarget {
   font-size: 0.75rem;
 }
+
+.memberApps {
+  font-size: 0.75rem;
+  color: var(--corporate-light-blue);
+  font-weight: 500;
+  margin-top: 0.25rem;
+}

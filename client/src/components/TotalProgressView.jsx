@@ -119,12 +119,7 @@ export default function TotalProgressView({ companyMetrics, teamData }) {
   }, [chartData]);
 
   if (!companyMetrics) {
-    return (
-      <div className={styles.emptyState}>
-        <h2>No Data Available</h2>
-        <p>Please upload an Excel file with sales performance data to view the dashboard.</p>
-      </div>
-    );
+    return null; // Hide when no data instead of showing empty state
   }
 
   const achievementRate = companyMetrics.averageAchievement || companyMetrics.overall_achievement || 0;

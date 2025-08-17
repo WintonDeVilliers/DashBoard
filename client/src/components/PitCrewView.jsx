@@ -97,6 +97,9 @@ export default function PitCrewView({ consultants, teams }) {
                         <div className={styles.memberTarget}>
                           Target: R{(consultant.target / 1000000).toFixed(1)}M
                         </div>
+                        <div className={styles.memberApps}>
+                          Apps: {consultant.TotalRealAppsVol || 0} / {consultant.RealAppsTarget || 0}
+                        </div>
                       </div>
                     </div>
                   ))}
