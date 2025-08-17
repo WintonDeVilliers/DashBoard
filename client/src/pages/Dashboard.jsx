@@ -14,6 +14,90 @@ export default function Dashboard() {
   const [currentTime, setCurrentTime] = useState(new Date());
   const [uploadingFile, setUploadingFile] = useState(false);
   const { toast } = useToast();
+  
+  // Client-side Excel processing function to work around API routing issues
+  const processExcelDataClientSide = async (rawData, sheetName) => {
+    const ExcelColumnMappings = {
+      name: ['Name', 'Full Name', 'Employee Name', 'Supervisor', 'Consultant'],
+      achievement: ['Achievement %', 'Achievement Rate', 'Achievement', '% Achievement'],
+      target: ['Target', 'Goal', 'Quota', 'Target Amount'],
+      sales: ['Sales', 'Actual Sales', 'Revenue', 'Sales Amount'],
+      team: ['Team', 'Team Name', 'Department', 'Division'],
+      role: ['Role', 'Position', 'Job Title']
+    };
+    
+    const availableColumns = Object.keys(rawData[0]);
+    const mappings = {};
+    
+    for (const [field, variations] of Object.entries(ExcelColumnMappings)) {
+      for (const variation of variations) {
+        const found = availableColumns.find(col => 
+          col.toLowerCase().includes(variation.toLowerCase()) ||
+          variation.toLowerCase().includes(col.toLowerCase())
+        );
+        if (found) {
+          mappings[field] = found;
+          break;
+        }
+      }
+    }
+    
+    if (!mappings.name) {
+      throw new Error(`Name column not found. Available: ${availableColumns.join(', ')}`);
+    }
+    
+    const processedData = rawData.map((row, index) => {
+      const name = row[mappings.name];
+      if (!name || name.toString().trim() === '') return null;
+      
+      let achievementRate = 0;
+      if (mappings.achievement && row[mappings.achievement]) {
+        achievementRate = parseFloat(row[mappings.achievement].toString().replace('%', '').trim()) || 0;
+      } else if (mappings.sales && mappings.target) {
+        const sales = parseFloat(row[mappings.sales]) || 0;
+        const target = parseFloat(row[mappings.target]) || 0;
+        achievementRate = target > 0 ? (sales / target) * 100 : 0;
+      }
+      
+      let performanceLevel = 'Recovery Mode';
+      let vehicleType = 'Entry Level';
+      if (achievementRate >= 120) {
+        performanceLevel = 'Superstar';
+        vehicleType = 'Formula 1';
+      } else if (achievementRate >= 100) {
+        performanceLevel = 'Target Achieved';
+        vehicleType = 'Sports Car';
+      } else if (achievementRate >= 80) {
+        performanceLevel = 'On Track';
+        vehicleType = 'Touring Car';
+      } else if (achievementRate >= 60) {
+        performanceLevel = 'Needs Boost';
+        vehicleType = 'Compact Car';
+      }
+      
+      return {
+        id: `${name.replace(/\s+/g, '_')}_${index}`,
+        name: name.toString().trim(),
+        team: mappings.team ? (row[mappings.team] || 'Default Team').toString().trim() : 'Default Team',
+        role: mappings.role ? (row[mappings.role] || 'Consultant').toString().trim() : 'Consultant',
+        achievementRate: Math.round(achievementRate * 100) / 100,
+        target: mappings.target ? parseFloat(row[mappings.target]) || 0 : 0,
+        sales: mappings.sales ? parseFloat(row[mappings.sales]) || 0 : 0,
+        performanceLevel,
+        vehicleType,
+        circuit: Math.random() > 0.5 ? 'Monaco' : 'Kyalami',
+        position: index + 1
+      };
+    }).filter(row => row !== null);
+    
+    processedData.sort((a, b) => b.achievementRate - a.achievementRate);
+    processedData.forEach((person, index) => { person.position = index + 1; });
+    
+    return { 
+      data: processedData, 
+      summary: { totalRecords: processedData.length, sheetName, mappingsUsed: mappings }
+    };
+  };
 
   // Update clock every second
   useEffect(() => {
@@ -87,55 +171,67 @@ export default function Dashboard() {
     setUploadingFile(true);
     
     try {
-      // First test if API is reachable
-      console.log('Testing API connectivity...');
-      const testResponse = await fetch('/api/test');
-      console.log('Test API response:', testResponse.status, await testResponse.text());
-      
-      // Skip analysis for now and go directly to upload
-      console.log('Uploading Excel file directly...');
-      
-      const formData = new FormData();
-      formData.append('excelFile', file);
+      // Use client-side Excel processing since the API routing is being intercepted by Vite
+      console.log('Processing Excel file on client side...');
       console.log('File to upload:', file.name, 'Size:', file.size, 'Type:', file.type);
-
-      console.log('Uploading to /api/upload-excel...');
-      const response = await fetch('/api/upload-excel', {
-        method: 'POST',
-        body: formData,
-        // Don't set Content-Type header, let browser set it with boundary
-      });
-
-      console.log('Upload response status:', response.status, response.statusText);
-      console.log('Response headers:', Object.fromEntries(response.headers.entries()));
       
-      if (!response.ok) {
-        const errorText = await response.text();
-        console.error('Upload failed with status:', response.status, 'Response:', errorText);
-        throw new Error(`Upload failed: ${response.status} ${response.statusText}`);
-      }
-
-      const contentType = response.headers.get('content-type');
-      console.log('Response content type:', contentType);
+      // Read file as array buffer
+      const fileBuffer = await file.arrayBuffer();
       
-      if (!contentType || !contentType.includes('application/json')) {
-        const responseText = await response.text();
-        console.error('Expected JSON but got:', contentType, 'Response:', responseText.substring(0, 200));
-        throw new Error('Server returned unexpected content type. Expected JSON.');
+      // Import XLSX library (already loaded via CDN in index.html)
+      if (typeof XLSX === 'undefined') {
+        throw new Error('XLSX library not loaded. Please refresh the page.');
       }
-
-      const result = await response.json();
-
-      if (!response.ok) {
-        console.error('Upload error details:', result);
-        throw new Error(result.error || 'Upload failed');
+      
+      // Parse the Excel file
+      const workbook = XLSX.read(fileBuffer, { type: 'array' });
+      console.log('Available sheets:', workbook.SheetNames);
+      
+      // Look for common sheet names or use first sheet
+      let sheetName = null;
+      const commonSheetNames = ['Sales Performance', 'Sales', 'Data', 'Sheet1', 'Performance'];
+      
+      for (const commonName of commonSheetNames) {
+        if (workbook.Sheets[commonName]) {
+          sheetName = commonName;
+          break;
+        }
       }
-
-      console.log('Upload result:', result);
+      
+      if (!sheetName) {
+        sheetName = workbook.SheetNames[0];
+      }
+      
+      if (!workbook.Sheets[sheetName]) {
+        throw new Error('No valid worksheet found');
+      }
+      
+      console.log('Using sheet:', sheetName);
+      const worksheet = workbook.Sheets[sheetName];
+      const rawData = XLSX.utils.sheet_to_json(worksheet, { defval: '' });
+      
+      console.log('Raw data rows:', rawData.length);
+      if (rawData.length > 0) {
+        console.log('First row columns:', Object.keys(rawData[0]));
+        console.log('Sample data:', rawData[0]);
+      }
+      
+      if (rawData.length === 0) {
+        throw new Error('Excel sheet is empty');
+      }
+      
+      // Process the data client-side using the same logic from the server
+      const result = await processExcelDataClientSide(rawData, sheetName);
+      
+      console.log('File uploaded and processed successfully:', result);
+      
+      // Store the data in localStorage to persist it temporarily
+      localStorage.setItem('f1DashboardData', JSON.stringify(result.data));
+      localStorage.setItem('f1DashboardSummary', JSON.stringify(result.summary));
       
       toast({
-        title: "Upload Successful",
-        description: `Processed ${result.summary.consultants} consultants and ${result.summary.teams} teams`
+        title: "Excel Upload Success!",
+        description: `Processed ${result.data.length} records from ${sheetName}. Your F1 racing leaderboard is ready!`
       });
 
       // Refresh all data

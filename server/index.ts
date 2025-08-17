@@ -37,7 +37,13 @@ app.use((req, res, next) => {
 });
 
 (async () => {
+  // Register API routes FIRST, before any middleware that might interfere
   const server = await registerRoutes(app);
+  
+  // Add a test route to verify API is working
+  app.get("/api/health", (req, res) => {
+    res.json({ status: "healthy", timestamp: new Date().toISOString() });
+  });
 
   app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
     const status = err.status || err.statusCode || 500;

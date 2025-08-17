@@ -1,0 +1,164 @@
+Test API response: 200 <!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script type="module">
+import { createHotContext } from "/@vite/client";
+const hot = createHotContext("/__dummy__runtime-error-plugin");
+
+function sendError(error) {
+  if (!(error instanceof Error)) {
+    error = new Error("(unknown runtime error)");
+  }
+  const serialized = {
+    message: error.message,
+    stack: error.stack,
+  };
+  hot.send("runtime-error-plugin:error", serialized);
+}
+
+window.addEventListener("error", (evt) => {
+  sendError(evt.error);
+});
+
+window.addEventListener("unhandledrejection", (evt) => {
+  sendError(evt.reason);
+});
+</script>
+
+    <script type="module">
+import RefreshRuntime from "/@react-refresh"
+RefreshRuntime.injectIntoGlobalHook(window)
+window.$RefreshReg$ = () => {}
+window.$RefreshSig$ = () => (type) => type
+window.__vite_plugin_react_preamble_installed__ = true
+</script>
+
+    <script type="module" src="/@vite/client"></script>
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+    <title>F1 Sales Racing Dashboard - Banking Performance Analytics</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;700&family=Inter:wght@400;500;600&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- External Libraries via CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/7.3.2/pixi.min.js"></script>
+    <script src="https://unpkg.com/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="F1-themed sales performance dashboard for banking teams. Track supervisor and consultant performance with racing metaphors and interactive visualizations.">
+    <meta name="keywords" content="sales dashboard, F1 racing, banking performance, team analytics, Monaco, Kyalami">
+    
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="F1 Sales Racing Dashboard">
+    <meta property="og:description" content="High-performance sales analytics with F1 racing theme">
+    <meta property="og:type" content="website">
+    
+    <style>
+      /* Critical CSS for initial loading */
+      body {
+        margin: 0;
+        padding: 0;
+        background: #0a0a0a;
+        color: #ffffff;
+        font-family: 'Inter', sans-serif;
+        overflow-x: hidden;
+      }
+      
+      #root {
+        min-height: 100vh;
+      }
+      
+      /* Loading animation */
+      .loading-screen {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, #002b60 0%, #1a1a1a 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+      }
+      
+      .loading-content {
+        text-align: center;
+        color: #ffffff;
+      }
+      
+      .loading-logo {
+        width: 4rem;
+        height: 4rem;
+        background: #FF6B35;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: 'Roboto Condensed', sans-serif;
+        font-weight: 700;
+        font-size: 1.5rem;
+        margin: 0 auto 1rem;
+        animation: pulse 2s ease-in-out infinite;
+      }
+      
+      .loading-text {
+        font-family: 'Roboto Condensed', sans-serif;
+        font-size: 1.25rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        margin-bottom: 0.5rem;
+      }
+      
+      .loading-subtitle {
+        color: #9ca3af;
+        font-size: 0.875rem;
+      }
+      
+      @keyframes pulse {
+        0%, 100% { transform: scale(1); opacity: 1; }
+        50% { transform: scale(1.05); opacity: 0.8; }
+      }
+    </style>
+    <script type="module">"use strict";(()=>{var P="0.2.8";var T={HIGHLIGHT_COLOR:"#0079F2",HIGHLIGHT_BG:"#0079F210",ALLOWED_DOMAIN:".replit.dev"},Q=`
+  [contenteditable] {
+    outline: none !important;
+  }
+
+  [contenteditable]:focus {
+    outline: none !important;
+  }
+`,Z=`
+  .beacon-highlighter…
+Uploading Excel file directly...
+File to upload: Book 1.xlsx Size: 37503 Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
+Uploading to /api/upload-excel...
+Upload response status: 200 OK
+Response headers: 
+Object {connection: "keep-alive", content-length: "46601", content-type: "text/html; charset=utf-8", date: "Sun, 17 Aug 2025 13:21:08 GMT", replit-cluster: "janeway", …}
+connection: "keep-alive"
+content-length: "46601"
+content-type: "text/html; charset=utf-8"
+date: "Sun, 17 Aug 2025 13:21:08 GMT"
+replit-cluster: "janeway"
+vary: "Origin"
+via: "HTTP/1.1 m_proxy_cpt1, HTTP/1.1 s_proxy_cpt1"
+x-powered-by: "Express"
+x-robots-tag: "none, noindex, noarchive, nofollow, nositelinkssearchbox, noimageindex, none, noindex, noarchive, nofollow, nositelinkssearchbox, noimageindex"
+[[Prototype]]: Object
+Response content type: text/html; charset=utf-8
+Upload error: 
+TypeError {}
+message: "Failed to fetch"
+stack: "TypeError: Failed to fetch↵ at handleFileUpload (https://f807cfa7-16b1-4acf-a4c6-532727d3e3f1-00-ftkqlx7b1c6k.janeway.replit.dev/src/pages/Dashboard.jsx:112:45)"
+get stack: ƒ ()
+set stack: ƒ ()
+[[Prototype]]: Object
+
+Failed to fetch
