@@ -383,8 +383,10 @@ export default function Dashboard() {
     { id: 'total', label: '🏆 Total Progress', icon: '🏆' },
     { id: 'teams', label: '🏁 Team Racing', icon: '🏁' },
     { id: 'pitcrew', label: '🔧 Pit Crew', icon: '🔧' },
-    { id: 'monaco', label: '🇲🇨 Monaco', icon: '🇲🇨' },
-    { id: 'kyalami', label: '🇿🇦 Kyalami', icon: '🇿🇦' }
+    { id: 'monaco', label: 'Monaco', icon: '' },
+    { id: 'kyalami', label: 'Kyalami', icon: '' }
+    // { id: 'monaco', label: '🇲🇨 Monaco', icon: '🇲🇨' },
+    // { id: 'kyalami', label: '🇿🇦 Kyalami', icon: '🇿🇦' }
   ];
 
   const formatTime = (date) => {

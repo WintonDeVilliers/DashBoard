@@ -39,8 +39,8 @@ export default function PitCrewView({ consultants, teams }) {
 
   return (
     <div className={styles.pitCrewView}>
-      <h2 className={styles.sectionTitle}>PIT CREW PERFORMANCE</h2>
-      <p className={styles.sectionSubtitle}>Consultants supporting our racing drivers</p>
+      <h2 className={styles.sectionTitle}>TEAM RACING CHAMPIONSHIP</h2>
+      <p className={styles.sectionSubtitle}>Consultant Performance (PIT CREW)</p>
       
       <div className={styles.pitCrewContainer}>
         {Object.entries(groupedConsultants).map(([supervisorName, teamMembers]) => {

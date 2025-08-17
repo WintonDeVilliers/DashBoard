@@ -149,9 +149,9 @@ export default function TotalProgressView({ companyMetrics, teamData, consultant
       <div className={styles.container}>
         {/* Hero Section */}
         <div className={styles.hero}>
-          <h2 className={styles.heroTitle}>TOTAL COMPANY PROGRESS</h2>
+          <h2 className={styles.heroTitle}>Overview</h2>
           <p className={styles.heroSubtitle}>
-            Monitor the entire organization's performance in our F1-style racing dashboard
+            Formular-1 Race Statistics
           </p>
         </div>
 
@@ -198,15 +198,15 @@ export default function TotalProgressView({ companyMetrics, teamData, consultant
                   {(companyMetrics.performance_distribution?.target_achieved || 0) + (companyMetrics.performance_distribution?.superstar || 0)}
                 </div>
                 <div className={styles.statLabel}>Top Performers</div>
-                <div className={styles.statSubtext}>Podium Position</div>
+                <div className={styles.statSubtext}>Pit Crew Podium Position</div>
               </div>
               
               <div className={styles.statCard}>
                 <div className={styles.statValue} data-testid="need-support">
                   {(companyMetrics.performance_distribution?.recovery_mode || 0) + (companyMetrics.performance_distribution?.needs_boost || 0)}
                 </div>
-                <div className={styles.statLabel}>Need Support</div>
-                <div className={styles.statSubtext}>Pit Stop Required</div>
+                <div className={styles.statLabel}>Pit Stop Requests</div>
+                <div className={styles.statSubtext}>Pit Crew Needs Support </div>
               </div>
             </div>
           </CardContent>
@@ -217,14 +217,14 @@ export default function TotalProgressView({ companyMetrics, teamData, consultant
           {/* Performance Categories */}
           <Card className={styles.categoriesCard}>
             <CardHeader>
-              <CardTitle>Performance Categories</CardTitle>
+              <CardTitle>Pit Crew Highlights</CardTitle>
             </CardHeader>
             <CardContent>
               <div className={styles.categoriesList} data-testid="performance-categories">
                 <div className={styles.categoryItem}>
                   <div className={styles.categoryIcon}>🏎️</div>
                   <div className={styles.categoryLabel}>
-                    Superstar (120%+)
+                    Podium Pushers (120%+)
                     <div className={styles.categoryNames}>{getConsultantsByCategory('superstar')}</div>
                   </div>
                   <div className={styles.categoryBar}>
@@ -244,7 +244,7 @@ export default function TotalProgressView({ companyMetrics, teamData, consultant
                 <div className={styles.categoryItem}>
                   <div className={styles.categoryIcon}>🚗</div>
                   <div className={styles.categoryLabel}>
-                    Target Achieved (100%+)
+                    Pit Masters (100%+)
                     <div className={styles.categoryNames}>{getConsultantsByCategory('target_achieved')}</div>
                   </div>
                   <div className={styles.categoryBar}>
@@ -264,7 +264,7 @@ export default function TotalProgressView({ companyMetrics, teamData, consultant
                 <div className={styles.categoryItem}>
                   <div className={styles.categoryIcon}>🚙</div>
                   <div className={styles.categoryLabel}>
-                    On Track (80%+)
+                    Pit Crew Stabilizers (80%+)
                     <div className={styles.categoryNames}>{getConsultantsByCategory('on_track')}</div>
                   </div>
                   <div className={styles.categoryBar}>
@@ -284,7 +284,7 @@ export default function TotalProgressView({ companyMetrics, teamData, consultant
                 <div className={styles.categoryItem}>
                   <div className={styles.categoryIcon}>🚐</div>
                   <div className={styles.categoryLabel}>
-                    Needs Boost (60%+)
+                    Fueler Frenzy (60%+)
                     <div className={styles.categoryNames}>{getConsultantsByCategory('needs_boost')}</div>
                   </div>
                   <div className={styles.categoryBar}>
@@ -304,7 +304,7 @@ export default function TotalProgressView({ companyMetrics, teamData, consultant
                 <div className={styles.categoryItem}>
                   <div className={styles.categoryIcon}>🛻</div>
                   <div className={styles.categoryLabel}>
-                    Recovery Mode (&lt;60%)
+                    Under the Wrench (&lt;60%)
                     <div className={styles.categoryNames}>{getConsultantsByCategory('recovery_mode')}</div>
                   </div>
                   <div className={styles.categoryBar}>
@@ -327,7 +327,7 @@ export default function TotalProgressView({ companyMetrics, teamData, consultant
           {/* Monthly Progress Chart */}
           <Card className={styles.progressCard}>
             <CardHeader>
-              <CardTitle>Monthly Progress Track</CardTitle>
+              <CardTitle>Progress</CardTitle>
             </CardHeader>
             <CardContent>
               <div className={styles.chartContainer} data-testid="progress-chart">

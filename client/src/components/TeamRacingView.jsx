@@ -24,7 +24,7 @@ export default function TeamRacingView({ teamData, companyMetrics }) {
         <div className={styles.hero}>
           <h2 className={styles.heroTitle}>TEAM RACING CHAMPIONSHIP</h2>
           <p className={styles.heroSubtitle}>
-            Supervisor performance in our high-speed sales competition
+            Supervisor performance (Drivers)
           </p>
         </div>
 
