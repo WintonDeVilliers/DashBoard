@@ -61,10 +61,13 @@ export async function registerRoutes(app) {
       }
 
       // Process the Excel data
+      console.log("Processing Excel data...");
       const processedData = await processExcelData(rawData);
+      console.log("Processed data successfully, storing...");
       
       // Store in memory
       const result = await storage.storeSalesData(processedData);
+      console.log("Data stored successfully:", result);
       
       res.json({
         message: "Excel data processed successfully",
@@ -255,6 +258,16 @@ async function processExcelData(rawData) {
 
   // Find column mappings
   const columnMappings = findColumnMappings(rawData[0]);
+  console.log("Column mappings found:", columnMappings);
+  
+  // Validate that we have essential mappings
+  if (!columnMappings.consultant_name) {
+    throw new Error("Could not find a column for consultant/employee names. Please ensure your Excel file has a column with names like 'Name', 'Consultant Name', 'Employee Name', etc.");
+  }
+  
+  if (!columnMappings.current_sales && !columnMappings.sales_target) {
+    throw new Error("Could not find sales data columns. Please ensure your Excel file has columns for sales amounts and targets.");
+  }
   
   // Process each row
   rawData.forEach((row, index) => {

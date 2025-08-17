@@ -83,10 +83,19 @@ export default function Dashboard() {
       const formData = new FormData();
       formData.append('excelFile', file);
 
+      console.log('Uploading to /api/upload-excel...');
       const response = await fetch('/api/upload-excel', {
         method: 'POST',
         body: formData
       });
+
+      console.log('Upload response status:', response.status, response.statusText);
+      
+      if (!response.ok) {
+        const errorText = await response.text();
+        console.error('Upload failed with status:', response.status, 'Response:', errorText);
+        throw new Error(`Upload failed: ${response.status} ${response.statusText}`);
+      }
 
       const result = await response.json();
 
