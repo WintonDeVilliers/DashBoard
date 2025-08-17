@@ -121,45 +121,100 @@ export default function RacingGauge({
           className={styles.targetLine}
         />
         
-        {/* Gauge Labels */}
+        {/* Milestone Markers and Labels */}
         {showLabels && (
           <g className={styles.gaugeLabels}>
-            {/* 0% */}
+            {/* Recovery Mode - 0% */}
+            <line
+              x1={gaugeConfig.centerX + (gaugeConfig.radius - 10) * Math.cos(-Math.PI * 0.625)}
+              y1={gaugeConfig.centerY + (gaugeConfig.radius - 10) * Math.sin(-Math.PI * 0.625)}
+              x2={gaugeConfig.centerX + (gaugeConfig.radius + 5) * Math.cos(-Math.PI * 0.625)}
+              y2={gaugeConfig.centerY + (gaugeConfig.radius + 5) * Math.sin(-Math.PI * 0.625)}
+              stroke="#FF6B6B"
+              strokeWidth="2"
+            />
             <text
               x={gaugeConfig.centerX + (gaugeConfig.radius + 25) * Math.cos(-Math.PI * 0.625)}
               y={gaugeConfig.centerY + (gaugeConfig.radius + 25) * Math.sin(-Math.PI * 0.625)}
               textAnchor="middle"
               className={styles.gaugeLabel}
+              fill="#FF6B6B"
             >
               0%
             </text>
             
-            {/* 60% */}
+            {/* Needs Boost - 60% */}
+            <line
+              x1={gaugeConfig.centerX + (gaugeConfig.radius - 10) * Math.cos(-Math.PI * 0.5)}
+              y1={gaugeConfig.centerY + (gaugeConfig.radius - 10) * Math.sin(-Math.PI * 0.5)}
+              x2={gaugeConfig.centerX + (gaugeConfig.radius + 5) * Math.cos(-Math.PI * 0.5)}
+              y2={gaugeConfig.centerY + (gaugeConfig.radius + 5) * Math.sin(-Math.PI * 0.5)}
+              stroke="#FFA07A"
+              strokeWidth="2"
+            />
             <text
               x={gaugeConfig.centerX + (gaugeConfig.radius + 25) * Math.cos(-Math.PI * 0.5)}
               y={gaugeConfig.centerY + (gaugeConfig.radius + 25) * Math.sin(-Math.PI * 0.5)}
               textAnchor="middle"
               className={styles.gaugeLabel}
+              fill="#FFA07A"
             >
               60%
             </text>
             
-            {/* 100% Target */}
+            {/* On Track - 80% */}
+            <line
+              x1={gaugeConfig.centerX + (gaugeConfig.radius - 10) * Math.cos(-Math.PI * 0.4)}
+              y1={gaugeConfig.centerY + (gaugeConfig.radius - 10) * Math.sin(-Math.PI * 0.4)}
+              x2={gaugeConfig.centerX + (gaugeConfig.radius + 5) * Math.cos(-Math.PI * 0.4)}
+              y2={gaugeConfig.centerY + (gaugeConfig.radius + 5) * Math.sin(-Math.PI * 0.4)}
+              stroke="#45B7D1"
+              strokeWidth="2"
+            />
+            <text
+              x={gaugeConfig.centerX + (gaugeConfig.radius + 25) * Math.cos(-Math.PI * 0.4)}
+              y={gaugeConfig.centerY + (gaugeConfig.radius + 25) * Math.sin(-Math.PI * 0.4)}
+              textAnchor="middle"
+              className={styles.gaugeLabel}
+              fill="#45B7D1"
+            >
+              80%
+            </text>
+            
+            {/* Target Achieved - 100% */}
+            <line
+              x1={gaugeConfig.centerX + (gaugeConfig.radius - 15) * Math.cos(-Math.PI * 0.375)}
+              y1={gaugeConfig.centerY + (gaugeConfig.radius - 15) * Math.sin(-Math.PI * 0.375)}
+              x2={gaugeConfig.centerX + (gaugeConfig.radius + 5) * Math.cos(-Math.PI * 0.375)}
+              y2={gaugeConfig.centerY + (gaugeConfig.radius + 5) * Math.sin(-Math.PI * 0.375)}
+              stroke="#4ECDC4"
+              strokeWidth="4"
+            />
             <text
               x={gaugeConfig.centerX + (gaugeConfig.radius + 25) * Math.cos(-Math.PI * 0.375)}
               y={gaugeConfig.centerY + (gaugeConfig.radius + 25) * Math.sin(-Math.PI * 0.375)}
               textAnchor="middle"
               className={`${styles.gaugeLabel} ${styles.targetLabel}`}
+              fill="#4ECDC4"
             >
-              100%
+              TARGET
             </text>
             
-            {/* 120% */}
+            {/* Superstar - 120% */}
+            <line
+              x1={gaugeConfig.centerX + (gaugeConfig.radius - 10) * Math.cos(-Math.PI * 0.125)}
+              y1={gaugeConfig.centerY + (gaugeConfig.radius - 10) * Math.sin(-Math.PI * 0.125)}
+              x2={gaugeConfig.centerX + (gaugeConfig.radius + 5) * Math.cos(-Math.PI * 0.125)}
+              y2={gaugeConfig.centerY + (gaugeConfig.radius + 5) * Math.sin(-Math.PI * 0.125)}
+              stroke="#FF6B35"
+              strokeWidth="2"
+            />
             <text
               x={gaugeConfig.centerX + (gaugeConfig.radius + 25) * Math.cos(-Math.PI * 0.125)}
               y={gaugeConfig.centerY + (gaugeConfig.radius + 25) * Math.sin(-Math.PI * 0.125)}
               textAnchor="middle"
               className={styles.gaugeLabel}
+              fill="#FF6B35"
             >
               120%
             </text>

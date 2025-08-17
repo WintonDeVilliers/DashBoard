@@ -904,3 +904,139 @@
     border: 2px solid var(--border-primary);
   }
 }
+
+/* Corporate Banking F1 Theme - Pit Crew Styles */
+.pitCrewView {
+  padding: 2rem 1rem;
+  background: var(--corporate-navy);
+  min-height: 100vh;
+}
+
+.sectionTitle {
+  font-size: 3.25rem;
+  font-family: 'Roboto', sans-serif;
+  color: var(--corporate-text-light);
+  text-align: center;
+  margin: 0;
+  padding-top: 3.375rem;
+  padding-left: 1.5rem;
+}
+
+.sectionSubtitle {
+  font-size: 1.5625rem;
+  color: var(--corporate-text-light);
+  text-align: center;
+  margin: 0;
+  padding-top: 2.125rem;
+  padding-left: 1.5rem;
+}
+
+.pitCrewContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  max-width: 1200px;
+  margin: 2rem auto;
+}
+
+.pitCrewCard {
+  background: var(--corporate-dark-blue);
+  border: 1px solid var(--corporate-text-muted);
+  border-radius: 0.25rem;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3);
+  transition: 0.2s;
+}
+
+.pitCrewCard:hover {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.4);
+}
+
+.pitCrewCardHeader {
+  background: var(--corporate-navy);
+  color: var(--corporate-text-light);
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid var(--corporate-text-muted);
+}
+
+.crewStats {
+  color: var(--corporate-text-muted);
+  font-size: 0.875rem;
+  margin-top: 0.5rem;
+}
+
+.crewGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.crewMember {
+  background: var(--corporate-dark-blue);
+  border: 2px solid;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  transition: all 0.2s;
+  color: var(--corporate-text-light);
+}
+
+.crewMember:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3);
+}
+
+.memberHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.memberIcon {
+  font-size: 1.5rem;
+}
+
+.memberPosition {
+  background: var(--corporate-light-blue);
+  color: white;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.375rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.memberInfo {
+  margin-bottom: 1rem;
+}
+
+.memberName {
+  font-weight: 600;
+  font-size: 1rem;
+  margin-bottom: 0.25rem;
+  color: var(--corporate-text-light);
+}
+
+.memberRole {
+  color: var(--corporate-text-muted);
+  font-size: 0.875rem;
+  margin-bottom: 0.5rem;
+}
+
+.memberAchievement {
+  font-weight: 700;
+  font-size: 1.125rem;
+}
+
+.memberStats {
+  font-size: 0.875rem;
+  color: var(--corporate-text-muted);
+}
+
+.memberSales {
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.memberTarget {
+  font-size: 0.75rem;
+}

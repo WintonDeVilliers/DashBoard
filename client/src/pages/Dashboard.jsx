@@ -4,6 +4,7 @@ import TotalProgressView from '../components/TotalProgressView';
 import TeamRacingView from '../components/TeamRacingView';
 import MonacoCircuitView from '../components/MonacoCircuitView';
 import KyalamiCircuitView from '../components/KyalamiCircuitView';
+import PitCrewView from '../components/PitCrewView';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
@@ -197,7 +198,7 @@ export default function Dashboard() {
         total_sales: teamSales,
         team_target: teamTarget,
         track_position: Math.min(teamAchievement, 100),
-        vehicle_type: teamMembers[0]?.vehicleType === 'Formula 1' ? '🏎️' : teamMembers[0]?.vehicleType === 'Sports Car' ? '🚗' : '🚙',
+        vehicle_type: '🏎️',
         performance_color: performanceColor,
         circuit: teamMembers[0]?.circuit || 'Monaco'
       };
@@ -381,6 +382,7 @@ export default function Dashboard() {
   const tabButtons = [
     { id: 'total', label: '🏆 Total Progress', icon: '🏆' },
     { id: 'teams', label: '🏁 Team Racing', icon: '🏁' },
+    { id: 'pitcrew', label: '🔧 Pit Crew', icon: '🔧' },
     { id: 'monaco', label: '🇲🇨 Monaco', icon: '🇲🇨' },
     { id: 'kyalami', label: '🇿🇦 Kyalami', icon: '🇿🇦' }
   ];
@@ -501,6 +503,12 @@ export default function Dashboard() {
               <TeamRacingView 
                 teamData={displayData.teams}
                 companyMetrics={displayData.companyMetrics}
+              />
+            )}
+            {activeTab === 'pitcrew' && localData && (
+              <PitCrewView 
+                consultants={localData.data}
+                teams={displayData.teams}
               />
             )}
             {activeTab === 'monaco' && (

@@ -51,7 +51,7 @@ export default function LiveTimingBoard({ teams = [], circuit = 'monaco' }) {
                   >
                     {index + 1}
                   </span>
-                  <span className={styles.vehicleIcon}>{team.vehicle_type}</span>
+                  <span className={styles.vehicleIcon} style={{transform: 'scaleX(-1)'}}>🏎️</span>
                 </div>
                 
                 <div className={styles.driverInfo}>

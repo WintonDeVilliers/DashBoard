@@ -14,12 +14,7 @@ export default function TeamRacingView({ teamData, companyMetrics }) {
   }, [sortedTeams]);
 
   if (!teamData || teamData.length === 0) {
-    return (
-      <div className={styles.emptyState}>
-        <h2>No Team Data Available</h2>
-        <p>Upload sales data to view team racing championship</p>
-      </div>
-    );
+    return null; // Hide empty state when no data to prevent it showing when data is loaded
   }
 
   return (
@@ -63,7 +58,7 @@ export default function TeamRacingView({ teamData, companyMetrics }) {
                       data-testid={`car-position-${team.id}`}
                     >
                       <div className={styles.carContainer}>
-                        <span className={styles.carEmoji}>{team.vehicle_type}</span>
+                        <span className={styles.carEmoji} style={{transform: 'scaleX(-1)'}}>🏎️</span>
                         <div 
                           className={styles.achievementBadge}
                           style={{ backgroundColor: team.performance_color }}

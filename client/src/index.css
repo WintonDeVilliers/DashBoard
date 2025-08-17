@@ -39,15 +39,24 @@
   --sidebar-border: hsl(220, 9%, 15%);
   --sidebar-ring: hsl(14, 100%, 60%);
   
-  /* F1 Racing Specific Colors - Direct from design reference */
-  --racing-navy: hsl(207, 100%, 19%);
+  /* Corporate Banking Theme - From attached CSS */
+  --corporate-navy: #002b60;
+  --corporate-dark-blue: #002b4d;
+  --corporate-light-blue: #0260f7;
+  --corporate-highlight-red: #e57373;
+  --corporate-warning-orange: #e57200;
+  --corporate-text-light: #d8d8d8;
+  --corporate-text-muted: #c7c7c7;
+  
+  /* F1 Racing Specific Colors - Updated for corporate banking */
+  --racing-navy: #002b60;
   --racing-orange: hsl(14, 100%, 60%);
   --victory-teal: hsl(175, 61%, 58%);
   --track-blue: hsl(197, 67%, 55%);
-  --alert-red: hsl(0, 85%, 69%);
-  --caution-orange: hsl(16, 100%, 74%);
+  --alert-red: #e57373;
+  --caution-orange: #e57200;
   --success-green: hsl(89, 61%, 49%);
-  --carbon-fiber: hsl(0, 0%, 10%);
+  --carbon-fiber: #002b4d;
   --light-surface: hsl(210, 8%, 96%);
   
   /* Performance Category Colors */

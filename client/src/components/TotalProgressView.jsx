@@ -121,8 +121,8 @@ export default function TotalProgressView({ companyMetrics, teamData }) {
   if (!companyMetrics) {
     return (
       <div className={styles.emptyState}>
-        <h2>No Company Data Available</h2>
-        <p>Upload sales data to view total progress</p>
+        <h2>No Data Available</h2>
+        <p>Please upload an Excel file with sales performance data to view the dashboard.</p>
       </div>
     );
   }
