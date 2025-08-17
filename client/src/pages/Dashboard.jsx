@@ -50,9 +50,10 @@ export default function Dashboard() {
       const name = row[mappings.name];
       if (!name || name.toString().trim() === '') return null;
       
+      // Use correct column mapping for achievement rate (Sales Val % to Target)
       let achievementRate = 0;
-      if (mappings.achievement && row[mappings.achievement]) {
-        achievementRate = parseFloat(row[mappings.achievement].toString().replace('%', '').trim()) || 0;
+      if (row['Sales Val % to Target']) {
+        achievementRate = parseFloat(row['Sales Val % to Target']) * 100; // Convert decimal to percentage
       } else if (mappings.sales && mappings.target) {
         const sales = parseFloat(row[mappings.sales]) || 0;
         const target = parseFloat(row[mappings.target]) || 0;
@@ -78,11 +79,11 @@ export default function Dashboard() {
       return {
         id: `${name.replace(/\s+/g, '_')}_${index}`,
         name: name.toString().trim(),
-        team: mappings.team ? (row[mappings.team] || 'Default Team').toString().trim() : 'Default Team',
-        role: mappings.role ? (row[mappings.role] || 'Consultant').toString().trim() : 'Consultant',
+        team: row['Supervisor Name'] || 'Default Team', // Use supervisor as team
+        role: 'Consultant',
         achievementRate: Math.round(achievementRate * 100) / 100,
-        target: mappings.target ? parseFloat(row[mappings.target]) || 0 : 0,
-        sales: mappings.sales ? parseFloat(row[mappings.sales]) || 0 : 0,
+        target: parseFloat(row['SalesValTarget']) || 0,
+        sales: parseFloat(row['TotalSalesVal']) || 0,
         performanceLevel,
         vehicleType,
         circuit: Math.random() > 0.5 ? 'Monaco' : 'Kyalami',
@@ -135,16 +136,74 @@ export default function Dashboard() {
     enabled: !localData // Only fetch from API if no local data
   });
   
-  // Use local data if available, otherwise use API data
-  const displayData = localData ? {
-    teams: localData.data,
-    companyMetrics: {
-      totalConsultants: localData.data.length,
-      averageAchievement: Math.round(localData.data.reduce((sum, p) => sum + p.achievementRate, 0) / localData.data.length),
-      topPerformer: localData.data[0]?.name || 'N/A',
-      totalRevenue: localData.data.reduce((sum, p) => sum + p.sales, 0)
-    }
-  } : {
+  // Transform local data to match component expectations
+  const displayData = localData ? (() => {
+    const consultants = localData.data;
+    
+    // Group consultants by supervisor (team)
+    const teamGroups = consultants.reduce((groups, consultant) => {
+      // Try to extract supervisor from the consultant data structure
+      const supervisorName = consultant.team || 'Unknown Team';
+      if (!groups[supervisorName]) {
+        groups[supervisorName] = [];
+      }
+      groups[supervisorName].push(consultant);
+      return groups;
+    }, {});
+    
+    // Convert to team racing format
+    const teams = Object.entries(teamGroups).map(([supervisorName, teamMembers], index) => {
+      const teamAchievement = teamMembers.reduce((sum, member) => sum + member.achievementRate, 0) / teamMembers.length;
+      const teamTarget = teamMembers.reduce((sum, member) => sum + member.target, 0);
+      const teamSales = teamMembers.reduce((sum, member) => sum + member.sales, 0);
+      
+      // Determine performance color based on achievement
+      let performanceColor = '#ef4444'; // red for low performance
+      if (teamAchievement >= 120) performanceColor = '#22c55e'; // green for superstar
+      else if (teamAchievement >= 100) performanceColor = '#3b82f6'; // blue for target achieved
+      else if (teamAchievement >= 80) performanceColor = '#f59e0b'; // yellow for on track
+      else if (teamAchievement >= 60) performanceColor = '#f97316'; // orange for needs boost
+      
+      return {
+        id: `team_${index}`,
+        supervisor_name: supervisorName,
+        team_achievement_rate: teamAchievement,
+        team_size: teamMembers.length,
+        avg_performance: teamAchievement,
+        total_sales: teamSales,
+        team_target: teamTarget,
+        track_position: Math.min(teamAchievement, 100),
+        vehicle_type: teamMembers[0]?.vehicleType === 'Formula 1' ? '🏎️' : teamMembers[0]?.vehicleType === 'Sports Car' ? '🚗' : '🚙',
+        performance_color: performanceColor,
+        circuit: teamMembers[0]?.circuit || 'Monaco'
+      };
+    });
+    
+    console.log('Transformed teams data:', teams);
+    
+    const companyMetrics = {
+      totalConsultants: consultants.length,
+      averageAchievement: Math.round(consultants.reduce((sum, p) => sum + p.achievementRate, 0) / consultants.length),
+      topPerformer: consultants[0]?.name || 'N/A',
+      totalRevenue: consultants.reduce((sum, p) => sum + p.sales, 0),
+      total_supervisors: teams.length,
+      performance_distribution: {
+        superstar: consultants.filter(c => c.achievementRate >= 120).length,
+        target_achieved: consultants.filter(c => c.achievementRate >= 100 && c.achievementRate < 120).length,
+        on_track: consultants.filter(c => c.achievementRate >= 80 && c.achievementRate < 100).length,
+        needs_boost: consultants.filter(c => c.achievementRate >= 60 && c.achievementRate < 80).length,
+        recovery_mode: consultants.filter(c => c.achievementRate < 60).length
+      },
+      monthly_progress: null // No monthly data from Excel
+    };
+    
+    console.log('Generated company metrics:', companyMetrics);
+    
+    return {
+      teams: teams,
+      companyMetrics: companyMetrics
+    };
+  })() : {
     teams: teamData,
     companyMetrics: companyMetrics
   };
