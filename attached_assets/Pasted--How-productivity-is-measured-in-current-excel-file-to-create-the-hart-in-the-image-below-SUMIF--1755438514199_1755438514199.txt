@@ -1,0 +1,472 @@
+
+How productivity is measured in current excel file to create the hart in the image below
+
+=SUMIF('Sales Perfromance'!$B$2:$B$201,'Monaco Team stats'!$A$2:$A$10,'Sales Perfromance'!$L$2:$L$201)/SUMIF('Sales Perfromance'!$B$2:$B$201,'Monaco Team stats'!$A$2:$A$10,'Sales Perfromance'!$K$2:$K$201)
+
+
+
+
+
+
+
+
+
+
+
+
+
+																									
+
+
+
+Supervisor names:
+
+Ashley Moyo
+Busisiwe Mabuza
+Cindy Visser
+Matimba Ngobeni
+Mfundo Mdlalose
+Mixo Makhubele
+Mondli Nhlapho
+Mosima Moshidi 
+Nonhle Zondi
+Rodney Naidu
+Salome Baloyi
+Samantha Govender
+Samuel Masubelele
+Shadleigh White
+Taedi Moletsane
+Thabo Mosweu
+Thobile Phakhathi
+Tshepo Moeketsi
+
+
+Consultants 
+
+Ayanda Delubom
+Boipelo Zitha
+Grace Baloyi
+Koketjo Kekae
+Lunga Mabona
+Ngibongiseni Chavango
+Ntando Sibisi
+Sibongile Dlali
+Siphokazi Ndamase
+Sthandokuhle Mwelase
+Teboho Tau
+Zintle Mshengu
+
+Antonaite Mkhatshwa
+Bhonda Thompson
+Daphney Legodi
+Dumisani Mtsweni
+Karabo Motau
+Mlungisi Nkidi
+Mulweli Mushweu
+Puseletso Mokoena
+Rorisang Masalesa
+Thato Moletsane
+Zamokuhle Mazibuko
+
+Basetsana Rakitla
+Ivan Mashimbye
+Mary Tshabalala
+Mary-Ann Moloto
+Mbavhalelo Ndou
+Mokgadi Mathiane
+Morongwa Rasekgololo
+Rendani Nephambani
+Tshwarelo Motlhala
+Vhugala Davhula
+Zinhle Mtshweni
+Zwivhuya Magwara
+
+Kefilwe Mokgotle
+Kgabo Mokonyama
+Nozuko Ndamase
+Shannon Prince
+Simphiwe Madlabane
+Siyavuya Mnukwa
+Tshepisang Molefe
+Tumi Moloi
+
+Gloria Seutloadi
+Jody Shingange
+Lebone Maile
+Lufuno Makhado
+Menziwoxolo Sibeko
+Mmateboho Mosekedi
+Naledi Mashiane
+Nokuthula Mabongo
+Odirile Mathe
+Rolindela Nephembani
+Tebogo Sentsho
+Wendy Van Wyk
+
+Bontle Nyama
+Lethabo Manamela
+Linah Raletshena
+Lindiwe Dladla
+Matlhogonolo Mosidi
+Moatlhodi Montshojang
+Saafiyah Borman
+Thabo Maphutsi
+Thandazo Mavuso
+Tshegofatso Mahlangu
+Vishaiya Pillay
+Xolile Zikhali
+
+Amogelang Khunou
+Busisiwe Nyembe
+Khutso Mothiba
+Lucas Gamede
+Mana Zungu
+Matlading Sebei
+Nokuthula Mabena
+Nothando Dlamini
+
+Aboo-Baker Cara
+Akhona Mbangendlu
+Dimakatso Tsotetsi
+Dumisane Maqoga
+Oratilwe Modibane
+Palesa Masekwa
+Potego Selatole
+Precious Mmola
+Thabiso Mokgupi
+Tumelo Mabena
+Xolani Mafunda
+
+Bridget Madonsela
+Gcina Mazibuko
+Lerato Banda
+Letlhogonolo Mokwena
+Londolani Lishivha
+Nothando Makwakwa
+Ntando Mwelase
+Phelelwa Nkabinde
+Phumeza Khyolo
+Tebogo Maluleke
+Tebogo Moremi
+Thato Mokoena
+Tiyani Khoza
+
+Carmen Shiburi
+Chanda Bowa
+Kabelo Molamudi
+Keitumetse Tsotetsi
+Lekelela Mkhize
+Livhuwani Tharaga
+Masana Mabunda
+Mbuelo Mukwevho
+Mmaphuti Lamola
+Monde Mbele
+Murunwa Rakgogo
+Musa Mathebula
+Nomathemba Gwatyu
+
+Daniel Ramabu
+Florence Matjila
+Lesego Raseroka
+Malatankwe Nkwatse
+Naledi Moletsane
+Neo Molifi
+Nomfundo Mazibuko
+Nonkulumo Xalisa
+Precious Mashabane
+Siphilile Biyela
+
+Aldrin JR Monaisa
+Babalo Tshabalala
+Cindy Milani
+Cowan Stewart
+Hannah Tabane
+Kyle van Vught
+Lerato Sekati
+Nkateko Rikhotso
+Precious Madonsela
+Ronald Madisha
+Sanelisiwe Madela
+Tholwana Mosweu
+Winton de Villiers
+Xolisa Mkhosana
+
+Anelisa Ngobo
+Cyprian April
+Fortunate Skhakhane
+Gift Nkosi
+Katlego Langa
+Keneilwe Rooi
+Lusapho Ntaka
+Moreen Nkosi
+Ntsako Maswanganye
+Onica Mathebula
+Phindile Mabunda
+Sibusiso Khanyile
+Thembekile Sithebe
+
+Cebisile Nhlabathi
+Chwayita Mnukwa
+David Rapia
+Dudu Madumise
+Matimu Chauke
+Mokiritla Selepe
+Moratehi Tseisi
+Tshepang Ramokgopa
+
+Angelinah Khoza
+Dumoluhle Ndlovu
+Hlezipi Maqoga
+Jabulani Khosa
+Lethabo Komane
+Mmathapelo Maine
+Mosa Seleka
+Odwa Duba
+Phindile Nkosi
+Thabiso Manamela
+Tshepo Lekgowane
+
+Bridgette Kholeng
+Deborah Dinala
+Dineo Mdlalose
+Lerato Nthite
+Lerato Rakhokole
+Mamfana Mogale
+Masego Moremi
+Mmadira Malatjie
+Mpho Moeketsi
+Nomthandazo Nkutha
+Ziningi Mabizela
+Zwivhuya Siaga
+
+Betty Mawela
+Boipelo Rabeng
+Bongeka Ntethe
+David Phala
+Karabo Mlambo
+Lebogang Motau
+Nozipho Radebe
+Palesa Jama
+Thabang Mokoena
+Thabo Setlhako
+Thato Majoro
+Tshepo Tshekiso
+
+Bongumusa Nkosi
+Lebohang Tlali
+Mandy Sibisi
+Nonhlanhla Mhlungu
+Nsovo Kubayi
+Phenyo Maepa
+Ronewa Sibara
+Senamile Ngema
+
+
+
+For total gauge use these columns 
+                K                                            L                                         	M				
+SalesValTarget	TotalSalesVal	Sales Val % to Target
+
+
+
+The Supervisors Target will be the sum of individuals team members target
+
+
+
+
+Below are images of the previous implementation 
+
+
+
+
+
+­
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+skslkslsslsssk
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+we can use the following columns to represent Pit-Crew Member “health”/”status”
+RealAppsTarget	,TotalRealAppsVol	,Real Apps % to Target,LoanAppsVol	,CardAppsVol, TotalDealsVol,SalesValTarget ,TotalSalesVal ,Sales Val % to Target,LoanDealsVol	,LoanSaleVal	,CardDealsVol	,CardSaleVal	,CardLimIncSaleVal	,CreditCardDealTarget	,Creditcard  % to target ,OverDraftSaleVal
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+skslkslsslsssk
+
+

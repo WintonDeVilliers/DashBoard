@@ -15,13 +15,28 @@ export default function Dashboard() {
   const [uploadingFile, setUploadingFile] = useState(false);
   const { toast } = useToast();
   
+  // Function to clear local storage data
+  const clearLocalData = () => {
+    localStorage.removeItem('f1DashboardData');
+    localStorage.removeItem('f1DashboardSummary');
+    setLocalData(null);
+    toast({
+      title: "Data Cleared",
+      description: "Local data has been cleared. Please upload a new file.",
+    });
+  };
+  
   // Client-side Excel processing function to work around API routing issues
   const processExcelDataClientSide = async (rawData, sheetName) => {
+    console.log('Raw data sample:', rawData[0]);
+    console.log('Available columns in Excel:', Object.keys(rawData[0]));
+    
     const ExcelColumnMappings = {
-      name: ['Name', 'Full Name', 'Employee Name', 'Supervisor', 'Consultant'],
-      achievement: ['Achievement %', 'Achievement Rate', 'Achievement', '% Achievement'],
-      target: ['Target', 'Goal', 'Quota', 'Target Amount'],
-      sales: ['Sales', 'Actual Sales', 'Revenue', 'Sales Amount'],
+      name: ['Consultant Name', 'Name', 'Full Name', 'Employee Name'],
+      supervisor: ['Supervisor Name', 'Supervisor', 'Team Lead', 'Manager'],
+      achievement: ['Sales Val % to Target', 'Achievement %', 'Achievement Rate'],
+      target: ['SalesValTarget', 'Target', 'Goal', 'Quota'],
+      sales: ['TotalSalesVal', 'Sales', 'Actual Sales', 'Revenue'],
       team: ['Team', 'Team Name', 'Department', 'Division'],
       role: ['Role', 'Position', 'Job Title']
     };
@@ -32,6 +47,7 @@ export default function Dashboard() {
     for (const [field, variations] of Object.entries(ExcelColumnMappings)) {
       for (const variation of variations) {
         const found = availableColumns.find(col => 
+          col === variation || // Exact match first
           col.toLowerCase().includes(variation.toLowerCase()) ||
           variation.toLowerCase().includes(col.toLowerCase())
         );
@@ -41,6 +57,8 @@ export default function Dashboard() {
         }
       }
     }
+    
+    console.log('Column mappings found:', mappings);
     
     if (!mappings.name) {
       throw new Error(`Name column not found. Available: ${availableColumns.join(', ')}`);
@@ -53,10 +71,12 @@ export default function Dashboard() {
       // Use correct column mapping for achievement rate (Sales Val % to Target)
       let achievementRate = 0;
       if (row['Sales Val % to Target']) {
-        achievementRate = parseFloat(row['Sales Val % to Target']) * 100; // Convert decimal to percentage
-      } else if (mappings.sales && mappings.target) {
-        const sales = parseFloat(row[mappings.sales]) || 0;
-        const target = parseFloat(row[mappings.target]) || 0;
+        const rawValue = parseFloat(row['Sales Val % to Target']);
+        // The data appears to be in decimal format (0.77 = 77%), so multiply by 100
+        achievementRate = rawValue * 100;
+      } else if (row['SalesValTarget'] && row['TotalSalesVal']) {
+        const sales = parseFloat(row['TotalSalesVal']) || 0;
+        const target = parseFloat(row['SalesValTarget']) || 0;
         achievementRate = target > 0 ? (sales / target) * 100 : 0;
       }
       
@@ -76,14 +96,17 @@ export default function Dashboard() {
         vehicleType = 'Compact Car';
       }
       
+      const supervisorName = mappings.supervisor ? row[mappings.supervisor] : (row['Supervisor Name'] || 'Unknown Supervisor');
+      console.log(`${name}: Achievement ${achievementRate}% (Supervisor: ${supervisorName})`);
+      
       return {
         id: `${name.replace(/\s+/g, '_')}_${index}`,
         name: name.toString().trim(),
-        team: row['Supervisor Name'] || 'Default Team', // Use supervisor as team
+        team: supervisorName.toString().trim(), // Use supervisor as team
         role: 'Consultant',
         achievementRate: Math.round(achievementRate * 100) / 100,
-        target: parseFloat(row['SalesValTarget']) || 0,
-        sales: parseFloat(row['TotalSalesVal']) || 0,
+        target: parseFloat(mappings.target ? row[mappings.target] : row['SalesValTarget']) || 0,
+        sales: parseFloat(mappings.sales ? row[mappings.sales] : row['TotalSalesVal']) || 0,
         performanceLevel,
         vehicleType,
         circuit: Math.random() > 0.5 ? 'Monaco' : 'Kyalami',
@@ -142,14 +165,15 @@ export default function Dashboard() {
     
     // Group consultants by supervisor (team)
     const teamGroups = consultants.reduce((groups, consultant) => {
-      // Try to extract supervisor from the consultant data structure
-      const supervisorName = consultant.team || 'Unknown Team';
+      const supervisorName = consultant.team || 'Unknown Supervisor';
       if (!groups[supervisorName]) {
         groups[supervisorName] = [];
       }
       groups[supervisorName].push(consultant);
       return groups;
     }, {});
+    
+    console.log('Team groups created:', Object.keys(teamGroups), 'teams with members:', Object.values(teamGroups).map(team => team.length));
     
     // Convert to team racing format
     const teams = Object.entries(teamGroups).map(([supervisorName, teamMembers], index) => {
@@ -507,6 +531,19 @@ export default function Dashboard() {
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
           </svg>
         </Button>
+        {localData && (
+          <Button
+            data-testid="clear-data-btn"
+            onClick={clearLocalData}
+            className={styles.clearBtn}
+            size="icon"
+            variant="outline"
+          >
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+            </svg>
+          </Button>
+        )}
       </div>
     </div>
   );
