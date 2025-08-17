@@ -37,25 +37,37 @@ export default function Dashboard() {
 
   // Analyze Excel file structure
   const analyzeExcelFile = async (file) => {
-    const formData = new FormData();
-    formData.append('excelFile', file);
+    try {
+      const formData = new FormData();
+      formData.append('excelFile', file);
 
-    const response = await fetch('/api/analyze-excel', {
-      method: 'POST',
-      body: formData
-    });
-
-    const analysis = await response.json();
-    console.log('Excel Analysis:', analysis);
-    
-    if (response.ok) {
-      toast({
-        title: "Excel Analysis",
-        description: `Found ${analysis.availableSheets.length} sheet(s). Check console for details.`
+      const response = await fetch('/api/analyze-excel', {
+        method: 'POST',
+        body: formData
       });
+
+      if (!response.ok) {
+        throw new Error(`Analysis failed: ${response.status} ${response.statusText}`);
+      }
+
+      const analysis = await response.json();
+      console.log('Excel Analysis:', analysis);
+      
+      toast({
+        title: "Excel Analysis Complete",
+        description: `Found ${analysis.availableSheets.length} sheet(s). Processing...`
+      });
+      
+      return analysis;
+    } catch (error) {
+      console.error('Analysis failed:', error);
+      toast({
+        variant: "destructive",
+        title: "Analysis Failed",
+        description: "Could not analyze Excel file structure"
+      });
+      throw error;
     }
-    
-    return analysis;
   };
 
   // Handle Excel file upload
@@ -75,26 +87,41 @@ export default function Dashboard() {
     setUploadingFile(true);
     
     try {
-      // First analyze the file to help with debugging
-      console.log('Analyzing Excel file structure...');
-      await analyzeExcelFile(file);
-
-      // Then try to process it
+      // First test if API is reachable
+      console.log('Testing API connectivity...');
+      const testResponse = await fetch('/api/test');
+      console.log('Test API response:', testResponse.status, await testResponse.text());
+      
+      // Skip analysis for now and go directly to upload
+      console.log('Uploading Excel file directly...');
+      
       const formData = new FormData();
       formData.append('excelFile', file);
+      console.log('File to upload:', file.name, 'Size:', file.size, 'Type:', file.type);
 
       console.log('Uploading to /api/upload-excel...');
       const response = await fetch('/api/upload-excel', {
         method: 'POST',
-        body: formData
+        body: formData,
+        // Don't set Content-Type header, let browser set it with boundary
       });
 
       console.log('Upload response status:', response.status, response.statusText);
+      console.log('Response headers:', Object.fromEntries(response.headers.entries()));
       
       if (!response.ok) {
         const errorText = await response.text();
         console.error('Upload failed with status:', response.status, 'Response:', errorText);
         throw new Error(`Upload failed: ${response.status} ${response.statusText}`);
+      }
+
+      const contentType = response.headers.get('content-type');
+      console.log('Response content type:', contentType);
+      
+      if (!contentType || !contentType.includes('application/json')) {
+        const responseText = await response.text();
+        console.error('Expected JSON but got:', contentType, 'Response:', responseText.substring(0, 200));
+        throw new Error('Server returned unexpected content type. Expected JSON.');
       }
 
       const result = await response.json();

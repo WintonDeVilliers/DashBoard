@@ -15,10 +15,20 @@ const upload = multer({
 
 export async function registerRoutes(app) {
   
+  // Test endpoint
+  app.get("/api/test", (req, res) => {
+    res.json({ message: "API is working", timestamp: new Date() });
+  });
+  
   // Upload and process Excel file
   app.post("/api/upload-excel", upload.single('excelFile'), async (req, res) => {
+    console.log("Upload endpoint hit, file:", req.file ? req.file.originalname : "none");
+    console.log("Request headers:", req.headers['content-type']);
+    console.log("Request body:", req.body);
+    
     try {
       if (!req.file) {
+        console.log("No file in request");
         return res.status(400).json({ error: "No Excel file uploaded" });
       }
 
