@@ -479,7 +479,7 @@ export default function Dashboard() {
 
       {/* Main Content */}
       <main className={styles.mainContent}>
-        {metricsError && (
+        {metricsError && !localData && (
           <div className={styles.errorState}>
             <h2>No Data Available</h2>
             <p>Please upload an Excel file with sales performance data to view the dashboard.</p>

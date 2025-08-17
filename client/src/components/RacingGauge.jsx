@@ -3,11 +3,12 @@ import styles from '../styles/RacingComponents.module.css';
 
 export default function RacingGauge({ 
   value = 0, 
-  target = 100, 
+  target = 240000000, // Default target in Rand
   size = 250, 
   className = '',
   showLabels = true,
-  showCenter = true 
+  showCenter = true,
+  isMonetary = true // Flag to show Rand values instead of percentages
 }) {
   const svgRef = useRef(null);
   const animationRef = useRef(null);
@@ -22,7 +23,8 @@ export default function RacingGauge({
     // Calculate progress percentage (max 120% for over-achievement display)
     const maxDisplay = 120;
     const progressPercent = Math.min(value / target * 100, maxDisplay);
-    const progressOffset = circumference - (progressPercent / maxDisplay) * circumference * 0.75; // 75% of circle
+    // Start from top and go clockwise - fixing orientation
+    const progressOffset = circumference - (progressPercent / maxDisplay) * circumference * 0.75;
     
     return {
       radius,
@@ -43,19 +45,8 @@ export default function RacingGauge({
     const progressCircle = svg.querySelector(`.${styles.progressArc}`);
     if (!progressCircle) return;
 
-    // Animate the progress arc
-    if (animationRef.current) {
-      animationRef.current.cancel();
-    }
-
-    animationRef.current = progressCircle.animate([
-      { strokeDashoffset: gaugeConfig.circumference },
-      { strokeDashoffset: gaugeConfig.progressOffset }
-    ], {
-      duration: 2000,
-      easing: 'ease-out',
-      fill: 'forwards'
-    });
+    // Disable animation - set directly to final position
+    progressCircle.style.strokeDashoffset = gaugeConfig.progressOffset;
 
     return () => {
       if (animationRef.current) {
@@ -92,7 +83,7 @@ export default function RacingGauge({
           stroke="hsl(0, 0%, 22%)"
           strokeWidth={gaugeConfig.strokeWidth}
           strokeDasharray={`${gaugeConfig.circumference * 0.75} ${gaugeConfig.circumference}`}
-          strokeDashoffset={gaugeConfig.circumference * 0.125}
+          strokeDashoffset={-gaugeConfig.circumference * 0.375} // Start from top
           className={styles.backgroundArc}
         />
         
@@ -105,7 +96,7 @@ export default function RacingGauge({
           stroke={progressColor}
           strokeWidth={gaugeConfig.strokeWidth}
           strokeDasharray={`${gaugeConfig.circumference * 0.75} ${gaugeConfig.circumference}`}
-          strokeDashoffset={gaugeConfig.circumference}
+          strokeDashoffset={-gaugeConfig.circumference * 0.375 + gaugeConfig.progressOffset}
           strokeLinecap="round"
           className={styles.progressArc}
         />
@@ -122,8 +113,9 @@ export default function RacingGauge({
         />
         
         {/* Milestone Markers and Labels */}
-        {showLabels && ([20, 40, 60, 80, 100, 120].map((milestone) => {
-          const angle = -Math.PI * 0.625 + (milestone / 120) * (Math.PI * 0.75);
+        {showLabels && isMonetary && ([50, 70, 90, 110, 130, 160, 190, 210, 240].map((milestoneM) => {
+          const milestonePercent = (milestoneM / 240) * 100; // Convert to percentage of 240M target
+          const angle = -Math.PI * 0.5 + (milestonePercent / 100) * (Math.PI * 0.75); // Start from top, go clockwise
           const markerX1 = gaugeConfig.centerX + (gaugeConfig.radius - 10) * Math.cos(angle);
           const markerY1 = gaugeConfig.centerY + (gaugeConfig.radius - 10) * Math.sin(angle);
           const markerX2 = gaugeConfig.centerX + (gaugeConfig.radius + 5) * Math.cos(angle);
@@ -131,11 +123,11 @@ export default function RacingGauge({
           const labelX = gaugeConfig.centerX + (gaugeConfig.radius + 20) * Math.cos(angle);
           const labelY = gaugeConfig.centerY + (gaugeConfig.radius + 20) * Math.sin(angle);
           
-          const isTarget = milestone === 100;
+          const isTarget = milestoneM === 240;
           const color = isTarget ? '#FF6B6B' : '#6B7280';
           
           return (
-            <g key={milestone}>
+            <g key={milestoneM}>
               <line
                 x1={markerX1}
                 y1={markerY1}
@@ -149,12 +141,12 @@ export default function RacingGauge({
                 x={labelX}
                 y={labelY}
                 fill={color}
-                fontSize="12"
+                fontSize="10"
                 textAnchor="middle"
                 dominantBaseline="middle"
                 className={isTarget ? styles.targetLabel : styles.gaugeLabel}
               >
-                {milestone}%
+                {milestoneM}M
               </text>
             </g>
           );
@@ -165,13 +157,20 @@ export default function RacingGauge({
       {showCenter && (
         <div className={styles.gaugeCenter} data-testid="gauge-center">
           <div className={styles.gaugeValue} style={{ color: progressColor }}>
-            {value.toFixed(0)}<span className={styles.gaugeUnit}>%</span>
+            {isMonetary 
+              ? `R${(value / 1000000).toFixed(1)}M`
+              : `${value.toFixed(0)}%`
+            }
           </div>
-          <div className={styles.gaugeLabel}>Achievement Rate</div>
+          <div className={styles.gaugeLabel}>
+            {isMonetary ? 'Total Sales' : 'Achievement Rate'}
+          </div>
           <div className={styles.gaugeSubtext}>
-            {gaugeConfig.progressPercent >= 100 
-              ? `+${(gaugeConfig.progressPercent - 100).toFixed(0)}% over target`
-              : `${(100 - gaugeConfig.progressPercent).toFixed(0)}% to target`
+            {isMonetary 
+              ? `Target: R${(target / 1000000).toFixed(0)}M`
+              : gaugeConfig.progressPercent >= 100 
+                ? `+${(gaugeConfig.progressPercent - 100).toFixed(0)}% over target`
+                : `${(100 - gaugeConfig.progressPercent).toFixed(0)}% to target`
             }
           </div>
         </div>

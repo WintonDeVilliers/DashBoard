@@ -214,6 +214,15 @@
   flex-grow: 1;
 }
 
+.categoryNames {
+  font-size: 11px;
+  color: var(--text-muted);
+  font-weight: 400;
+  margin-top: 2px;
+  font-style: italic;
+  opacity: 0.8;
+}
+
 .categoryBar {
   width: 4rem;
   height: 0.5rem;

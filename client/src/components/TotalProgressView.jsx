@@ -150,10 +150,11 @@ export default function TotalProgressView({ companyMetrics, teamData }) {
           </CardHeader>
           <CardContent className={styles.gaugeContent}>
             <RacingGauge 
-              value={achievementRate}
-              target={100}
+              value={actualAmount}
+              target={targetAmount}
               size={320}
               className={styles.mainGauge}
+              isMonetary={true}
             />
             
             {/* Performance Stats */}
@@ -204,7 +205,10 @@ export default function TotalProgressView({ companyMetrics, teamData }) {
               <div className={styles.categoriesList} data-testid="performance-categories">
                 <div className={styles.categoryItem}>
                   <div className={styles.categoryIcon}>🏎️</div>
-                  <div className={styles.categoryLabel}>Superstar (120%+)</div>
+                  <div className={styles.categoryLabel}>
+                    Superstar (120%+)
+                    <div className={styles.categoryNames}>Lewis Hamilton, Max Verstappen</div>
+                  </div>
                   <div className={styles.categoryBar}>
                     <div 
                       className={styles.categoryProgress}
@@ -221,7 +225,10 @@ export default function TotalProgressView({ companyMetrics, teamData }) {
 
                 <div className={styles.categoryItem}>
                   <div className={styles.categoryIcon}>🚗</div>
-                  <div className={styles.categoryLabel}>Target Achieved (100%+)</div>
+                  <div className={styles.categoryLabel}>
+                    Target Achieved (100%+)
+                    <div className={styles.categoryNames}>Charles Leclerc, Lando Norris</div>
+                  </div>
                   <div className={styles.categoryBar}>
                     <div 
                       className={styles.categoryProgress}
@@ -238,7 +245,10 @@ export default function TotalProgressView({ companyMetrics, teamData }) {
 
                 <div className={styles.categoryItem}>
                   <div className={styles.categoryIcon}>🚙</div>
-                  <div className={styles.categoryLabel}>On Track (80%+)</div>
+                  <div className={styles.categoryLabel}>
+                    On Track (80%+)
+                    <div className={styles.categoryNames}>Carlos Sainz, Fernando Alonso</div>
+                  </div>
                   <div className={styles.categoryBar}>
                     <div 
                       className={styles.categoryProgress}
@@ -255,7 +265,10 @@ export default function TotalProgressView({ companyMetrics, teamData }) {
 
                 <div className={styles.categoryItem}>
                   <div className={styles.categoryIcon}>🚐</div>
-                  <div className={styles.categoryLabel}>Needs Boost (60%+)</div>
+                  <div className={styles.categoryLabel}>
+                    Needs Boost (60%+)
+                    <div className={styles.categoryNames}>Valtteri Bottas, Daniel Ricciardo</div>
+                  </div>
                   <div className={styles.categoryBar}>
                     <div 
                       className={styles.categoryProgress}
@@ -272,7 +285,10 @@ export default function TotalProgressView({ companyMetrics, teamData }) {
 
                 <div className={styles.categoryItem}>
                   <div className={styles.categoryIcon}>🛻</div>
-                  <div className={styles.categoryLabel}>Recovery Mode (&lt;60%)</div>
+                  <div className={styles.categoryLabel}>
+                    Recovery Mode (&lt;60%)
+                    <div className={styles.categoryNames}>Logan Sargeant, Nyck de Vries</div>
+                  </div>
                   <div className={styles.categoryBar}>
                     <div 
                       className={styles.categoryProgress}
