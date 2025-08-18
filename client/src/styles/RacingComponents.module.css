@@ -791,6 +791,10 @@
   align-items: center;
   justify-content: center;
   margin: 0 auto;
+  /* Remove padding-bottom and margin-bottom */
+  padding-bottom: 0 !important; /* Override existing padding */
+  margin-bottom: 0 !important; /* Override existing margin */
+  height: auto; /* Let it size naturally */
 }
 
 .gaugeSvg {
@@ -863,7 +867,7 @@
 }
 
 .gaugeValue {
-  font-size: var(--text-3xl); /* Smaller size */
+  font-size: var(--text-4xl); /* Smaller size */
   font-weight: var(--font-bold);
   font-family: var(--font-racing);
   line-height: var(--leading-tight);

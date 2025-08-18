@@ -1,6 +1,6 @@
 //RacingGauge.jsx
-import { useEffect, useRef, useMemo } from 'react';
-import styles from '../styles/RacingComponents.module.css';
+import { useMemo } from 'react';
+import styles from '../styles/RacingGauge.module.css';
 
 export default function RacingGauge({ 
   value = 0, 
@@ -11,36 +11,16 @@ export default function RacingGauge({
   showCenter = true,
   isMonetary = true // Flag to show Rand values instead of percentages
 }) {
-  const svgRef = useRef(null);
-  const animationRef = useRef(null);
-
   const gaugeConfig = useMemo(() => {
-    const radius = size / 2 - 60; // Better proportional sizing
-    const centerX = size / 2;
-    const centerY = size * 0.9; // Move gauge to bottom
-    
     // Calculate progress percentage (max 120% for over-achievement display)
     const maxDisplay = 120;
     const progressPercent = Math.min(value / target * 100, maxDisplay);
     
-    // Speedometer spans from 180 degrees to 0 degrees (bottom half circle)
-    const startAngle = Math.PI; // Start from left (180 degrees)
-    const endAngle = 0; // End at right (0 degrees)  
-    const totalAngle = Math.PI; // 180 degrees total
-    const progressAngle = startAngle - (progressPercent / 100) * totalAngle;
-    
     return {
-      radius,
-      centerX,
-      centerY,
       progressPercent,
-      startAngle,
-      endAngle,
-      totalAngle,
-      progressAngle,
       maxDisplay
     };
-  }, [value, target, size]);
+  }, [value, target]);
 
   const getProgressColor = (percent) => {
     if (percent >= 100) return '#22c55e'; // Green for target achieved
@@ -50,27 +30,6 @@ export default function RacingGauge({
   };
 
   const progressColor = getProgressColor(gaugeConfig.progressPercent);
-
-  // Create SVG path for semi-circle arc
-  const createArcPath = (centerX, centerY, radius, startAngle, endAngle) => {
-    const x1 = centerX + radius * Math.cos(startAngle);
-    const y1 = centerY + radius * Math.sin(startAngle);
-    const x2 = centerX + radius * Math.cos(endAngle);
-    const y2 = centerY + radius * Math.sin(endAngle);
-    
-    const largeArcFlag = endAngle - startAngle <= Math.PI ? "0" : "1";
-    
-    return `M ${x1} ${y1} A ${radius} ${radius} 0 ${largeArcFlag} 1 ${x2} ${y2}`;
-  };
-
-  // Create speedometer sections with colors
-  const speedometerSections = [
-    { start: 180, end: 144, color: '#ef4444', label: '30M' }, // Red: 0-30M (left side)
-    { start: 144, end: 108, color: '#f97316', label: '70M' }, // Orange: 30-70M
-    { start: 108, end: 72, color: '#eab308', label: '90M' },  // Yellow: 70-90M
-    { start: 72, end: 36, color: '#84cc16', label: '110M' },  // Light Green: 90-110M
-    { start: 36, end: 0, color: '#22c55e', label: '240M' }    // Green: 110M+ (right side)
-  ];
 
   // Generate milestone markers based on target
   const milestones = useMemo(() => {
@@ -82,134 +41,75 @@ export default function RacingGauge({
     );
   }, [target, gaugeConfig.maxDisplay]);
 
+  // Calculate needle rotation: -90deg (left) to +90deg (right)
+  const needleRotation = Math.min((gaugeConfig.progressPercent / 100) * 180 - 90, 90);
+
   return (
-    <div className={`${styles.racingGauge} ${className}`} data-testid="racing-gauge">
-      <svg 
-        ref={svgRef}
-        width={size} 
-        height={size * 0.7} // Make height smaller for semi-circle
-        viewBox={`0 0 ${size} ${size * 0.7}`}
-        className={styles.gaugeSvg}
+    <div className={`${styles.gaugeContainer} ${className}`} data-testid="racing-gauge" style={{ width: size, height: size * 0.57 }}>
+      {/* Semi-circular speedometer background */}
+      <div 
+        className={styles.backgroundHalfRound} 
+        style={{ 
+          width: size, 
+          height: size * 0.5,
+          borderRadius: `${size}px ${size}px 0 0`,
+          border: `${size * 0.033}px solid #f8f8f8`
+        }}
       >
-        <defs>
-          <linearGradient id="gaugeGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stopColor="#1e40af" />
-            <stop offset="100%" stopColor="#0ea5e9" />
-          </linearGradient>
-        </defs>
-        
-        {/* Background Arc - Gradient outer ring */}
-        <path
-          d={createArcPath(gaugeConfig.centerX, gaugeConfig.centerY, gaugeConfig.radius, gaugeConfig.startAngle, gaugeConfig.endAngle)}
-          fill="none"
-          stroke="url(#gaugeGradient)"
-          strokeWidth="40"
-          strokeLinecap="round"
-          className={styles.backgroundArc}
-        />
-        
-        {/* Progress Needle - Triangular Design */}
-        <g className={styles.needle} transform={`rotate(${(gaugeConfig.progressAngle * 180 / Math.PI)} ${gaugeConfig.centerX} ${gaugeConfig.centerY})`}>
-          <polygon
-            points={`
-              ${gaugeConfig.centerX},${gaugeConfig.centerY - 20} 
-              ${gaugeConfig.centerX - 8},${gaugeConfig.centerY} 
-              ${gaugeConfig.centerX + 8},${gaugeConfig.centerY}
-            `}
-            fill="#1f2937"
-          />
-          {/* Needle center dot */}
-          <circle
-            cx={gaugeConfig.centerX}
-            cy={gaugeConfig.centerY}
-            r="6"
-            fill="#1f2937"
-            className={styles.needleCenter}
-          />
-        </g>
-        
-        {/* Milestone markers and labels */}
-        {showLabels && milestones.map((milestone) => {
+        {/* Milestone markers */}
+        {showLabels && milestones.map((milestone, index) => {
           const milestonePercent = (milestone / (target / 1000000)) * 100;
-          const angle = gaugeConfig.startAngle - (milestonePercent / 100) * gaugeConfig.totalAngle;
-          
-          // Marker line
-          const markerInnerX = gaugeConfig.centerX + (gaugeConfig.radius - 35) * Math.cos(angle);
-          const markerInnerY = gaugeConfig.centerY + (gaugeConfig.radius - 35) * Math.sin(angle);
-          const markerOuterX = gaugeConfig.centerX + (gaugeConfig.radius - 15) * Math.cos(angle);
-          const markerOuterY = gaugeConfig.centerY + (gaugeConfig.radius - 15) * Math.sin(angle);
-          
-          // Label position - adjust for better visibility
-          const labelRadius = gaugeConfig.radius + 35;
-          const labelX = gaugeConfig.centerX + labelRadius * Math.cos(angle);
-          const labelY = gaugeConfig.centerY + labelRadius * Math.sin(angle);
-          
+          const angle = (milestonePercent / 100) * 180 - 90; // Convert to degrees (-90 to 90)
           const isTarget = milestone === Math.round(target / 1000000);
-          const color = isTarget ? '#ef4444' : '#e5e7eb';
           
           return (
-            <g key={milestone}>
-              <line
-                x1={markerInnerX}
-                y1={markerInnerY}
-                x2={markerOuterX}
-                y2={markerOuterY}
-                stroke={color}
-                strokeWidth={isTarget ? "3" : "2"}
-                className={styles.milestoneMarker}
-              />
-              {/* Background circle for label visibility */}
-              <circle
-                cx={labelX}
-                cy={labelY}
-                r="14"
-                fill="rgba(0, 0, 0, 0.7)"
-                className={styles.labelBackground}
-              />
-              <text
-                x={labelX}
-                y={labelY}
-                fill={color}
-                fontSize="11"
-                fontWeight={isTarget ? "bold" : "normal"}
-                textAnchor="middle"
-                dominantBaseline="middle"
-                className={isTarget ? styles.targetLabel : styles.gaugeLabel}
-              >
-                {milestone}M
-              </text>
-            </g>
+            <div
+              key={milestone}
+              className={styles.milestoneMarker}
+              style={{
+                position: 'absolute',
+                bottom: '0',
+                left: '50%',
+                transformOrigin: 'bottom center',
+                transform: `translateX(-50%) rotate(${angle}deg)`,
+                width: isTarget ? '4px' : '2px',
+                height: size * 0.12,
+                backgroundColor: isTarget ? '#ef4444' : '#666',
+                opacity: 0.8,
+                zIndex: 2
+              }}
+            />
           );
         })}
-      </svg>
-      
-      {/* Center Display */}
-      {showCenter && (
+
+        {/* Triangular needle pointer */}
         <div 
-          className={styles.gaugeCenter} 
-          data-testid="gauge-center"
-          style={{
-            top: `${gaugeConfig.centerY - 60}px`,
-            left: `${gaugeConfig.centerX}px`
+          className={styles.pointer} 
+          style={{ 
+            transform: `translateX(-50%) rotate(${needleRotation}deg)`,
+            borderTopWidth: size * 0.32,
+            borderLeftWidth: size * 0.015,
+            borderRightWidth: size * 0.015,
+            borderTopColor: progressColor
           }}
-        >
-          <div className={styles.gaugeValue} style={{ color: progressColor }}>
+        />
+      </div>
+
+      {/* Center display */}
+      {showCenter && (
+        <div className={styles.centerLabel}>
+          <span className={styles.currentValue} style={{ color: progressColor }}>
             {isMonetary 
               ? `R${(value / 1000000).toFixed(1)}M`
-              : `${value.toFixed(0)}%`
+              : `${gaugeConfig.progressPercent.toFixed(0)}%`
             }
-          </div>
-          <div className={styles.gaugeLabel}>
-            {isMonetary ? 'Total Sales' : 'Achievement Rate'}
-          </div>
-          <div className={styles.gaugeSubtext}>
+          </span>
+          <span className={styles.maxValue}>
             {isMonetary 
-              ? `Target: R${(target / 1000000).toFixed(0)}M`
-              : gaugeConfig.progressPercent >= 100 
-                ? `+${(gaugeConfig.progressPercent - 100).toFixed(0)}% over target`
-                : `${(100 - gaugeConfig.progressPercent).toFixed(0)}% to target`
+              ? `/R${(target / 1000000).toFixed(0)}M`
+              : '/100%'
             }
-          </div>
+          </span>
         </div>
       )}
     </div>
