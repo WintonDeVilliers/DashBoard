@@ -5,41 +5,41 @@
 @tailwind utilities;
 
 :root {
-  /* F1 Racing Theme Colors - Extracted from design reference */
-  --background: hsl(220, 9%, 5%);
-  --foreground: hsl(0, 0%, 85%);
-  --card: hsl(220, 9%, 10%);
-  --card-foreground: hsl(0, 0%, 85%);
-  --popover: hsl(220, 9%, 5%);
-  --popover-foreground: hsl(0, 0%, 85%);
-  --primary: hsl(14, 100%, 60%);
-  --primary-foreground: hsl(0, 0%, 100%);
-  --secondary: hsl(220, 9%, 15%);
-  --secondary-foreground: hsl(0, 0%, 85%);
-  --muted: hsl(220, 9%, 12%);
-  --muted-foreground: hsl(210, 4%, 46%);
-  --accent: hsl(220, 9%, 15%);
-  --accent-foreground: hsl(14, 100%, 60%);
-  --destructive: hsl(0, 85%, 69%);
-  --destructive-foreground: hsl(0, 0%, 100%);
-  --border: hsl(220, 9%, 15%);
-  --input: hsl(220, 9%, 12%);
-  --ring: hsl(14, 100%, 60%);
-  --chart-1: hsl(14, 100%, 60%);
-  --chart-2: hsl(175, 61%, 58%);
-  --chart-3: hsl(197, 67%, 55%);
-  --chart-4: hsl(0, 85%, 69%);
-  --chart-5: hsl(89, 61%, 49%);
-  --sidebar: hsl(220, 9%, 10%);
-  --sidebar-foreground: hsl(0, 0%, 85%);
-  --sidebar-primary: hsl(14, 100%, 60%);
-  --sidebar-primary-foreground: hsl(0, 0%, 100%);
-  --sidebar-accent: hsl(220, 9%, 15%);
-  --sidebar-accent-foreground: hsl(14, 100%, 60%);
-  --sidebar-border: hsl(220, 9%, 15%);
-  --sidebar-ring: hsl(14, 100%, 60%);
+  /* Corporate F1 Racing Theme - Aligned with company branding */
+  --background: 207 100% 8%;
+  --foreground: 0 0% 85%;
+  --card: 207 100% 12%;
+  --card-foreground: 0 0% 85%;
+  --popover: 207 100% 8%;
+  --popover-foreground: 0 0% 85%;
+  --primary: 207 100% 19%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 207 100% 15%;
+  --secondary-foreground: 0 0% 85%;
+  --muted: 207 100% 10%;
+  --muted-foreground: 0 0% 78%;
+  --accent: 207 100% 15%;
+  --accent-foreground: 29 100% 45%;
+  --destructive: 11 78% 68%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 207 100% 15%;
+  --input: 207 100% 10%;
+  --ring: 207 100% 19%;
+  --chart-1: 207 100% 19%;
+  --chart-2: 29 100% 45%;
+  --chart-3: 207 100% 48%;
+  --chart-4: 11 78% 68%;
+  --chart-5: 89 61% 49%;
+  --sidebar: 207 100% 12%;
+  --sidebar-foreground: 0 0% 85%;
+  --sidebar-primary: 207 100% 19%;
+  --sidebar-primary-foreground: 0 0% 100%;
+  --sidebar-accent: 207 100% 15%;
+  --sidebar-accent-foreground: 29 100% 45%;
+  --sidebar-border: 207 100% 15%;
+  --sidebar-ring: 207 100% 19%;
   
-  /* Corporate Banking Theme - From attached CSS */
+  /* Corporate Banking Theme - From company CSS */
   --corporate-navy: #002b60;
   --corporate-dark-blue: #002b4d;
   --corporate-light-blue: #0260f7;
@@ -48,23 +48,23 @@
   --corporate-text-light: #d8d8d8;
   --corporate-text-muted: #c7c7c7;
   
-  /* F1 Racing Specific Colors - Updated for corporate banking */
+  /* F1 Racing Specific Colors - Aligned with corporate branding */
   --racing-navy: #002b60;
-  --racing-orange: hsl(14, 100%, 60%);
-  --victory-teal: hsl(175, 61%, 58%);
-  --track-blue: hsl(197, 67%, 55%);
+  --racing-orange: #e57200;
+  --victory-teal: #0260f7;
+  --track-blue: #002b4d;
   --alert-red: #e57373;
   --caution-orange: #e57200;
-  --success-green: hsl(89, 61%, 49%);
+  --success-green: #0260f7;
   --carbon-fiber: #002b4d;
-  --light-surface: hsl(210, 8%, 96%);
+  --light-surface: #d8d8d8;
   
-  /* Performance Category Colors */
-  --superstar-color: hsl(14, 100%, 60%);
-  --target-achieved-color: hsl(175, 61%, 58%);
-  --on-track-color: hsl(197, 67%, 55%);
-  --needs-boost-color: hsl(16, 100%, 74%);
-  --recovery-mode-color: hsl(0, 85%, 69%);
+  /* Performance Category Colors - Corporate aligned */
+  --superstar-color: #0260f7;
+  --target-achieved-color: #002b60;
+  --on-track-color: #e57200;
+  --needs-boost-color: #e57373;
+  --recovery-mode-color: #e57373;
   
   /* Typography */
   --font-racing: 'Roboto Condensed', sans-serif;
@@ -159,10 +159,10 @@
 
   body {
     @apply bg-background text-foreground font-body antialiased;
-    background: radial-gradient(ellipse at top, rgba(0, 43, 96, 0.3) 0%, transparent 50%),
-                radial-gradient(ellipse at bottom, rgba(26, 26, 26, 0.8) 0%, transparent 50%),
-                linear-gradient(180deg, hsl(220, 9%, 5%) 0%, hsl(0, 0%, 10%) 100%);
-    color: hsl(0, 0%, 85%);
+    background: radial-gradient(ellipse at top, rgba(0, 43, 96, 0.4) 0%, transparent 50%),
+                radial-gradient(ellipse at bottom, rgba(0, 43, 77, 0.6) 0%, transparent 50%),
+                linear-gradient(180deg, #002b60 0%, #002b4d 100%);
+    color: #d8d8d8;
     min-height: 100vh;
     overflow-x: hidden;
   }
@@ -209,10 +209,11 @@
 
 @layer components {
   .racing-card {
-    background: linear-gradient(135deg, rgba(0, 43, 96, 0.95) 0%, rgba(0, 75, 134, 0.95) 100%);
+    background: linear-gradient(135deg, rgba(0, 43, 96, 0.95) 0%, rgba(0, 43, 77, 0.95) 100%);
     backdrop-filter: var(--backdrop-blur);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(199, 199, 199, 0.2);
     border-radius: var(--radius);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3);
   }
   
   .performance-bar {
