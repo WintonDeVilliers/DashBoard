@@ -10,7 +10,7 @@ export default function MonacoCircuitView({ teamData, companyMetrics }) {
   
   const monacoTeams = useMemo(() => {
     if (!teamData) return [];
-    return teamData.filter(team => team.circuit === 'monaco')
+    return teamData.filter(team => team.circuit && team.circuit.toLowerCase() === 'monaco')
                   .sort((a, b) => b.team_achievement_rate - a.team_achievement_rate);
   }, [teamData]);
 

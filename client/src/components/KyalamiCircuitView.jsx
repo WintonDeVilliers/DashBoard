@@ -10,7 +10,7 @@ export default function KyalamiCircuitView({ teamData, companyMetrics }) {
   
   const kyalamiTeams = useMemo(() => {
     if (!teamData) return [];
-    return teamData.filter(team => team.circuit === 'kyalami')
+    return teamData.filter(team => team.circuit && team.circuit.toLowerCase() === 'kyalami')
                    .sort((a, b) => b.team_achievement_rate - a.team_achievement_rate);
   }, [teamData]);
 

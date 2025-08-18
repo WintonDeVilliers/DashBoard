@@ -174,18 +174,9 @@ export default function Dashboard() {
   const [localData, setLocalData] = useState(null);
   
   useEffect(() => {
-    // Clear old data to force regeneration with correct circuit assignments
-    localStorage.removeItem('f1DashboardData');
-    localStorage.removeItem('f1DashboardSummary');
-    
-    const storedData = localStorage.getItem('f1DashboardData');
-    const storedSummary = localStorage.getItem('f1DashboardSummary');
-    if (storedData && storedSummary) {
-      setLocalData({
-        data: JSON.parse(storedData),
-        summary: JSON.parse(storedSummary)
-      });
-    }
+    // Force clear all cached data on every load to ensure correct circuit assignments
+    localStorage.clear();
+    setLocalData(null);
   }, []);
 
   // Fetch company metrics (with fallback to local data)
