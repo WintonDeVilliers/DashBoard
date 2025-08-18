@@ -16,7 +16,7 @@ export default function RacingGauge({
   const gaugeConfig = useMemo(() => {
     const radius = (size - 80) / 2;
     const centerX = size / 2;
-    const centerY = size * 0.45; // Position center for proper semi-circle containment
+    const centerY = size - 60; // Position center lower for semi-circle
     const strokeWidth = 40;
     
     // Calculate progress percentage (max 120% for over-achievement display)
@@ -44,10 +44,10 @@ export default function RacingGauge({
   }, [value, target, size]);
 
   const getProgressColor = (percent) => {
-    if (percent >= 100) return '#ef4444'; // Red for target achieved (high performance)
-    if (percent >= 80) return '#f97316';  // Orange for on track
-    if (percent >= 60) return '#eab308';  // Yellow for needs boost
-    return '#22c55e'; // Green for recovery mode (low performance)
+    if (percent >= 100) return '#22c55e'; // Green for target achieved
+    if (percent >= 80) return '#eab308';  // Yellow for on track
+    if (percent >= 60) return '#f97316';  // Orange for needs boost
+    return '#ef4444'; // Red for recovery mode
   };
 
   const progressColor = getProgressColor(gaugeConfig.progressPercent);
@@ -64,13 +64,13 @@ export default function RacingGauge({
     return `M ${x1} ${y1} A ${radius} ${radius} 0 ${largeArcFlag} 1 ${x2} ${y2}`;
   };
 
-  // Create speedometer sections with colors (red = high performance on right, green = low on left)
+  // Create speedometer sections with colors
   const speedometerSections = [
-    { start: 180, end: 144, color: '#22c55e', label: '30M' }, // Green: 0-30M (left side - low performance)
-    { start: 144, end: 108, color: '#84cc16', label: '70M' }, // Light Green: 30-70M
+    { start: 180, end: 144, color: '#ef4444', label: '30M' }, // Red: 0-30M (left side)
+    { start: 144, end: 108, color: '#f97316', label: '70M' }, // Orange: 30-70M
     { start: 108, end: 72, color: '#eab308', label: '90M' },  // Yellow: 70-90M
-    { start: 72, end: 36, color: '#f97316', label: '110M' },  // Orange: 90-110M
-    { start: 36, end: 0, color: '#ef4444', label: '240M' }    // Red: 110M+ (right side - high performance)
+    { start: 72, end: 36, color: '#84cc16', label: '110M' },  // Light Green: 90-110M
+    { start: 36, end: 0, color: '#22c55e', label: '240M' }    // Green: 110M+ (right side)
   ];
 
   // Generate milestone markers
@@ -81,8 +81,8 @@ export default function RacingGauge({
       <svg 
         ref={svgRef}
         width={size} 
-        height={size * 0.6} // Reduce height to prevent spillover
-        viewBox={`0 0 ${size} ${size * 0.6}`}
+        height={size * 0.7} // Make height smaller for semi-circle
+        viewBox={`0 0 ${size} ${size * 0.7}`}
         className={styles.gaugeSvg}
       >
         {/* Background Arc - Gray outer ring */}
