@@ -4,7 +4,6 @@ import TrackVisualization from './TrackVisualization';
 import LiveTimingBoard from './LiveTimingBoard';
 import { CircuitConfigs } from '../../../shared/schema.js';
 import styles from '../styles/TrackVisualization.module.css';
-import MonacoMiniMap from "./MonacoMiniMap";
 
 
 export default function MonacoCircuitView({ teamData, companyMetrics }) {
@@ -209,6 +208,59 @@ export default function MonacoCircuitView({ teamData, companyMetrics }) {
                         data-testid={`fastest-lap-${index}`}
                       >
                         {(team.dailyRate / 1000000).toFixed(1)}M/day
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Track Conditions */}
+            <Card className={styles.conditionsCard}>
+              <CardHeader>
+                <CardTitle>Track Conditions</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className={styles.conditionsList} data-testid="track-conditions">
+                  <div className={styles.conditionItem}>
+                    <span className={styles.conditionLabel}>Market Temp:</span>
+                    <span className={styles.conditionValue}>Premium 🏆</span>
+                  </div>
+                  <div className={styles.conditionItem}>
+                    <span className={styles.conditionLabel}>Track Grip:</span>
+                    <span className={styles.conditionValue}>Excellent 🏁</span>
+                  </div>
+                  <div className={styles.conditionItem}>
+                    <span className={styles.conditionLabel}>Visibility:</span>
+                    <span className={styles.conditionValue}>Perfect ✨</span>
+                  </div>
+                  <div className={styles.conditionItem}>
+                    <span className={styles.conditionLabel}>Competition:</span>
+                    <span className={styles.conditionValue}>Elite 🔥</span>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Top Performers */}
+            <Card className={styles.sectorsCard}>
+              <CardHeader>
+                <CardTitle>Top Performers</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className={styles.sectorsList} data-testid="top-performers">
+                  {monacoTeams.slice(0, 3).map((team, index) => (
+                    <div key={team.id} className={styles.sectorItem}>
+                      <div className={styles.sectorInfo}>
+                        <span className={styles.sectorVehicle}>{team.vehicle_type}</span>
+                        <span className={styles.sectorName}>#{index + 1} Position</span>
+                      </div>
+                      <span 
+                        className={styles.sectorLeader}
+                        style={{ color: team.performance_color }}
+                        data-testid={`top-performer-${index}`}
+                      >
+                        {team.supervisor_name}
                       </span>
                     </div>
                   ))}

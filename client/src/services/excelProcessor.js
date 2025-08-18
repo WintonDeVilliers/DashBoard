@@ -47,15 +47,26 @@ export class ExcelProcessor {
         team_name: this.getColumnValue(row, columnMappings.team_name) || 'Unknown Team',
         current_sales: parseFloat(this.getColumnValue(row, columnMappings.current_sales)) || 0,
         sales_target: parseFloat(this.getColumnValue(row, columnMappings.sales_target)) || 0,
+        real_apps_vol: parseInt(this.getColumnValue(row, columnMappings.real_apps_vol)) || 0,
+        real_apps_target: parseInt(this.getColumnValue(row, columnMappings.real_apps_target)) || 0,
+        leads_generated: parseInt(this.getColumnValue(row, columnMappings.leads_generated)) || 0,
+        calls_made: parseInt(this.getColumnValue(row, columnMappings.calls_made)) || 0,
+        meetings_held: parseInt(this.getColumnValue(row, columnMappings.meetings_held)) || 0,
         achievement_rate: 0,
         daily_average: 0,
         days_active: 31,
-        position: 0
+        position: 0,
+        apps_achievement_rate: 0
       };
 
       // Calculate achievement rate
       if (consultant.sales_target > 0) {
         consultant.achievement_rate = (consultant.current_sales / consultant.sales_target) * 100;
+      }
+      
+      // Calculate apps achievement rate
+      if (consultant.real_apps_target > 0) {
+        consultant.apps_achievement_rate = (consultant.real_apps_vol / consultant.real_apps_target) * 100;
       }
       
       consultant.daily_average = consultant.current_sales / consultant.days_active;

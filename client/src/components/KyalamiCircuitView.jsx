@@ -186,6 +186,32 @@ export default function KyalamiCircuitView({ teamData, companyMetrics }) {
               </CardContent>
             </Card>
 
+            {/* Fastest Daily Laps */}
+            <Card className={styles.fastestCard}>
+              <CardHeader>
+                <CardTitle>Fastest Daily Laps</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className={styles.fastestList} data-testid="fastest-laps">
+                  {kyalamiTeams.slice(0, 3).map((team, index) => (
+                    <div key={team.id} className={styles.fastestItem}>
+                      <div className={styles.fastestDriver}>
+                        <span className={styles.fastestVehicle}>{team.vehicle_type}</span>
+                        <span className={styles.fastestName}>{team.supervisor_name}</span>
+                      </div>
+                      <span 
+                        className={styles.fastestTime}
+                        style={{ color: team.performance_color }}
+                        data-testid={`fastest-lap-${index}`}
+                      >
+                        {((team.total_sales / 31) / 1000000).toFixed(1)}M/day
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+
             {/* Track Conditions */}
             <Card className={styles.conditionsCard}>
               <CardHeader>

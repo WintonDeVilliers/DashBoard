@@ -54,7 +54,12 @@ export const ExcelColumnMappings = {
   supervisor_name: ['Supervisor', 'Manager', 'Team Lead', 'Supervisor Name', 'Manager Name', 'Team Leader', 'Lead', 'Boss'],
   current_sales: ['Current Sales', 'Sales', 'Total Sales', 'SalesVal', 'TotalSalesVal', 'Sales Amount', 'Amount', 'Revenue', 'YTD Sales', 'Actual Sales', 'Sales Value'],
   sales_target: ['Target', 'Sales Target', 'Target Sales', 'SalesValTarget', 'Goal', 'Quota', 'Target Amount', 'Sales Goal', 'Target Value'],
-  team_name: ['Team', 'Team Name', 'Department', 'Unit', 'Division', 'Group', 'Branch', 'Office']
+  team_name: ['Team', 'Team Name', 'Department', 'Unit', 'Division', 'Group', 'Branch', 'Office'],
+  real_apps_vol: ['TotalRealAppsVol', 'Real Apps', 'Apps Volume', 'Total Apps', 'Apps', 'Real Apps Volume', 'Applications', 'Total Real Apps'],
+  real_apps_target: ['RealAppsTarget', 'Apps Target', 'Target Apps', 'Apps Goal', 'Real Apps Target', 'Applications Target'],
+  leads_generated: ['Leads', 'Leads Generated', 'Total Leads', 'Lead Count', 'Prospects', 'Opportunities'],
+  calls_made: ['Calls', 'Calls Made', 'Phone Calls', 'Total Calls', 'Call Count', 'Dialings'],
+  meetings_held: ['Meetings', 'Meetings Held', 'Appointments', 'Meeting Count', 'Consultations', 'Client Meetings']
 };
 
 // Performance categorization thresholds
