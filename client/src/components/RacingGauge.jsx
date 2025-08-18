@@ -1,3 +1,4 @@
+//RacingGauge.jsx
 import { useEffect, useRef, useMemo } from 'react';
 import styles from '../styles/RacingComponents.module.css';
 
