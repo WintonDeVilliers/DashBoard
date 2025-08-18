@@ -50,10 +50,14 @@
 
 .heroSubtitle {
   font-size: var(--text-xl);
-  color: var(--text-muted);
+  color: var(--text-primary);
   max-width: 48rem;
   margin: 0 auto;
   line-height: var(--leading-relaxed);
+  background: var(--gradient-racing);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 /* Main Gauge Card */

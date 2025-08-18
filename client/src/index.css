@@ -159,10 +159,8 @@
 
   body {
     @apply bg-background text-foreground font-body antialiased;
-    background: radial-gradient(ellipse at top, rgba(0, 43, 96, 0.3) 0%, transparent 50%),
-                radial-gradient(ellipse at bottom, rgba(26, 26, 26, 0.8) 0%, transparent 50%),
-                linear-gradient(180deg, hsl(220, 9%, 5%) 0%, hsl(0, 0%, 10%) 100%);
-    color: hsl(0, 0%, 85%);
+    background: rgba(245, 245, 245, 0.9);
+    color: hsl(0, 0%, 15%);
     min-height: 100vh;
     overflow-x: hidden;
   }
