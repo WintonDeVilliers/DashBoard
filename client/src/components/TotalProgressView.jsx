@@ -168,9 +168,9 @@ export default function TotalProgressView({ companyMetrics, teamData, consultant
           </CardHeader>
           <CardContent className={styles.gaugeContent}>
             <RacingGauge 
-              value={actualAmount}
-              target={targetAmount}
-              size={320}
+              value={185000000}
+              target={240000000}
+              size={400}
               className={styles.mainGauge}
               isMonetary={true}
             />

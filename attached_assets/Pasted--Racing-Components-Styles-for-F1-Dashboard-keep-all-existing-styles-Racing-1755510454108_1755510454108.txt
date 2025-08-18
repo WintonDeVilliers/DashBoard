@@ -1,0 +1,107 @@
+/* Racing Components Styles for F1 Dashboard */
+
+/* ... (keep all existing styles) ... */
+
+/* Racing Gauge Component - Speedometer Style */
+.racingGauge {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.gaugeSvg {
+  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.15));
+  overflow: visible;
+}
+
+.backgroundArc {
+  transition: stroke var(--duration-500) var(--ease-out);
+}
+
+.sectionArc {
+  transition: stroke var(--duration-300) var(--ease-out);
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+.needle {
+  transition: transform var(--duration-700) var(--ease-out);
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+.needleLine {
+  transition: transform var(--duration-700) var(--ease-out);
+}
+
+.needleCenter {
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.4));
+}
+
+.milestoneMarker {
+  opacity: 0.8;
+}
+
+.labelBackground {
+  opacity: 0.9;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.2));
+}
+
+.progressArc {
+  transition: stroke-dashoffset var(--duration-1000) var(--ease-out),
+              stroke var(--duration-300) var(--ease-out);
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+.targetLine {
+  opacity: 0.8;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
+}
+
+.gaugeLabels {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  fill: var(--text-muted);
+}
+
+.gaugeLabel {
+  font-weight: var(--font-medium);
+}
+
+.targetLabel {
+  fill: var(--alert-red);
+  font-weight: var(--font-bold);
+}
+
+.gaugeCenter {
+  position: absolute;
+  text-align: center;
+  z-index: 2;
+  transform: translateX(-50%);
+}
+
+.gaugeValue {
+  font-size: var(--text-3xl); /* Smaller size */
+  font-weight: var(--font-bold);
+  font-family: var(--font-racing);
+  line-height: var(--leading-tight);
+}
+
+.gaugeUnit {
+  font-size: var(--text-2xl);
+  opacity: 0.8;
+}
+
+.gaugeLabel {
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  margin-top: var(--space-2);
+}
+
+.gaugeSubtext {
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+  margin-top: var(--space-1);
+}
+
+/* ... (keep all existing styles below) ... */

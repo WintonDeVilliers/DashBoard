@@ -857,15 +857,13 @@
 
 .gaugeCenter {
   position: absolute;
-  top: 60%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   text-align: center;
   z-index: 2;
+  transform: translateX(-50%);
 }
 
 .gaugeValue {
-  font-size: var(--text-5xl);
+  font-size: var(--text-3xl); /* Smaller size */
   font-weight: var(--font-bold);
   font-family: var(--font-racing);
   line-height: var(--leading-tight);

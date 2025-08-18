@@ -109,7 +109,7 @@ export default function RacingGauge({
         />
         
         {/* Progress Needle - Triangular Design */}
-        <g className={styles.needle} transform={`rotate(${(gaugeConfig.progressAngle * 180 / Math.PI)} ${gaugeConfig.centerX} ${gaugeConfig.centerY})`}>
+        <g className={styles.needle}>
           <polygon
             points={`
               ${gaugeConfig.centerX},${gaugeConfig.centerY - 20} 
@@ -117,14 +117,6 @@ export default function RacingGauge({
               ${gaugeConfig.centerX + 8},${gaugeConfig.centerY}
             `}
             fill="#1f2937"
-          />
-          {/* Needle center dot */}
-          <circle
-            cx={gaugeConfig.centerX}
-            cy={gaugeConfig.centerY}
-            r="6"
-            fill="#1f2937"
-            className={styles.needleCenter}
           />
         </g>
         
@@ -139,7 +131,7 @@ export default function RacingGauge({
           const markerOuterX = gaugeConfig.centerX + (gaugeConfig.radius - 15) * Math.cos(angle);
           const markerOuterY = gaugeConfig.centerY + (gaugeConfig.radius - 15) * Math.sin(angle);
           
-          // Label position - adjust for better visibility
+          // Label position
           const labelRadius = gaugeConfig.radius + 35;
           const labelX = gaugeConfig.centerX + labelRadius * Math.cos(angle);
           const labelY = gaugeConfig.centerY + labelRadius * Math.sin(angle);
@@ -158,7 +150,6 @@ export default function RacingGauge({
                 strokeWidth={isTarget ? "3" : "2"}
                 className={styles.milestoneMarker}
               />
-              {/* Background circle for label visibility */}
               <circle
                 cx={labelX}
                 cy={labelY}
@@ -189,7 +180,7 @@ export default function RacingGauge({
           className={styles.gaugeCenter} 
           data-testid="gauge-center"
           style={{
-            top: `${gaugeConfig.centerY - 60}px`,
+            top: `${gaugeConfig.centerY - 40}px`,
             left: `${gaugeConfig.centerX}px`
           }}
         >
