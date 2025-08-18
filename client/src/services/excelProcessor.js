@@ -104,7 +104,7 @@ export class ExcelProcessor {
         team_achievement_rate: 0,
         avg_performance: 0,
         consultants: [],
-        circuit: Math.random() > 0.5 ? 'monaco' : 'kyalami',
+        circuit: this.getCircuitAssignment(consultant.supervisor_name),
         vehicle_type: '',
         performance_color: '',
         track_position: 0
@@ -166,5 +166,42 @@ export class ExcelProcessor {
     if (achievementRate >= 80) return '#45B7D1';
     if (achievementRate >= 60) return '#FFA07A';
     return '#FF6B6B';
+  }
+
+  static getCircuitAssignment(supervisorName) {
+    // Monaco circuit supervisors
+    const monacoSupervisors = [
+      'Ashley Moyo',
+      'Mixo Makhubele', 
+      'Nonhle Zondi',
+      'Rodney Naidu',
+      'Samantha Govender',
+      'Samuel Masubelele',
+      'Taedi Moletsane',
+      'Thabo Mosweu',
+      'Thobile Phakhathi'
+    ];
+    
+    // Kyalami circuit supervisors
+    const kyalamiSupervisors = [
+      'Busisiwe Mabuza',
+      'Cindy Visser',
+      'Matimba Ngobeni',
+      'Mfundo Mdlalose',
+      'Mondli Nhlapho',
+      'Mosima Moshidi',
+      'Salome Baloyi',
+      'Shadleigh White',
+      'Tshepo Moeketsi'
+    ];
+    
+    if (monacoSupervisors.includes(supervisorName)) {
+      return 'Monaco';
+    } else if (kyalamiSupervisors.includes(supervisorName)) {
+      return 'Kyalami';
+    } else {
+      // Fallback for unknown supervisors - assign based on name hash for consistency
+      return supervisorName.charCodeAt(0) % 2 === 0 ? 'Monaco' : 'Kyalami';
+    }
   }
 }

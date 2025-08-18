@@ -316,7 +316,7 @@ async function processExcelData(rawData) {
         team_achievement_rate: 0,
         avg_performance: 0,
         consultants: [],
-        circuit: Math.random() > 0.5 ? 'monaco' : 'kyalami', // Randomly assign circuit
+        circuit: getCircuitAssignment(consultant.supervisor_name), // Assign circuit based on supervisor
         vehicle_type: '',
         performance_color: '',
         track_position: 0
@@ -459,6 +459,43 @@ function getPerformanceColor(achievementRate) {
   if (achievementRate >= PerformanceThresholds.ON_TRACK) return PerformanceColors.ON_TRACK;
   if (achievementRate >= PerformanceThresholds.NEEDS_BOOST) return PerformanceColors.NEEDS_BOOST;
   return PerformanceColors.RECOVERY_MODE;
+}
+
+function getCircuitAssignment(supervisorName) {
+  // Monaco circuit supervisors
+  const monacoSupervisors = [
+    'Ashley Moyo',
+    'Mixo Makhubele', 
+    'Nonhle Zondi',
+    'Rodney Naidu',
+    'Samantha Govender',
+    'Samuel Masubelele',
+    'Taedi Moletsane',
+    'Thabo Mosweu',
+    'Thobile Phakhathi'
+  ];
+  
+  // Kyalami circuit supervisors
+  const kyalamiSupervisors = [
+    'Busisiwe Mabuza',
+    'Cindy Visser',
+    'Matimba Ngobeni',
+    'Mfundo Mdlalose',
+    'Mondli Nhlapho',
+    'Mosima Moshidi',
+    'Salome Baloyi',
+    'Shadleigh White',
+    'Tshepo Moeketsi'
+  ];
+  
+  if (monacoSupervisors.includes(supervisorName)) {
+    return 'Monaco';
+  } else if (kyalamiSupervisors.includes(supervisorName)) {
+    return 'Kyalami';
+  } else {
+    // Fallback for unknown supervisors - assign based on name hash for consistency
+    return supervisorName.charCodeAt(0) % 2 === 0 ? 'Monaco' : 'Kyalami';
+  }
 }
 
 function analyzeColumnTypes(rawData) {

@@ -28,6 +28,44 @@ export default function Dashboard() {
   };
   
   // Client-side Excel processing function to work around API routing issues
+  // Circuit assignment function
+  const getCircuitAssignment = (supervisorName) => {
+    // Monaco circuit supervisors
+    const monacoSupervisors = [
+      'Ashley Moyo',
+      'Mixo Makhubele', 
+      'Nonhle Zondi',
+      'Rodney Naidu',
+      'Samantha Govender',
+      'Samuel Masubelele',
+      'Taedi Moletsane',
+      'Thabo Mosweu',
+      'Thobile Phakhathi'
+    ];
+    
+    // Kyalami circuit supervisors
+    const kyalamiSupervisors = [
+      'Busisiwe Mabuza',
+      'Cindy Visser',
+      'Matimba Ngobeni',
+      'Mfundo Mdlalose',
+      'Mondli Nhlapho',
+      'Mosima Moshidi',
+      'Salome Baloyi',
+      'Shadleigh White',
+      'Tshepo Moeketsi'
+    ];
+    
+    if (monacoSupervisors.includes(supervisorName)) {
+      return 'Monaco';
+    } else if (kyalamiSupervisors.includes(supervisorName)) {
+      return 'Kyalami';
+    } else {
+      // Fallback for unknown supervisors - assign based on name hash for consistency
+      return supervisorName.charCodeAt(0) % 2 === 0 ? 'Monaco' : 'Kyalami';
+    }
+  };
+
   const processExcelDataClientSide = async (rawData, sheetName) => {
     console.log('Raw data sample:', rawData[0]);
     console.log('Available columns in Excel:', Object.keys(rawData[0]));
@@ -110,7 +148,7 @@ export default function Dashboard() {
         sales: parseFloat(mappings.sales ? row[mappings.sales] : row['TotalSalesVal']) || 0,
         performanceLevel,
         vehicleType,
-        circuit: Math.random() > 0.5 ? 'Monaco' : 'Kyalami',
+        circuit: getCircuitAssignment(supervisorName),
         position: index + 1
       };
     }).filter(row => row !== null);
@@ -136,6 +174,10 @@ export default function Dashboard() {
   const [localData, setLocalData] = useState(null);
   
   useEffect(() => {
+    // Clear old data to force regeneration with correct circuit assignments
+    localStorage.removeItem('f1DashboardData');
+    localStorage.removeItem('f1DashboardSummary');
+    
     const storedData = localStorage.getItem('f1DashboardData');
     const storedSummary = localStorage.getItem('f1DashboardSummary');
     if (storedData && storedSummary) {
@@ -200,7 +242,7 @@ export default function Dashboard() {
         track_position: Math.min(teamAchievement, 100),
         vehicle_type: '🏎️',
         performance_color: performanceColor,
-        circuit: teamMembers[0]?.circuit || 'Monaco'
+        circuit: getCircuitAssignment(supervisorName)
       };
     });
     
