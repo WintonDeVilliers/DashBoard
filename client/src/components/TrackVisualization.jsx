@@ -10,23 +10,40 @@ export default function TrackVisualization({ teams = [], circuit = 'monaco', cla
   // Track points by circuit
   const TRACKS = {
     monaco: [
-      { x: 0.05, y: 0.9 },  { x: 0.15, y: 0.75 }, { x: 0.25, y: 0.7 },
-      { x: 0.35, y: 0.65 }, { x: 0.4, y: 0.55 },  { x: 0.42, y: 0.45 },
-      { x: 0.45, y: 0.35 }, { x: 0.55, y: 0.3 },  { x: 0.65, y: 0.25 },
-      { x: 0.75, y: 0.25 }, { x: 0.8, y: 0.3 },   { x: 0.82, y: 0.4 },
-      { x: 0.85, y: 0.5 },  { x: 0.87, y: 0.6 },  { x: 0.85, y: 0.7 },
-      { x: 0.8, y: 0.8 },   { x: 0.05, y: 0.9 }
+      { x: 68/571, y: 396/425 },       // Start point (Turn 1)
+      { x: 107/571, y: 287.082/425 },  // Turn 1 descent
+      { x: 107/571, y: 160/425 },      // Bottom of Turn 1
+      { x: 221/571, y: 206/425 },      // Turn 3 (Beau Rivage)
+      { x: 331/571, y: 231.507/425 },  // Turn 4-5 (Massenet/Casino)
+      { x: 450/571, y: 192/425 },      // Turn 6 (Mirabeau Haute)
+      { x: 569/571, y: 27/425 },       // Top-right (Portier entrance)
+      { x: 417/571, y: 1.5/425 },      // Tunnel exit (Approximation)
+      { x: 337.347/571, y: 77.3602/425 }, // Turn 10 (Nouvelle Chicane)
+      { x: 361.452/571, y: 127.787/425 }, // Turn 11 (Tabac)
+      { x: 141/571, y: 128.5/425 },    // Left edge (Piscine complex)
+      { x: 78/571, y: 109/425 },       // Turn 14 (La Rascasse)
+      { x: 45/571, y: 149/425 },       // Turn 15 (Anthony Noghes)
+      { x: 1.93826/571, y: 424.843/425 }, // Bottom-left corner
+      { x: 67.8014/571, y: 395.541/425 }, // Approach to start line
+      { x: 68/571, y: 396/425 }        // Duplicated start point
     ],
     kyalami: [
-      { x: 0.05, y: 0.85 }, { x: 0.12, y: 0.78 }, { x: 0.22, y: 0.72 },
-      { x: 0.34, y: 0.68 }, { x: 0.46, y: 0.65 }, { x: 0.58, y: 0.63 },
-      { x: 0.68, y: 0.58 }, { x: 0.76, y: 0.52 }, { x: 0.83, y: 0.44 },
-      { x: 0.89, y: 0.36 }, { x: 0.92, y: 0.28 }, { x: 0.88, y: 0.2 },
-      { x: 0.82, y: 0.14 }, { x: 0.74, y: 0.09 }, { x: 0.64, y: 0.06 },
-      { x: 0.52, y: 0.05 }, { x: 0.4, y: 0.07 }, { x: 0.28, y: 0.12 },
-      { x: 0.18, y: 0.18 }, { x: 0.1, y: 0.26 }, { x: 0.06, y: 0.35 },
-      { x: 0.04, y: 0.45 }, { x: 0.03, y: 0.55 }, { x: 0.04, y: 0.65 },
-      { x: 0.05, y: 0.75 }, { x: 0.05, y: 0.85 }
+      { x: 0.307635/509, y: 313.606/347 },   // Start/finish straight
+      { x: 41.3076/509, y: 345.606/347 },    // Turn 1 (Leeukop)
+      { x: 204/509, y: 274/347 },            // Turn 2 (Barbeque)
+      { x: 213.503/509, y: 186.943/347 },    // Turn 3 (Mineshaft)
+      { x: 279.301/509, y: 235.601/347 },    // Turn 4 (Grip)
+      { x: 288.498/509, y: 345.959/347 },    // Turn 5 (Kink before Back Straight)
+      { x: 342.807/509, y: 322.539/347 },    // Turn 6 (The Crocodiles)
+      { x: 508.639/509, y: 149.654/347 },    // Turn 7 (Sunset)
+      { x: 508.5/509, y: 41/347 },          // Turn 8 (Clubhouse)
+      { x: 447.721/509, y: 0.414975/347 },   // Turn 9 (The Esses)
+      { x: 315.393/509, y: 169.309/347 },    // Turn 10 (Schafer)
+      { x: 225.655/509, y: 84.3616/347 },    // Turn 11 (Malmsbury)
+      { x: 131.38/509, y: 195.325/347 },     // Turn 12 (Rocket)
+      { x: 135.492/509, y: 246.029/347 },    // Turn 13 (Entry to final complex)
+      { x: 2.94305/509, y: 309.871/347 },    // Turn 14 (Crowthorne)
+      { x: 0.307635/509, y: 313.606/347 }    // Return to start/finish
     ]
   };
 
