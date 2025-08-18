@@ -23,11 +23,11 @@ export default function RacingGauge({
     const maxDisplay = 120;
     const progressPercent = Math.min(value / target * 100, maxDisplay);
     
-    // Speedometer spans from -90 degrees to +90 degrees (180 degrees total)
-    const startAngle = -Math.PI / 2;
-    const endAngle = Math.PI / 2;
-    const totalAngle = endAngle - startAngle;
-    const progressAngle = startAngle + (progressPercent / 100) * totalAngle;
+    // Speedometer spans from 180 degrees to 0 degrees (bottom half circle)
+    const startAngle = Math.PI; // Start from left (180 degrees)
+    const endAngle = 0; // End at right (0 degrees)  
+    const totalAngle = Math.PI; // 180 degrees total
+    const progressAngle = startAngle - (progressPercent / 100) * totalAngle;
     
     return {
       radius,
@@ -66,11 +66,11 @@ export default function RacingGauge({
 
   // Create speedometer sections with colors
   const speedometerSections = [
-    { start: -90, end: -36, color: '#ef4444', label: '30M' }, // Red: 0-30M
-    { start: -36, end: 18, color: '#f97316', label: '70M' },   // Orange: 30-70M
-    { start: 18, end: 54, color: '#eab308', label: '90M' },    // Yellow: 70-90M
-    { start: 54, end: 72, color: '#84cc16', label: '110M' },   // Light Green: 90-110M
-    { start: 72, end: 90, color: '#22c55e', label: '240M' }    // Green: 110M+
+    { start: 180, end: 144, color: '#ef4444', label: '30M' }, // Red: 0-30M (left side)
+    { start: 144, end: 108, color: '#f97316', label: '70M' }, // Orange: 30-70M
+    { start: 108, end: 72, color: '#eab308', label: '90M' },  // Yellow: 70-90M
+    { start: 72, end: 36, color: '#84cc16', label: '110M' },  // Light Green: 90-110M
+    { start: 36, end: 0, color: '#22c55e', label: '240M' }    // Green: 110M+ (right side)
   ];
 
   // Generate milestone markers
@@ -139,7 +139,7 @@ export default function RacingGauge({
         {/* Milestone markers and labels */}
         {showLabels && milestones.map((milestone) => {
           const milestonePercent = (milestone / 240) * 100;
-          const angle = gaugeConfig.startAngle + (milestonePercent / 100) * gaugeConfig.totalAngle;
+          const angle = gaugeConfig.startAngle - (milestonePercent / 100) * gaugeConfig.totalAngle;
           
           // Marker line
           const markerInnerX = gaugeConfig.centerX + (gaugeConfig.radius - 35) * Math.cos(angle);
@@ -147,12 +147,13 @@ export default function RacingGauge({
           const markerOuterX = gaugeConfig.centerX + (gaugeConfig.radius - 15) * Math.cos(angle);
           const markerOuterY = gaugeConfig.centerY + (gaugeConfig.radius - 15) * Math.sin(angle);
           
-          // Label position
-          const labelX = gaugeConfig.centerX + (gaugeConfig.radius + 25) * Math.cos(angle);
-          const labelY = gaugeConfig.centerY + (gaugeConfig.radius + 25) * Math.sin(angle);
+          // Label position - adjust for better visibility
+          const labelRadius = gaugeConfig.radius + 35;
+          const labelX = gaugeConfig.centerX + labelRadius * Math.cos(angle);
+          const labelY = gaugeConfig.centerY + labelRadius * Math.sin(angle);
           
           const isTarget = milestone === 240;
-          const color = isTarget ? '#ef4444' : '#9ca3af';
+          const color = isTarget ? '#ef4444' : '#e5e7eb';
           
           return (
             <g key={milestone}>
@@ -165,11 +166,19 @@ export default function RacingGauge({
                 strokeWidth={isTarget ? "3" : "2"}
                 className={styles.milestoneMarker}
               />
+              {/* Background circle for label visibility */}
+              <circle
+                cx={labelX}
+                cy={labelY}
+                r="14"
+                fill="rgba(0, 0, 0, 0.7)"
+                className={styles.labelBackground}
+              />
               <text
                 x={labelX}
                 y={labelY}
                 fill={color}
-                fontSize="12"
+                fontSize="11"
                 fontWeight={isTarget ? "bold" : "normal"}
                 textAnchor="middle"
                 dominantBaseline="middle"
