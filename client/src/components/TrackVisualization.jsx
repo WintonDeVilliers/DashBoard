@@ -1,214 +1,114 @@
-import { useEffect, useRef, useMemo } from 'react';
+import { useEffect, useRef } from 'react';
 import styles from '../styles/TrackVisualization.module.css';
 
-export default function TrackVisualization({ 
-  circuit = 'monaco', 
-  teams = [], 
-  config = null,
-  className = '' 
-}) {
+export default function TrackVisualization({ teams = [], className = '' }) {
   const containerRef = useRef(null);
   const appRef = useRef(null);
   const carsRef = useRef(new Map());
   const animationRef = useRef(null);
 
-  const trackData = useMemo(() => {
-    if (!config || !teams.length) return null;
-    
-    return {
-      positions: config.track_positions,
-      teams: teams.slice(0, 10).map((team, index) => ({
-        ...team,
-        currentPosition: Math.min(team.track_position / 100, 1), // Normalize to 0-1
-        displayIndex: index,
-        targetPosition: config.track_positions[Math.floor((team.track_position / 100) * config.track_positions.length)] || config.track_positions[0]
-      }))
-    };
-  }, [config, teams]);
+  // Key normalized positions for Monaco Grand Prix (0-1 range)
+  const trackPoints = [
+    { x: 0.05, y: 0.9 },  // Sainte Dévote
+    { x: 0.15, y: 0.75 }, // Beau Rivage
+    { x: 0.25, y: 0.7 },  // Massenet
+    { x: 0.35, y: 0.65 }, // Casino
+    { x: 0.4, y: 0.55 },  // Mirabeau Haute
+    { x: 0.42, y: 0.45 }, // Grand Hôtel Hairpin
+    { x: 0.45, y: 0.35 }, // Mirabeau Bas
+    { x: 0.55, y: 0.3 },  // Portier
+    { x: 0.65, y: 0.25 }, // Tunnel entry
+    { x: 0.75, y: 0.25 }, // Tunnel exit
+    { x: 0.8, y: 0.3 },   // Nouvelle Chicane
+    { x: 0.82, y: 0.4 },  // Tabac
+    { x: 0.85, y: 0.5 },  // Louis Chiron
+    { x: 0.87, y: 0.6 },  // Piscine
+    { x: 0.85, y: 0.7 },  // Rascasse
+    { x: 0.8, y: 0.8 },   // Antony Noghès / Pit straight
+    { x: 0.05, y: 0.9 }   // back to start
+  ];
 
   useEffect(() => {
-    if (!containerRef.current || !trackData || !window.PIXI) return;
+    if (!containerRef.current || !window.PIXI) return;
 
-    // Initialize PixiJS application
     const app = new window.PIXI.Application({
       width: 800,
       height: 400,
       backgroundColor: 0x1a1a1a,
-      antialias: true,
       resolution: window.devicePixelRatio || 1,
-      autoDensity: true
+      autoDensity: true,
+      antialias: true
     });
-
     appRef.current = app;
     containerRef.current.appendChild(app.view);
 
-    // Create track path graphics
-    const trackPath = new window.PIXI.Graphics();
-    const trackColor = circuit === 'monaco' ? 0xFF6B35 : 0x45B7D1;
-    
-    // Draw track path
-    trackPath.lineStyle(4, trackColor, 0.8);
-    trackPath.moveTo(
-      trackData.positions[0].x * app.screen.width,
-      trackData.positions[0].y * app.screen.height
-    );
-    
-    trackData.positions.forEach(pos => {
-      trackPath.lineTo(
-        pos.x * app.screen.width,
-        pos.y * app.screen.height
-      );
-    });
-    
-    // Close the loop
-    trackPath.lineTo(
-      trackData.positions[0].x * app.screen.width,
-      trackData.positions[0].y * app.screen.height
-    );
-    
-    app.stage.addChild(trackPath);
+    // Draw the track path
+    const track = new window.PIXI.Graphics();
+    track.lineStyle(4, 0xFF6B35, 1);
+    track.moveTo(trackPoints[0].x * app.screen.width, trackPoints[0].y * app.screen.height);
 
-    // Create start/finish line
+    for (let i = 1; i < trackPoints.length; i++) {
+      const p = trackPoints[i];
+      track.lineTo(p.x * app.screen.width, p.y * app.screen.height);
+    }
+
+    app.stage.addChild(track);
+
+    // Draw start/finish line
     const startLine = new window.PIXI.Graphics();
-    startLine.lineStyle(6, 0xFF0000, 1);
-    const startPos = trackData.positions[0];
-    startLine.moveTo(
-      (startPos.x - 0.02) * app.screen.width,
-      (startPos.y - 0.02) * app.screen.height
-    );
-    startLine.lineTo(
-      (startPos.x + 0.02) * app.screen.width,
-      (startPos.y + 0.02) * app.screen.height
-    );
+    startLine.lineStyle(6, 0xFFFFFF, 1);
+    const start = trackPoints[0];
+    startLine.moveTo((start.x - 0.01) * app.screen.width, (start.y - 0.01) * app.screen.height);
+    startLine.lineTo((start.x + 0.01) * app.screen.width, (start.y + 0.01) * app.screen.height);
     app.stage.addChild(startLine);
 
-    // Create cars for each team
+    // Create cars
     const cars = new Map();
-    
-    trackData.teams.forEach((team, index) => {
-      const carContainer = new window.PIXI.Container();
-      
-      // Create car body (simple rectangle)
-      const carBody = new window.PIXI.Graphics();
-      const carColor = parseInt(team.performance_color.replace('#', ''), 16);
-      carBody.beginFill(carColor);
-      carBody.drawRoundedRect(-8, -4, 16, 8, 2);
-      carBody.endFill();
-      
-      // Add team number
-      const teamNumber = new window.PIXI.Text(team.displayIndex + 1, {
-        fontFamily: 'Arial',
-        fontSize: 10,
-        fill: 0xFFFFFF,
-        fontWeight: 'bold'
-      });
-      teamNumber.anchor.set(0.5);
-      
-      carContainer.addChild(carBody);
-      carContainer.addChild(teamNumber);
-      
-      // Position car on track
-      const positionIndex = Math.floor(team.currentPosition * (trackData.positions.length - 1));
-      const position = trackData.positions[positionIndex];
-      
-      carContainer.x = position.x * app.screen.width;
-      carContainer.y = position.y * app.screen.height;
-      
-      // Add some offset to avoid overlapping
-      const offset = (index % 3 - 1) * 15;
-      carContainer.x += offset;
-      carContainer.y += offset;
-      
-      app.stage.addChild(carContainer);
-      cars.set(team.id, { container: carContainer, team, positionIndex });
-    });
+    teams.slice(0, 10).forEach((team, index) => {
+      const car = new window.PIXI.Graphics();
+      const color = parseInt(team.performance_color?.replace('#','') || '808080', 16);
 
+      // F1-style polygon
+      car.beginFill(color);
+      car.drawPolygon([0,-6, 4,4, -4,4]);
+      car.endFill();
+      car.pivot.set(0, 0);
+
+      app.stage.addChild(car);
+      cars.set(team.id, { container: car, t: team.track_position / 100 });
+    });
     carsRef.current = cars;
 
-    // Animation loop for car movement
-    const animateCars = () => {
-      cars.forEach(({ container, team, positionIndex }) => {
-        // Simple animation - cars move slightly along their current position
-        const time = Date.now() * 0.001;
-        const oscillation = Math.sin(time + team.displayIndex) * 2;
-        
-        const position = trackData.positions[positionIndex];
-        container.x = position.x * app.screen.width + oscillation;
-        container.y = position.y * app.screen.height + oscillation;
+    // Animate cars along track
+    const animate = () => {
+      cars.forEach(({ container, t }) => {
+        const pathLength = trackPoints.length - 1;
+        const idx = Math.floor(t * pathLength);
+        const nextIdx = (idx + 1) % trackPoints.length;
+        const ratio = t * pathLength - idx;
+
+        const x = trackPoints[idx].x * (1 - ratio) + trackPoints[nextIdx].x * ratio;
+        const y = trackPoints[idx].y * (1 - ratio) + trackPoints[nextIdx].y * ratio;
+
+        container.x = x * app.screen.width;
+        container.y = y * app.screen.height;
+
+        const dx = trackPoints[nextIdx].x - trackPoints[idx].x;
+        const dy = trackPoints[nextIdx].y - trackPoints[idx].y;
+        container.rotation = Math.atan2(dy, dx);
       });
-      
-      animationRef.current = requestAnimationFrame(animateCars);
+
+      cars.forEach(c => c.t += 0.001); // speed
+      animationRef.current = requestAnimationFrame(animate);
     };
+    animate();
 
-    animateCars();
-
-    // Add legend
-    const legend = new window.PIXI.Container();
-    legend.x = 20;
-    legend.y = app.screen.height - 80;
-
-    const legendItems = [
-      { color: 0xFF6B35, label: 'Leader' },
-      { color: 0x4ECDC4, label: 'Target+' },
-      { color: 0x45B7D1, label: 'On Track' }
-    ];
-
-    legendItems.forEach((item, index) => {
-      const legendItem = new window.PIXI.Container();
-      legendItem.y = index * 20;
-
-      const dot = new window.PIXI.Graphics();
-      dot.beginFill(item.color);
-      dot.drawCircle(0, 0, 6);
-      dot.endFill();
-
-      const text = new window.PIXI.Text(item.label, {
-        fontFamily: 'Arial',
-        fontSize: 12,
-        fill: 0xFFFFFF
-      });
-      text.x = 15;
-      text.y = -6;
-
-      legendItem.addChild(dot);
-      legendItem.addChild(text);
-      legend.addChild(legendItem);
-    });
-
-    app.stage.addChild(legend);
-
-    // Cleanup function
     return () => {
-      if (animationRef.current) {
-        cancelAnimationFrame(animationRef.current);
-      }
-      if (appRef.current) {
-        appRef.current.destroy(true);
-        appRef.current = null;
-      }
-      if (containerRef.current) {
-        containerRef.current.innerHTML = '';
-      }
+      if (animationRef.current) cancelAnimationFrame(animationRef.current);
+      if (appRef.current) appRef.current.destroy(true);
+      if (containerRef.current) containerRef.current.innerHTML = '';
     };
-  }, [circuit, trackData]);
+  }, [teams]);
 
-  if (!trackData) {
-    return (
-      <div className={`${styles.trackContainer} ${className}`}>
-        <div className={styles.noData}>
-          <p>No track data available</p>
-        </div>
-      </div>
-    );
-  }
-
-  return (
-    <div 
-      ref={containerRef}
-      className={`${styles.trackContainer} ${className}`}
-      data-testid={`track-visualization-${circuit}`}
-    >
-      {/* PixiJS canvas will be inserted here */}
-    </div>
-  );
+  return <div ref={containerRef} className={`${styles.trackContainer} ${className}`} />;
 }

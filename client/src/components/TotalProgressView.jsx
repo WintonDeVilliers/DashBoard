@@ -1,5 +1,6 @@
 import { useMemo, useEffect, useRef } from 'react';
-import RacingGaugeTest from './RacingGaugeTest';
+// import RacingGaugeTest from './RacingGaugeTest';
+import RacingGauge from './RacingGauge';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import styles from '../styles/RacingComponents.module.css';
 
@@ -168,14 +169,14 @@ export default function TotalProgressView({ companyMetrics, teamData, consultant
           </CardHeader>
           
           <CardContent className={styles.gaugeContent}>
-            {/* <RacingGauge 
+            <RacingGauge 
               value={actualAmount}
               target={targetAmount}
               size={400}
               className={styles.mainGauge}
               isMonetary={true}
-            /> */}
-            <RacingGaugeTest value={175} />
+            />
+            {/* <RacingGaugeTest value={175} /> */}
             
             
             {/* Performance Stats */}

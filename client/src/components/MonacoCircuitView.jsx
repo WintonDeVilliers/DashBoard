@@ -4,6 +4,8 @@ import TrackVisualization from './TrackVisualization';
 import LiveTimingBoard from './LiveTimingBoard';
 import { CircuitConfigs } from '../../../shared/schema.js';
 import styles from '../styles/TrackVisualization.module.css';
+import MonacoMiniMap from "./MonacoMiniMap";
+
 
 export default function MonacoCircuitView({ teamData, companyMetrics }) {
   const monacoConfig = CircuitConfigs.monaco;
@@ -78,6 +80,10 @@ export default function MonacoCircuitView({ teamData, companyMetrics }) {
                   config={monacoConfig}
                   className={styles.monacoTrack}
                 />
+
+                {/* <div style={{ display: "flex", justifyContent: "center", padding: "2rem" }}>
+                  <MonacoMiniMap />
+                </div> */}
               </CardContent>
             </Card>
 
