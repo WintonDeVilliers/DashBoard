@@ -510,6 +510,26 @@
   font-size: var(--text-lg);
 }
 
+/* Circuit Sections */
+.circuitSection {
+  margin-bottom: var(--space-8);
+}
+
+.standingsSubtitle {
+  color: var(--text-muted);
+  font-size: var(--text-base);
+  margin-top: var(--space-2);
+}
+
+.circuitBadge {
+  font-weight: var(--font-semibold);
+  font-size: var(--text-sm);
+  padding: var(--space-1) var(--space-2);
+  background: var(--surface-tertiary);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-secondary);
+}
+
 /* Leaderboard */
 .leaderboardCard {
   background: var(--surface-card);
@@ -518,6 +538,7 @@
   border-radius: var(--radius-xl);
   overflow: hidden;
   box-shadow: var(--shadow-card);
+  margin-top: var(--space-12);
 }
 
 .leaderboardHeader {
