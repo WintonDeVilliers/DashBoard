@@ -784,28 +784,55 @@
   line-height: var(--leading-relaxed);
 }
 
-/* Racing Gauge Component */
+/* Racing Gauge Component - Speedometer Style */
 .racingGauge {
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
+  margin: 0 auto;
 }
 
 .gaugeSvg {
-  transform: rotate(-135deg);
+  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.15));
+  overflow: visible;
 }
 
 .backgroundArc {
+  transition: stroke var(--duration-500) var(--ease-out);
+}
+
+.sectionArc {
   transition: stroke var(--duration-300) var(--ease-out);
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+.needle {
+  transition: transform var(--duration-700) var(--ease-out);
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+.needleLine {
+  transition: transform var(--duration-700) var(--ease-out);
+}
+
+.needleCenter {
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.4));
+}
+
+.milestoneMarker {
+  opacity: 0.8;
 }
 
 .progressArc {
-  transition: stroke-dashoffset var(--duration-1000) var(--ease-out);
+  transition: stroke-dashoffset var(--duration-1000) var(--ease-out),
+              stroke var(--duration-300) var(--ease-out);
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
 }
 
 .targetLine {
   opacity: 0.8;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
 }
 
 .gaugeLabels {
@@ -825,12 +852,11 @@
 
 .gaugeCenter {
   position: absolute;
-  inset: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   text-align: center;
+  z-index: 2;
 }
 
 .gaugeValue {
