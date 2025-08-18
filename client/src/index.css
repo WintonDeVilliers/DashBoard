@@ -5,72 +5,57 @@
 @tailwind utilities;
 
 :root {
-  /* F1 Racing Theme Colors - Extracted from design reference */
-  --background: hsl(220, 9%, 5%);
-  --foreground: hsl(0, 0%, 85%);
-  --card: hsl(220, 9%, 10%);
-  --card-foreground: hsl(0, 0%, 85%);
-  --popover: hsl(220, 9%, 5%);
-  --popover-foreground: hsl(0, 0%, 85%);
-  --primary: hsl(14, 100%, 60%);
-  --primary-foreground: hsl(0, 0%, 100%);
-  --secondary: hsl(220, 9%, 15%);
-  --secondary-foreground: hsl(0, 0%, 85%);
-  --muted: hsl(220, 9%, 12%);
-  --muted-foreground: hsl(210, 4%, 46%);
-  --accent: hsl(220, 9%, 15%);
-  --accent-foreground: hsl(14, 100%, 60%);
-  --destructive: hsl(0, 85%, 69%);
-  --destructive-foreground: hsl(0, 0%, 100%);
-  --border: hsl(220, 9%, 15%);
-  --input: hsl(220, 9%, 12%);
-  --ring: hsl(14, 100%, 60%);
-  --chart-1: hsl(14, 100%, 60%);
-  --chart-2: hsl(175, 61%, 58%);
-  --chart-3: hsl(197, 67%, 55%);
-  --chart-4: hsl(0, 85%, 69%);
-  --chart-5: hsl(89, 61%, 49%);
-  --sidebar: hsl(220, 9%, 10%);
-  --sidebar-foreground: hsl(0, 0%, 85%);
-  --sidebar-primary: hsl(14, 100%, 60%);
-  --sidebar-primary-foreground: hsl(0, 0%, 100%);
-  --sidebar-accent: hsl(220, 9%, 15%);
-  --sidebar-accent-foreground: hsl(14, 100%, 60%);
-  --sidebar-border: hsl(220, 9%, 15%);
-  --sidebar-ring: hsl(14, 100%, 60%);
-  
-  /* Corporate Banking Theme - From company CSS */
-  --corporate-navy: #002b60;
-  --corporate-dark-blue: #002b4d;
-  --corporate-light-blue: #0260f7;
-  --corporate-highlight-red: #e57373;
-  --corporate-warning-orange: #e57200;
-  --corporate-text-light: #d8d8d8;
-  --corporate-text-muted: #c7c7c7;
-  
-  /* F1 Racing Specific Colors - Updated for corporate banking */
-  --racing-navy: #002b60;
-  --racing-orange: hsl(14, 100%, 60%);
-  --victory-teal: hsl(175, 61%, 58%);
-  --track-blue: hsl(197, 67%, 55%);
-  --alert-red: #e57373;
-  --caution-orange: #e57200;
-  --success-green: hsl(89, 61%, 49%);
-  --carbon-fiber: #002b4d;
-  --light-surface: hsl(210, 8%, 96%);
-  
-  /* Performance Category Colors */
-  --superstar-color: hsl(14, 100%, 60%);
-  --target-achieved-color: hsl(175, 61%, 58%);
-  --on-track-color: hsl(197, 67%, 55%);
-  --needs-boost-color: hsl(16, 100%, 74%);
-  --recovery-mode-color: hsl(0, 85%, 69%);
-  
+  /* Background / Surface */
+  --background: #ffffff; /* already light background */
+  --foreground: #0260f7;; /* switch to dark text for readability */
+  --card: #002b4d; /* corporate dark blue for cards */
+  --card-foreground: #d8d8d8; /* light text on dark blue */
+
+  /* Popover / Secondary */
+  --popover: #ffffff;
+  --popover-foreground: #0260f7;
+  --secondary: #002b60; /* navy */
+  --secondary-foreground: #d8d8d8;
+
+  /* Primary / Accent */
+  --primary: #0260f7; /* corporate light blue */
+  --primary-foreground: #ffffff;
+  --accent: #002b60; /* navy accent */
+  --accent-foreground: #0260f7;
+
+  /* Alerts */
+  --destructive: #e57373; 
+  --destructive-foreground: #ffffff;
+  --warning: #e57200; 
+  --success: hsl(89, 61%, 49%);
+
+  /* Borders / Inputs */
+  --border: #c7c7c7;
+  --input: #c7c7c7;
+  --ring: #0260f7;
+
+  /* Charts mapped to corporate palette */
+  --chart-1: #0260f7;
+  --chart-2: #002b60;
+  --chart-3: #002b4d;
+  --chart-4: #e57373;
+  --chart-5: #e57200;
+
+  /* Sidebar */
+  --sidebar: #002b4d;
+  --sidebar-foreground: #d8d8d8;
+  --sidebar-primary: #0260f7;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #002b60;
+  --sidebar-accent-foreground: #0260f7;
+  --sidebar-border: #c7c7c7;
+  --sidebar-ring: #0260f7;
+
   /* Typography */
   --font-racing: 'Roboto Condensed', sans-serif;
   --font-body: 'Inter', sans-serif;
   --font-mono: 'Roboto Mono', monospace;
-  
+
   /* Spacing and Layout */
   --radius: 0.75rem;
   --spacing-xs: 0.25rem;
@@ -79,13 +64,13 @@
   --spacing-lg: 1.5rem;
   --spacing-xl: 2rem;
   --spacing-2xl: 3rem;
-  
+
   /* Animation Durations */
   --duration-fast: 200ms;
   --duration-normal: 300ms;
   --duration-slow: 500ms;
   --duration-1000: 1000ms;
-  
+
   /* Shadow System */
   --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
   --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
@@ -96,24 +81,24 @@
   --shadow-card: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.2);
   --shadow-glow: 0 0 20px rgba(255, 107, 53, 0.3);
   --shadow-victory: 0 0 20px rgba(78, 205, 196, 0.3);
-  
+
   /* Gradients */
   --gradient-racing: linear-gradient(135deg, hsl(207, 100%, 19%) 0%, hsl(207, 100%, 25%) 100%);
   --gradient-victory: linear-gradient(135deg, hsl(175, 61%, 58%) 0%, hsl(89, 61%, 49%) 100%);
   --gradient-alert: linear-gradient(135deg, hsl(0, 85%, 69%) 0%, hsl(14, 100%, 60%) 100%);
   --gradient-track: linear-gradient(90deg, hsl(0, 85%, 69%) 0%, hsl(16, 100%, 74%) 25%, hsl(197, 67%, 55%) 50%, hsl(175, 61%, 58%) 75%, hsl(89, 61%, 49%) 100%);
-  
+
   /* Backdrop Filters */
   --backdrop-blur: blur(10px);
   --backdrop-brightness: brightness(0.9);
-  
+
   /* Container Sizes */
   --container-max-width: 88rem;
-  
+
   /* Layout Dimensions */
   --header-height: 4rem;
   --mobile-nav-height: 3rem;
-  
+
   /* Z-Index Scale */
   --z-dropdown: 1000;
   --z-sticky: 1020;
@@ -159,30 +144,32 @@
 
   body {
     @apply bg-background text-foreground font-body antialiased;
-    background: rgba(245, 245, 245, 0.9);
-    color: hsl(0, 0%, 15%);
+    background: radial-gradient(ellipse at top, rgba(0, 43, 96, 0.3) 0%, transparent 50%),
+                radial-gradient(ellipse at bottom, rgba(26, 26, 26, 0.8) 0%, transparent 50%),
+                linear-gradient(180deg, hsl(220, 9%, 5%) 0%, hsl(0, 0%, 10%) 100%);
+    color: hsl(0, 0%, 85%);
     min-height: 100vh;
     overflow-x: hidden;
   }
-  
+
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-racing);
     font-weight: 700;
     line-height: 1.2;
   }
-  
+
   .font-racing {
     font-family: var(--font-racing);
   }
-  
+
   .font-body {
     font-family: var(--font-body);
   }
-  
+
   .font-mono {
     font-family: var(--font-mono);
   }
-  
+
   /* Scrollbar Styling */
   ::-webkit-scrollbar {
     width: 8px;
@@ -212,13 +199,13 @@
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: var(--radius);
   }
-  
+
   .performance-bar {
     background: var(--gradient-track);
     height: 8px;
     border-radius: 4px;
   }
-  
+
   .carbon-fiber {
     background-image: 
       linear-gradient(45deg, var(--carbon-fiber) 25%, transparent 25%), 
@@ -228,7 +215,7 @@
     background-size: 20px 20px;
     background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
   }
-  
+
   /* Track Section Background */
   .track-section {
     background-image: 
@@ -236,7 +223,7 @@
       radial-gradient(circle at 80% 20%, rgba(78, 205, 196, 0.1) 0%, transparent 50%),
       radial-gradient(circle at 40% 40%, rgba(69, 183, 209, 0.1) 0%, transparent 50%);
   }
-  
+
   /* Racing Button Variants */
   .btn-racing {
     background: var(--gradient-racing);
@@ -260,7 +247,7 @@
     box-shadow: var(--shadow-victory);
     transform: translateY(-1px);
   }
-  
+
   /* Gauge Circle Styling */
   .gauge-circle {
     transition: stroke-dasharray var(--duration-slow) ease-in-out;
@@ -276,7 +263,7 @@
   .text-alert-red { color: var(--alert-red); }
   .text-caution-orange { color: var(--caution-orange); }
   .text-success-green { color: var(--success-green); }
-  
+
   .bg-racing-navy { background-color: var(--racing-navy); }
   .bg-racing-orange { background-color: var(--racing-orange); }
   .bg-victory-teal { background-color: var(--victory-teal); }
@@ -284,27 +271,27 @@
   .bg-alert-red { background-color: var(--alert-red); }
   .bg-caution-orange { background-color: var(--caution-orange); }
   .bg-success-green { background-color: var(--success-green); }
-  
+
   .border-racing-orange { border-color: var(--racing-orange); }
   .border-victory-teal { border-color: var(--victory-teal); }
-  
+
   /* Animation Utilities */
   .animate-car-move {
     animation: carMove 3s ease-in-out infinite;
   }
-  
+
   .animate-pulse-soft {
     animation: pulseSoft 2s ease-in-out infinite;
   }
-  
+
   .animate-gauge-fill {
     animation: gaugeFill 2s ease-out;
   }
-  
+
   .animate-slide-in {
     animation: slideIn 0.5s ease-out;
   }
-  
+
   /* Focus Styles */
   .focus-racing:focus {
     outline: 2px solid var(--racing-orange);
@@ -315,7 +302,7 @@
     outline: 2px solid var(--victory-teal);
     outline-offset: 2px;
   }
-  
+
   /* Container Utility */
   .container {
     max-width: var(--container-max-width);
@@ -416,7 +403,7 @@
   .animate-slide-in {
     animation: none;
   }
-  
+
   * {
     transition: none !important;
     animation: none !important;
@@ -429,7 +416,7 @@
   .btn-victory {
     border: 2px solid hsl(0, 0%, 100%);
   }
-  
+
   .racing-card {
     border: 2px solid var(--border);
   }
@@ -441,13 +428,13 @@
     background: white;
     color: black;
   }
-  
+
   .racing-card {
     background: white;
     border: 1px solid black;
     backdrop-filter: none;
   }
-  
+
   .animate-car-move,
   .animate-pulse-soft,
   .animate-gauge-fill,
@@ -461,11 +448,11 @@
   h1 {
     font-size: 1.875rem;
   }
-  
+
   h2 {
     font-size: 1.5rem;
   }
-  
+
   h3 {
     font-size: 1.25rem;
   }
@@ -475,7 +462,7 @@
   h1 {
     font-size: 3rem;
   }
-  
+
   h2 {
     font-size: 2.25rem;
   }
@@ -485,7 +472,7 @@
   h1 {
     font-size: 3.75rem;
   }
-  
+
   h2 {
     font-size: 3rem;
   }
@@ -554,7 +541,7 @@
   .smooth-enter {
     animation: slideIn 0.3s ease-out;
   }
-  
+
   .car-animation {
     animation: carMove 3s ease-in-out infinite;
   }
