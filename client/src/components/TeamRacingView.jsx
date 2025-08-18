@@ -148,7 +148,7 @@ export default function TeamRacingView({ teamData, companyMetrics }) {
                       <div className={styles.driverInfo}>
                         <div className={styles.driverName}>{team.supervisor_name}</div>
                         <div className={styles.circuitName}>
-                          {team.circuit === 'monaco' ? 'Monaco Circuit' : 'Kyalami Circuit'}
+                          {team.circuit && team.circuit.toLowerCase() === 'monaco' ? 'Monaco Circuit' : 'Kyalami Circuit'}
                         </div>
                       </div>
                     </div>
