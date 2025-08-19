@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import styles from "../styles/RacingComponents.module.css";
+import styles from "@/styles/RacingComponents.module.css";
 
 export default function PitCrewView({ consultants, teams }) {
   const groupedConsultants = useMemo(() => {
