@@ -1,5 +1,13 @@
 import * as XLSX from 'xlsx';
-import { ExcelColumnMappings } from '../../shared/schema.js';
+
+// Excel column mapping constants
+const ExcelColumnMappings = {
+  supervisor: ['Supervisor', 'supervisor', 'team_leader', 'manager', 'Supervisor Name'],
+  consultant: ['Consultant', 'consultant', 'name', 'employee_name', 'Consultant Name'],
+  sales: ['Sales', 'sales', 'revenue', 'total_sales', 'Sales (R)', 'Current Sales'],
+  target: ['Target', 'target', 'sales_target', 'Target (R)', 'Sales Target'],
+  achievement_rate: ['Achievement Rate', 'achievement_rate', 'performance', 'Achievement Rate %']
+};
 
 export class ExcelProcessor {
   static async processFile(file) {

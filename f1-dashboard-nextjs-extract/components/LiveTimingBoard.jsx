@@ -1,4 +1,4 @@
-import styles from '../styles/RacingComponents.module.css';
+import styles from '@/styles/RacingComponents.module.css';
 
 export default function LiveTimingBoard({ teams = [], circuit = 'monaco' }) {
   if (!teams || teams.length === 0) {

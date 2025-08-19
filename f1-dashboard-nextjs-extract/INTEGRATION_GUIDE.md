@@ -107,8 +107,13 @@ export default function CustomDashboard() {
 
 ### Individual Components
 ```jsx
-// Use individual components
+// Use individual components (Option 1: Direct imports)
 import { TeamRacingView, PitCrewView, TotalProgressView } from '@/components'
+
+// Option 2: Individual imports for better tree-shaking
+import TeamRacingView from '@/components/TeamRacingView'
+import PitCrewView from '@/components/PitCrewView'
+import TotalProgressView from '@/components/TotalProgressView'
 
 export default function CustomLayout() {
   return (

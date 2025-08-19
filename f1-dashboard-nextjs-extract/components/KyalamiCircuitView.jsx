@@ -2,11 +2,16 @@ import { useMemo } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import TrackVisualization from './TrackVisualization';
 import LiveTimingBoard from './LiveTimingBoard';
-import { CircuitConfigs } from '../../../shared/schema.js';
-import styles from '../styles/TrackVisualization.module.css';
+import styles from '@/styles/TrackVisualization.module.css';
 
 export default function KyalamiCircuitView({ teamData, companyMetrics }) {
-  const kyalamiConfig = CircuitConfigs.kyalami;
+  // Kyalami circuit configuration
+  const kyalamiConfig = {
+    name: 'Kyalami',
+    country: 'South Africa',
+    color: '#e57200',
+    background: 'linear-gradient(135deg, #002b4d 0%, #e57200 100%)'
+  };
   
   const kyalamiTeams = useMemo(() => {
     if (!teamData) return [];

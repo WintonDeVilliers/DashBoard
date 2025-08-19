@@ -1,4 +1,26 @@
-import { PerformanceThresholds, PerformanceColors, VehicleTypes } from '../../shared/schema.js';
+// Performance calculation constants
+const PerformanceThresholds = {
+  SUPERSTAR: 120,
+  TARGET_ACHIEVED: 100,
+  ON_TRACK: 80,
+  NEEDS_BOOST: 60
+};
+
+const PerformanceColors = {
+  SUPERSTAR: '#22c55e',
+  TARGET_ACHIEVED: '#3b82f6', 
+  ON_TRACK: '#f59e0b',
+  NEEDS_BOOST: '#f97316',
+  RECOVERY_MODE: '#ef4444'
+};
+
+const VehicleTypes = {
+  SUPERSTAR: '🏎️',
+  TARGET: '🏎️',
+  ON: '🏎️', 
+  NEEDS: '🏎️',
+  RECOVERY: '🏎️'
+};
 
 export class PerformanceCalculator {
   static calculateAchievementRate(currentSales, target) {
