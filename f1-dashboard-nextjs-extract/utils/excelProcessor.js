@@ -224,3 +224,192 @@ export class ExcelProcessor {
     }
   }
 }
+
+// Export the main processing function - this matches the server implementation
+export async function processExcelData(rawData) {
+  const consultants = [];
+  const teamMap = new Map();
+  let totalSales = 0;
+  let totalTarget = 0;
+
+  // Find column mappings
+  const columnMappings = findColumnMappings(rawData[0]);
+  console.log("Column mappings found:", columnMappings);
+  
+  // Validate that we have essential mappings
+  if (!columnMappings.consultant) {
+    throw new Error("Could not find a column for consultant/employee names. Please ensure your Excel file has a column with names like 'Name', 'Consultant Name', 'Employee Name', etc.");
+  }
+  
+  if (!columnMappings.sales && !columnMappings.target) {
+    throw new Error("Could not find sales data columns. Please ensure your Excel file has columns for sales amounts and targets.");
+  }
+  
+  // Process each row
+  rawData.forEach((row, index) => {
+    const consultant = {
+      id: `consultant_${index + 1}`,
+      name: getColumnValue(row, columnMappings.consultant) || `Consultant ${index + 1}`,
+      supervisor_name: getColumnValue(row, columnMappings.supervisor) || 'Unknown Supervisor',
+      team_name: getColumnValue(row, columnMappings.team_name) || 'Unknown Team',
+      current_sales: parseFloat(getColumnValue(row, columnMappings.sales)) || 0,
+      sales_target: parseFloat(getColumnValue(row, columnMappings.target)) || 0,
+      achievement_rate: 0,
+      daily_average: 0,
+      days_active: 31,
+      position: 0,
+      apps_achievement_rate: 0
+    };
+
+    // Calculate achievement rate
+    if (consultant.sales_target > 0) {
+      consultant.achievement_rate = (consultant.current_sales / consultant.sales_target) * 100;
+    }
+    
+    consultant.daily_average = consultant.current_sales / consultant.days_active;
+    consultants.push(consultant);
+    
+    // Aggregate team data
+    aggregateTeamData(consultant, teamMap);
+    
+    totalSales += consultant.current_sales;
+    totalTarget += consultant.sales_target;
+  });
+
+  return finalizeProcessing(consultants, teamMap, totalSales, totalTarget);
+}
+
+// Helper functions moved outside the class for the export function
+function findColumnMappings(firstRow) {
+  const mappings = {};
+  const columns = Object.keys(firstRow);
+  
+  for (const [field, possibleNames] of Object.entries(ExcelColumnMappings)) {
+    for (const column of columns) {
+      if (possibleNames.some(name => column.toLowerCase().includes(name.toLowerCase()))) {
+        mappings[field] = column;
+        break;
+      }
+    }
+  }
+  
+  return mappings;
+}
+
+function getColumnValue(row, columnName) {
+  return columnName ? row[columnName] : null;
+}
+
+function aggregateTeamData(consultant, teamMap) {
+  const teamKey = consultant.supervisor_name;
+  if (!teamMap.has(teamKey)) {
+    teamMap.set(teamKey, {
+      id: `team_${teamMap.size + 1}`,
+      team_name: consultant.team_name,
+      supervisor_name: consultant.supervisor_name,
+      team_size: 0,
+      total_sales: 0,
+      team_target: 0,
+      team_achievement_rate: 0,
+      avg_performance: 0,
+      consultants: [],
+      circuit: getCircuitAssignment(consultant.supervisor_name),
+      vehicle_type: '',
+      performance_color: '',
+      track_position: 0
+    });
+  }
+  
+  const team = teamMap.get(teamKey);
+  team.team_size++;
+  team.total_sales += consultant.current_sales;
+  team.team_target += consultant.sales_target;
+  team.consultants.push(consultant);
+}
+
+function finalizeProcessing(consultants, teamMap, totalSales, totalTarget) {
+  // Calculate team metrics
+  const teams = Array.from(teamMap.values()).map(team => {
+    if (team.team_target > 0) {
+      team.team_achievement_rate = (team.total_sales / team.team_target) * 100;
+    }
+    
+    team.avg_performance = team.consultants.reduce((sum, c) => sum + c.achievement_rate, 0) / team.team_size;
+    team.vehicle_type = getVehicleType(team.team_achievement_rate);
+    team.performance_color = getPerformanceColor(team.team_achievement_rate);
+    team.track_position = Math.min(team.team_achievement_rate, 120);
+    
+    return team;
+  });
+
+  // Sort and assign positions
+  consultants.sort((a, b) => b.achievement_rate - a.achievement_rate);
+  consultants.forEach((consultant, index) => {
+    consultant.position = index + 1;
+  });
+
+  return {
+    consultants,
+    teams,
+    company: {
+      total_sales_actual: totalSales,
+      total_sales_target: totalTarget,
+      overall_achievement: totalTarget > 0 ? (totalSales / totalTarget) * 100 : 0,
+      total_consultants: consultants.length,
+      total_supervisors: teams.length
+    }
+  };
+}
+
+function getVehicleType(achievementRate) {
+  if (achievementRate >= 120) return '🏎️';
+  if (achievementRate >= 100) return '🚗';
+  if (achievementRate >= 80) return '🚙';
+  if (achievementRate >= 60) return '🚐';
+  return '🛻';
+}
+
+function getPerformanceColor(achievementRate) {
+  if (achievementRate >= 120) return '#FF6B35';
+  if (achievementRate >= 100) return '#4ECDC4';
+  if (achievementRate >= 80) return '#45B7D1';
+  if (achievementRate >= 60) return '#FFA07A';
+  return '#FF6B6B';
+}
+
+function getCircuitAssignment(supervisorName) {
+  // Monaco circuit supervisors
+  const monacoSupervisors = [
+    'Ashley Moyo',
+    'Mixo Makhubele', 
+    'Nonhle Zondi',
+    'Rodney Naidu',
+    'Samantha Govender',
+    'Samuel Masubelele',
+    'Taedi Moletsane',
+    'Thabo Mosweu',
+    'Thobile Phakhathi'
+  ];
+  
+  // Kyalami circuit supervisors
+  const kyalamiSupervisors = [
+    'Busisiwe Mabuza',
+    'Cindy Visser',
+    'Matimba Ngobeni',
+    'Mfundo Mdlalose',
+    'Mondli Nhlapho',
+    'Mosima Moshidi',
+    'Salome Baloyi',
+    'Shadleigh White',
+    'Tshepo Moeketsi'
+  ];
+  
+  if (monacoSupervisors.includes(supervisorName)) {
+    return 'monaco';
+  } else if (kyalamiSupervisors.includes(supervisorName)) {
+    return 'kyalami';
+  } else {
+    // Fallback for unknown supervisors - assign based on name hash for consistency
+    return supervisorName.charCodeAt(0) % 2 === 0 ? 'monaco' : 'kyalami';
+  }
+}

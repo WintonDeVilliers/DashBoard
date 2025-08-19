@@ -10,8 +10,9 @@ import TeamRacingView from './TeamRacingView';
 import PitCrewView from './PitCrewView';
 import TotalProgressView from './TotalProgressView';
 
-// Import utility functions
+// Import utility functions  
 import { processExcelData } from '@/utils/excelProcessor';
+import * as XLSX from 'xlsx';
 
 /**
  * F1 Racing Dashboard - Main Component for Next.js Integration
@@ -63,27 +64,45 @@ export default function F1RacingDashboard({
     setIsLoading(true);
     
     try {
-      const result = await processExcelData(file);
+      // First read the Excel file
+      const arrayBuffer = await file.arrayBuffer();
+      const workbook = XLSX.read(arrayBuffer, { type: 'array' });
       
-      if (result.success) {
-        setTeamsData(result.teams || []);
-        setConsultantsData(result.consultants || []);
-        setMetricsData(result.metrics || null);
-        
-        // Call optional callback with processed data
-        onDataProcessed({
-          teams: result.teams,
-          consultants: result.consultants,
-          metrics: result.metrics
-        });
-
-        toast({
-          title: "File Processed Successfully",
-          description: `Loaded ${result.teams?.length || 0} teams and ${result.consultants?.length || 0} consultants`,
-        });
-      } else {
-        throw new Error(result.error || 'Processing failed');
+      // Look for 'Sales Performance' sheet or use first sheet
+      let sheetName = 'Sales Performance';
+      if (!workbook.Sheets[sheetName]) {
+        sheetName = workbook.SheetNames[0];
       }
+      
+      if (!workbook.Sheets[sheetName]) {
+        throw new Error('No valid worksheet found in Excel file');
+      }
+
+      const worksheet = workbook.Sheets[sheetName];
+      const rawData = XLSX.utils.sheet_to_json(worksheet);
+      
+      if (rawData.length === 0) {
+        throw new Error('Excel worksheet is empty');
+      }
+
+      // Process the raw data
+      const result = await processExcelData(rawData);
+      
+      setTeamsData(result.teams || []);
+      setConsultantsData(result.consultants || []);
+      setMetricsData(result.company || null);
+      
+      // Call optional callback with processed data
+      onDataProcessed({
+        teams: result.teams,
+        consultants: result.consultants,
+        metrics: result.company
+      });
+
+      toast({
+        title: "File Processed Successfully",
+        description: `Loaded ${result.teams?.length || 0} teams and ${result.consultants?.length || 0} consultants`,
+      });
     } catch (error) {
       console.error('File processing error:', error);
       toast({
