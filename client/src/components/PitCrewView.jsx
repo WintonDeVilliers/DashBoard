@@ -50,7 +50,7 @@ export default function PitCrewView({ consultants, teams }) {
       
       <div className={styles.pitCrewContainer}>
         {Object.entries(groupedConsultants).map(([supervisorName, teamMembers]) => {
-          const sortedMembers = [...teamMembers].sort((a, b) => b.achievement_rate - a.achievement_rate);
+          const sortedMembers = [...teamMembers].sort((a, b) => (b.achievement_rate || 0) - (a.achievement_rate || 0));
           
           return (
             <Card key={supervisorName} className={styles.pitCrewCard}>
@@ -60,7 +60,7 @@ export default function PitCrewView({ consultants, teams }) {
                 </CardTitle>
                 <div className={styles.crewStats}>
                   Pit Crew Size: {teamMembers.length} | 
-                  Avg Performance: {(teamMembers.reduce((sum, m) => sum + m.achievement_rate, 0) / teamMembers.length).toFixed(1)}% |
+                  Avg Performance: {(teamMembers.reduce((sum, m) => sum + (m.achievement_rate || 0), 0) / teamMembers.length).toFixed(1)}% |
                   Total Apps: {teamMembers.reduce((sum, m) => sum + (m.real_apps_vol || 0), 0)}
                 </div>
               </CardHeader>
@@ -72,14 +72,14 @@ export default function PitCrewView({ consultants, teams }) {
                       key={consultant.id} 
                       className={styles.crewMember}
                       style={{ 
-                        borderColor: getPerformanceColor(consultant.achievement_rate),
-                        backgroundColor: `${getPerformanceColor(consultant.achievement_rate)}15`
+                        borderColor: getPerformanceColor(consultant.achievement_rate || 0),
+                        backgroundColor: `${getPerformanceColor(consultant.achievement_rate || 0)}15`
                       }}
                       data-testid={`crew-member-${consultant.id}`}
                     >
                       <div className={styles.memberHeader}>
                         <span className={styles.memberIcon}>
-                          {getPerformanceIcon(consultant.achievement_rate)}
+                          {getPerformanceIcon(consultant.achievement_rate || 0)}
                         </span>
                         <span className={styles.memberPosition}>#{index + 1}</span>
                       </div>
@@ -91,9 +91,9 @@ export default function PitCrewView({ consultants, teams }) {
                         <div className={styles.memberRole}>Pit Crew Member</div>
                         <div 
                           className={styles.memberAchievement}
-                          style={{ color: getPerformanceColor(consultant.achievement_rate) }}
+                          style={{ color: getPerformanceColor(consultant.achievement_rate || 0) }}
                         >
-                          {consultant.achievement_rate.toFixed(1)}%
+                          {(consultant.achievement_rate || 0).toFixed(1)}%
                         </div>
                       </div>
                       
