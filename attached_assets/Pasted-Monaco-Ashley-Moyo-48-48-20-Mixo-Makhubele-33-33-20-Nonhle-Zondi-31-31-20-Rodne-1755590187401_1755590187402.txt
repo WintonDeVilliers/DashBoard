@@ -1,0 +1,269 @@
+Monaco
+
+Ashley Moyo	      48%	48%	20%
+Mixo Makhubele	33%	33%	20%
+Nonhle Zondi	31%	31%	20%
+Rodney Naidu	29%	29%	20%
+Samantha Govender	48%	48%	20%
+Samuel Masubelele	34%	34%	20%
+Taedi Moletsane	27%	27%	20%
+Thabo Mosweu	21%	21%	20%
+Thobile Phakhathi	30%	30%	20%
+
+
+Kayalami
+
+Busisiwe Mabuza	21%	21%	20%
+Cindy Visser	33%	33%	20%
+Matimba Ngobeni	36%	36%	20%
+Mfundo Mdlalose	39%	39%	20%
+Mondli Nhlapho	76%	76%	20%
+Mosima Moshidi 	44%	44%	20%
+Salome Baloyi	69%	69%	20%
+Shadleigh White	48%	48%	20%
+Tshepo Moeketsi	21%	21%	20%
+
+
+
+
+Supervisor Name	
+       Consultant Name
+
+
+Ashley Moyo	
+     Ayanda Delubom
+	Boipelo Zitha
+	Grace Baloyi
+	Koketjo Kekae
+	Lunga Mabona
+	Ngibongiseni Chavango
+	Ntando Sibisi
+	Sibongile Dlali
+	Siphokazi Ndamase
+	Sthandokuhle Mwelase
+	Teboho Tau
+	Zintle Mshengu
+	
+Busisiwe Mabuza	
+     Antonaite Mkhatshwa
+	Bhonda Thompson
+	Daphney Legodi
+	Dumisani Mtsweni
+	Karabo Motau
+	Mlungisi Nkidi
+	Mulweli Mushweu
+	Puseletso Mokoena
+	Rorisang Masalesa
+	Thato Moletsane
+	Zamokuhle Mazibuko
+	
+Cindy Visser	
+     Basetsana Rakitla
+	Ivan Mashimbye
+	Mary Tshabalala
+	Mary-Ann Moloto
+	Mbavhalelo Ndou
+	Mokgadi Mathiane
+	Morongwa Rasekgololo
+	Rendani Nephambani
+	Tshwarelo Motlhala
+	Vhugala Davhula
+	Zinhle Mtshweni
+	Zwivhuya Magwara
+	
+Matimba Ngobeni	
+     Kefilwe Mokgotle
+	Kgabo Mokonyama
+	Nozuko Ndamase
+	Shannon Prince
+	Simphiwe Madlabane
+	Siyavuya Mnukwa
+	Tshepisang Molefe
+	Tumi Moloi
+
+Mfundo Mdlalose	
+     Gloria Seutloadi
+	Jody Shingange
+	Lebone Maile
+	Lufuno Makhado
+	Menziwoxolo Sibeko
+	Mmateboho Mosekedi
+	Naledi Mashiane
+	Nokuthula Mabongo
+	Odirile Mathe
+	Rolindela Nephembani
+	Tebogo Sentsho
+	Wendy Van Wyk
+
+Mixo Makhubele	
+     Bontle Nyama
+	Lethabo Manamela
+	Linah Raletshena
+	Lindiwe Dladla
+	Matlhogonolo Mosidi
+	Moatlhodi Montshojang
+	Saafiyah Borman
+	Thabo Maphutsi
+	Thandazo Mavuso
+	Tshegofatso Mahlangu
+	Vishaiya Pillay
+	Xolile Zikhali
+
+Mondli Nhlapho	
+     Amogelang Khunou
+	Busisiwe Nyembe
+	Khutso Mothiba
+	Lucas Gamede
+	Mana Zungu
+	Matlading Sebei
+	Nokuthula Mabena
+	Nothando Dlamini
+
+Mosima Moshidi 	
+      Aboo-Baker Cara
+	Akhona Mbangendlu
+	Dimakatso Tsotetsi
+	Dumisane Maqoga
+	Oratilwe Modibane
+	Palesa Masekwa
+	Potego Selatole
+	Precious Mmola
+	Thabiso Mokgupi
+	Tumelo Mabena
+	Xolani Mafunda
+
+Nonhle Zondi	
+     Bridget Madonsela
+	Gcina Mazibuko
+	Lerato Banda
+	Letlhogonolo Mokwena
+	Londolani Lishivha
+	Nothando Makwakwa
+	Ntando Mwelase
+	Phelelwa Nkabinde
+	Phumeza Khyolo
+	Tebogo Maluleke
+	Tebogo Moremi
+	Thato Mokoena
+	Tiyani Khoza
+	
+Rodney Naidu	
+     Carmen Shiburi
+	Chanda Bowa
+	Kabelo Molamudi
+	Keitumetse Tsotetsi
+	Lekelela Mkhize
+	Livhuwani Tharaga
+	Masana Mabunda
+	Mbuelo Mukwevho
+	Mmaphuti Lamola
+	Monde Mbele
+	Murunwa Rakgogo
+	Musa Mathebula
+	Nomathemba Gwatyu
+	
+Salome Baloyi	
+     Daniel Ramabu
+	Florence Matjila
+	Lesego Raseroka
+	Malatankwe Nkwatse
+	Naledi Moletsane
+	Neo Molifi
+	Nomfundo Mazibuko
+	Nonkulumo Xalisa
+	Precious Mashabane
+	Siphilile Biyela
+
+Samantha Govender	
+      Aldrin JR Monaisa
+	Babalo Tshabalala
+	Cindy Milani
+	Cowan Stewart
+	Hannah Tabane
+	Kyle van Vught
+	Lerato Sekati
+	Nkateko Rikhotso
+	Precious Madonsela
+	Ronald Madisha
+	Sanelisiwe Madela
+	Tholwana Mosweu
+	Winton de Villiers
+	Xolisa Mkhosana
+	
+Samuel Masubelele	
+     Anelisa Ngobo
+	Cyprian April
+	Fortunate Skhakhane
+	Gift Nkosi
+	Katlego Langa
+	Keneilwe Rooi
+	Lusapho Ntaka
+	Moreen Nkosi
+	Ntsako Maswanganye
+	Onica Mathebula
+	Phindile Mabunda
+	Sibusiso Khanyile
+	Thembekile Sithebe
+	
+Shadleigh White	
+      Cebisile Nhlabathi
+	Chwayita Mnukwa
+	David Rapia
+	Dudu Madumise
+	Matimu Chauke
+	Mokiritla Selepe
+	Moratehi Tseisi
+	Tshepang Ramokgopa
+
+
+Taedi Moletsane	
+      Angelinah Khoza
+	Dumoluhle Ndlovu
+	Hlezipi Maqoga
+	Jabulani Khosa
+	Lethabo Komane
+	Mmathapelo Maine
+	Mosa Seleka
+	Odwa Duba
+	Phindile Nkosi
+	Thabiso Manamela
+	Tshepo Lekgowane
+
+Thabo Mosweu	
+      Bridgette Kholeng
+	Deborah Dinala
+	Dineo Mdlalose
+	Lerato Nthite
+	Lerato Rakhokole
+	Mamfana Mogale
+	Masego Moremi
+	Mmadira Malatjie
+	Mpho Moeketsi
+	Nomthandazo Nkutha
+	Ziningi Mabizela
+	Zwivhuya Siaga
+
+	
+Thobile Phakhathi	
+      Betty Mawela
+	Boipelo Rabeng
+	Bongeka Ntethe
+	David Phala
+	Karabo Mlambo
+	Lebogang Motau
+	Nozipho Radebe
+	Palesa Jama
+	Thabang Mokoena
+	Thabo Setlhako
+	Thato Majoro
+	Tshepo Tshekiso
+
+Tshepo Moeketsi	
+      Bongumusa Nkosi
+	Lebohang Tlali
+	Mandy Sibisi
+	Nonhlanhla Mhlungu
+	Nsovo Kubayi
+	Phenyo Maepa
+	Ronewa Sibara
+	Senamile Ngema
